@@ -1,0 +1,170 @@
+give_player_name
+Indtast navn på spiller %d
+
+player_win
+%s vandt spillet! Tillykke!
+
+field_land
+Du landede på feltet: %s
+
+balance
+Din balance er nu %d
+
+roll_dice
+%s : Tryk på enter for at kaste terningerne
+
+amount_players
+Indtast antallet af spillere
+
+invalid_amount_players
+Ugyldigt antal spillere! Prøv igen!
+
+select_card_type
+Vælg et figurkort
+
+illegal_card_type
+Ugyldig korttype, prøv igen
+
+field_start
+Du landede på start
+
+field_burger_baren
+Du landede på burgerbaren
+
+field_pizzariaet
+Du landede på pizzariaet
+
+field_slik_butikken
+Du landede på slikbutikken
+
+field_is_kiosken
+Du landede på iskiosken
+
+field_fængsel
+Du er i fængsel
+
+field_museet
+Du landede på museet
+
+field_biblioteket
+Du landede på biblioteket
+
+field_skate_parken
+Du landede på skateparken
+
+field_swimming_poolen
+Du landede på swimmingpoolen
+
+field_parkering
+Du landede på gratis parkering
+
+field_spille_hallen
+Du landede på spillehallen
+
+field_kinoen
+Du landede på kinoen.
+
+field_legetøjs_butikken
+Du landede på legetøjsbutikken
+
+field_dyre_butikken
+Du landede på dyre butikken
+
+field_gå_fængsel
+Du skal i fængsel
+
+field_bowling_hallen
+Du landede på bowling hallen
+
+field_zoo
+Du landede på zoo
+
+field_vandlandet
+Du landede på vandlandet
+
+field_strand_promenaden
+Du landede på strand promenaden
+
+field_prøv_lykken
+Prøv lykken!
+
+field_start_titel
+Start
+
+field_burgerbar_titel
+Burgerbaren
+
+field_pizzaria_titel
+Pizzariaet
+
+field_candy_store_titel
+Slikbuttikken
+
+field_ice_cream_titel
+Isbutikken
+
+field_museum_titel
+Museet
+
+field_library_titel
+Biblioteket
+
+field_skate_park_titel
+Skaterparken
+
+field_pool_titel
+Swimmingpool
+
+field_game_hall_titel
+Spillehallen
+
+field_cinema_titel
+Biografen
+
+field_toy_store_titel
+Legetøjsbutikken
+
+field_pet_store_titel
+Dyrehandlen
+
+field_bowling_hall_titel
+Bowlinghallen
+
+field_zoo_titel
+Zoo
+
+field_water_park_titel
+Vandlandet
+
+field_beach_promenade
+Strand promenade
+
+field_prison_titel
+fængsel
+
+field_parking_titel
+Parkering
+
+field_go_to_prison_titel
+Gå til fængsel
+
+buy_property
+Denne bolig er til salg! Vil %s købe denne bolig?
+
+pay_rent
+"%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!"
+
+die_roll
+Det er %s's tur til at rulle terningen
+
+die_roll_two
+Rul
+
+chance_move
+Du er flyttet %d felter!
+
+chance_point
+Du får %d point!
+
+winner
+%s vinder spillet!!

@@ -1,0 +1,167 @@
+give_player_name
+Enter name of player %d
+
+player_win
+%s won the game! Congratulations!
+
+field_land
+You landed on field: %s
+
+balance
+Your balance is: %d
+
+roll_dice
+%s : Press enter to roll dice
+
+amount_players
+Enter amount of players
+
+invalid_amount_players
+Invalid amount of players! Try again!
+
+select_card_type
+Choose a figure card
+
+illegal_card_type
+Illegal card type, try again
+
+field_start
+Welcome to start
+
+field_start_titel
+Start
+
+field_burger_baren
+You're now in the burger café
+
+field_pizzariaet
+You're now in the pizzaria
+
+field_slik_butikken
+You're now in the candy store
+
+field_is_kiosken
+You're now at the ice cream truck
+
+field_fængsel
+You're now in prison
+
+field_museet
+You're now in the museum
+
+field_biblioteket
+You're now in the library
+
+field_skate_parken
+You're now on the skatepark
+
+field_swimming_poolen
+You're now at the pool
+
+field_parkering
+You're now at free parking zone
+
+field_spille_hallen
+Welcome to the gamehall
+
+field_kinoen
+You're now in the cinema.
+
+field_legetøjs_butikken
+You're now in the toy store
+
+field_dyre_butikken
+You're now in the pet shop
+
+field_gå_fængsel
+You're going to prison
+
+field_bowling_hallen
+Welcome to the bowling hall
+
+field_zoo
+Welcome to the zoo
+
+field_vandlandet
+Welcome to the waterpark
+
+field_strand_promenaden
+You're now on the beach promenade
+
+field_prøv_lykken
+Take a chance!
+
+field_start_titel
+Start
+
+field_burgerbar_titel
+Burgerbar
+
+field_pizzaria_titel
+Pizzaria
+
+field_candy_store_titel
+Candy Store
+
+field_ice_cream_titel
+Ice cream shop
+
+field_museum_titel
+Museum
+
+field_library_titel
+Library
+
+field_skate_park_titel
+Skatepark
+
+field_pool_titel
+Swimmingpool
+
+field_game_hall_titel
+Game Hall
+
+field_cinema_titel
+Cinema
+
+field_toy_store_titel
+Toy store
+
+field_pet_store_titel
+Pet store
+
+field_bowling_hall_titel
+Bowling hall
+
+field_zoo_titel
+Zoo
+
+field_water_park_titel
+Waterpark
+
+field_beach_promenade
+Beach promenade
+
+field_prison_titel
+Prison
+
+field_parking_titel
+Parking
+
+field_go_to_prison_titel
+Go to prison
+
+die_roll
+It is %s's turn to roll the die
+
+die_roll_two
+Roll
+
+chance_move
+You have moved %d fields!
+
+chance_point
+You get %d points!
+
+winner
+%s is the winner!!
