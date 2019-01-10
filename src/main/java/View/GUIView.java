@@ -8,30 +8,84 @@ import java.awt.*;
 
 public class GUIView implements View {
     private GUI gui;
+    private LanguagePack languagePack;
 
-    public GUIView()
+    private Player[] players;
+    private GUI_Player[] guiPlayers;
+
+    public GUIView(LanguagePack languagePack)
     {
-        gui = new GUI(createDefaultFields(40), Color.decode("#801515"));
+        this.languagePack = languagePack;
+        updateBoard(new GameBoard(this.languagePack));
     }
 
     public String getUserInput(String message) {
         return gui.getUserString(message);
     }
 
-    public void updatePlayers(Player[] players) {}
-    public void updateBoard(GameBoard board) {}
-
-    private GUI_Field[] createDefaultFields(int fields) {
-        Model.Field defaultField = new Model.Field("Start", 1, "Start", Model.Field.GUI_Type.Start);
-
-        GUI_Field[] gui_field = new GUI_Field[fields];
-        for (int i = 0; i < fields; i++) {
-            gui_field[i] = fieldToGUI(defaultField);
-        }
-
-        return gui_field;
+    public String getUserSelect(String message, String... args) {
+        return gui.getUserSelection(message, args);
     }
 
+    public void printDiceRoll(int value1, int value2) {
+        gui.setDice(value1, value2);
+    }
+
+    public void print(String message) {
+        gui.showMessage(message);
+    }
+
+    public void updatePlayers(Player[] players) {
+        this.players = players;
+        guiPlayers = createGuiPlayer(players);
+
+        for (int i = 0; i < players.length; i++) {
+            gui.getFields()[0].setCar(guiPlayers[i], true);
+        }
+    }
+
+
+    public void movePlayer(int oldPosition, int newPosition, Player player) {
+        int playerIndex = findPlayerIndex(player);
+
+        gui.getFields()[oldPosition].setCar(guiPlayers[playerIndex], false);
+        gui.getFields()[newPosition].setCar(guiPlayers[playerIndex], true);
+    }
+
+    public void updateBoard(GameBoard board) {
+        if (gui != null) gui.close();
+        gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#801515"));
+    }
+
+    private GUI_Player toGuiPlayer(Player player) {
+        PlayerType playerType =  player.getPlayerType();
+        GUI_Car.Type guiPlayerType = Enum.valueOf(GUI_Car.Type.class, playerType.toString().toUpperCase());
+
+        GUI_Player guiPlayer = new GUI_Player(player.getName(), 0, new GUI_Car(Color.BLACK, Color.WHITE, guiPlayerType, GUI_Car.Pattern.FILL));
+        return guiPlayer;
+    }
+
+    private GUI_Player[] createGuiPlayer(Player[] players) {
+        GUI_Player[] guiPlayers = new GUI_Player[players.length];
+        for (int i = 0; i < players.length; i++) {
+            guiPlayers[i] = toGuiPlayer(players[i]);
+        }
+        return guiPlayers;
+    }
+
+    private int findPlayerIndex(Player player) {
+        for (int i = 0; i < players.length; i++) { if (player.equals(players[i])) return i; }
+        return -1;
+    }
+
+
+    private GUI_Field[] fieldsToGUI(Model.Field[] fields) {
+        GUI_Field[] guiFields = new GUI_Field[fields.length];
+        for (int i = 0; i < fields.length; i++){
+            guiFields[i] = fieldToGUI(fields[i]);
+        }
+        return guiFields;
+    }
     private GUI_Field fieldToGUI(Model.Field field) {
         String priceTxt = String.format(" %s ", field.value);
 
@@ -54,6 +108,4 @@ public class GUIView implements View {
 
         throw new IllegalArgumentException();
     }
-
-
 }
