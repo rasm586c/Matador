@@ -1,4 +1,4 @@
-import gui_fields.GUI_Field;
+package Model;
 
 public class GameBoard {
     private LanguagePack stringContainer;
@@ -7,17 +7,8 @@ public class GameBoard {
         this.stringContainer = stringContainer;
     }
 
-    public GUI_Field[] getGuiFields() {
-        Field[] fields = getFields();
-        GUI_Field[] gui_fields = new GUI_Field[fields.length];
-        for (int i = 0; i < fields.length; i++) {
-            gui_fields[i] = fields[i].toGUI();
-        }
-        return gui_fields;
-    }
-
     /**
-     * An array of the Gameboard fields. Field variables include name, value, field text and field type.
+     * An array of the Gameboard fields. Model.Field variables include name, value, field text and field type.
      * Name and field text is found through our string container.
      */
     public Field[] getFields() {
@@ -64,22 +55,5 @@ public class GameBoard {
                 new Field(stringContainer.getString("field_beach_promenade"), 5, stringContainer.getString("field_strand_promenaden"), Field.GUI_Type.Street_Blue),
 
         };
-    }
-
-    /**
-     * @return A list of gameboard fields.
-     */
-    @Override
-    public String toString() {
-        String out = "Fields:\n";
-        for (int i = 0; i < getFields().length; i++) {
-            if (i != getFields().length - 1) {
-                out += getFields()[i].name + ",\n";
-            } else {
-                out += getFields()[i].name + ".";
-            }
-        }
-
-        return out;
     }
 }

@@ -1,3 +1,5 @@
+package Model;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Hashtable;
@@ -33,7 +35,7 @@ public class LanguagePack {
         parseFile(filePath);
     }
 
-    // Create empty LanguagePack where everything returned is empty
+    // Create empty Model.LanguagePack where everything returned is empty
     public LanguagePack() {}
 
     /**

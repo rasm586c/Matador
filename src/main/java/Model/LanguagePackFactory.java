@@ -1,8 +1,8 @@
-import gui_main.GUI;
+package Model;
 
 import java.io.IOException;
 
-public class LanguagePackWrapper {
+public class LanguagePackFactory {
     public enum LanguageType {
         Danish,
         English
@@ -12,22 +12,10 @@ public class LanguagePackWrapper {
     private GameBoard board;
     private LanguagePack languagePack;
 
-    public LanguagePackWrapper(LanguageType type) throws IOException {
+    public LanguagePackFactory(LanguageType type) throws IOException {
         this.type = type;
         languagePack = createLanguagePack();
         board = createBoard();
-    }
-
-    /**
-     * Opdates the text for every field in the GUI
-     * @param gui
-     */
-    public void updateGUI(GUI gui) {
-        for (int j = 0; j < gui.getFields().length; j++) {
-            gui.getFields()[j].setDescription(board.getGuiFields()[j].getDescription());
-            gui.getFields()[j].setSubText(board.getGuiFields()[j].getSubText());
-            gui.getFields()[j].setTitle(board.getGuiFields()[j].getTitle());
-        }
     }
 
     public LanguagePack getLanguagePack() {
