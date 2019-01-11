@@ -13,6 +13,9 @@ public class GUIView implements View {
     private Player[] players;
     private GUI_Player[] guiPlayers;
 
+    static final int BOARD_SIZE = 40;
+    private boolean animateCar = true;
+
     public GUIView(LanguagePack languagePack)
     {
         this.languagePack = languagePack;
@@ -46,16 +49,62 @@ public class GUIView implements View {
 
 
     public void movePlayer(int oldPosition, int newPosition, Player player) {
+        if (animateCar)
+        {
+            if (oldPosition < newPosition) {
+                for (int i = oldPosition; i < newPosition; i++) {
+                    moveCar(i, i + 1, player);
+                    sleep(100);
+                }
+            } else {
+                for (int i = newPosition; i > oldPosition; i--) {
+                    moveCar(i, i - 1, player);
+                    sleep(100);
+                }
+            }
+        } else {
+            moveCar(oldPosition, newPosition, player);
+        }
+    }
+
+    private void moveCar(int oldPos, int newPos, Player player) {
         int playerIndex = findPlayerIndex(player);
 
-        gui.getFields()[oldPosition].setCar(guiPlayers[playerIndex], false);
-        gui.getFields()[newPosition].setCar(guiPlayers[playerIndex], true);
+        gui.getFields()[clampPosition(oldPos)].setCar(guiPlayers[playerIndex], false);
+        gui.getFields()[clampPosition(newPos)].setCar(guiPlayers[playerIndex], true);
     }
 
     public void updateBoard(GameBoard board) {
         if (gui != null) gui.close();
         gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#801515"));
     }
+
+    /**
+     * Creates a timeout of n miliseconds. Calling this will make the program stop and wait for n miliseconds and then allow further execution.
+     * This method has no lock so prevent calling it from multiple threads.
+     * */
+    private void sleep(int n) {
+        long t0 = System.currentTimeMillis();
+
+        long t1;
+        do {
+            t1 = System.currentTimeMillis();
+        } while(t1 - t0 < (long)n);
+
+    }
+
+
+    /**
+     * This function recursively calls itself until it ensures the input value is between 0 and BOARD_SIZE (I.e. clamps a position to the board)
+     * @param position
+     * @return
+     */
+    private int clampPosition(int position) {
+        if (position < 0) { return clampPosition(position + BOARD_SIZE); }
+        if (position < BOARD_SIZE) return position;
+        return clampPosition(position - BOARD_SIZE);
+    }
+
 
     private GUI_Player toGuiPlayer(Player player) {
         PlayerType playerType =  player.getPlayerType();
@@ -64,7 +113,6 @@ public class GUIView implements View {
         GUI_Player guiPlayer = new GUI_Player(player.getName(), 0, new GUI_Car(Color.BLACK, Color.WHITE, guiPlayerType, GUI_Car.Pattern.FILL));
         return guiPlayer;
     }
-
     private GUI_Player[] createGuiPlayer(Player[] players) {
         GUI_Player[] guiPlayers = new GUI_Player[players.length];
         for (int i = 0; i < players.length; i++) {
@@ -72,12 +120,10 @@ public class GUIView implements View {
         }
         return guiPlayers;
     }
-
     private int findPlayerIndex(Player player) {
         for (int i = 0; i < players.length; i++) { if (player.equals(players[i])) return i; }
         return -1;
     }
-
 
     private GUI_Field[] fieldsToGUI(Model.Field[] fields) {
         GUI_Field[] guiFields = new GUI_Field[fields.length];

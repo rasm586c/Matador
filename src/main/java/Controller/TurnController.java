@@ -34,7 +34,7 @@ public class TurnController extends Controller {
         view.printDiceRoll(rolledValues[0], rolledValues[1]);
 
         int oldPosition = player.getPosition();
-        player.setPosition(clampPosition(player.getPosition() + diceCup.getDiceSum()));
+        player.setPosition(player.getPosition() + diceCup.getDiceSum());
         view.movePlayer(oldPosition, player.getPosition(), player);
 
         // TODO: Add more game logic here.
@@ -54,17 +54,6 @@ public class TurnController extends Controller {
             t1 = System.currentTimeMillis();
         } while(t1 - t0 < (long)n);
 
-    }
-
-    /**
-     * This function recursively calls itself until it ensures the input value is between 0 and BOARD_SIZE (I.e. clamps a position to the board)
-     * @param position
-     * @return
-     */
-    private int clampPosition(int position) {
-        if (position < 0) { return clampPosition(position + BOARD_SIZE); }
-        if (position < BOARD_SIZE) return position;
-        return clampPosition(position - BOARD_SIZE);
     }
 
     private int getNextTurn(int playerTurn) {
