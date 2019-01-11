@@ -30,6 +30,13 @@ public class RetrievePlayerDialog {
         for (int i = 0; i < n; i++) {
 
             String name = view.getUserInput(stringContainer.getString("give_player_name", (i + 1)));
+
+            if (containsPlayerWithName(name, players)) {
+                view.print("Sie mussen nicht habe die samme Nahme!");
+                i--;
+                continue;
+            }
+
             String type = view.getUserSelect(stringContainer.getString("select_card_type"), "Car", "Racecar", "Tractor", "UFO");
 
             Player player = new Player(name, Enum.valueOf(PlayerType.class, type));
@@ -37,5 +44,14 @@ public class RetrievePlayerDialog {
         }
 
         return players;
+    }
+
+    private boolean containsPlayerWithName(String name, Player[] players) {
+        for (int i = 0; i < players.length; i++) {
+            if (players[i] == null) break;
+
+            if (players[i].getName().equals(name)) return true;
+        }
+        return false;
     }
 }
