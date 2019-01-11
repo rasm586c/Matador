@@ -1,5 +1,7 @@
 package Model;
 
+import com.sun.org.glassfish.external.arc.Taxonomy;
+
 /**
  * This class is controlling each field.
  *
@@ -56,16 +58,18 @@ public class Field {
         Shipping,
         Refuge,
         Street,
-        Street_Brown,
         Street_Cyan,
-        Street_Purple,
-        Street_Orange,
-        Street_Red,
-        Street_Yellow,
+        Street_Pink,
         Street_Green,
         Street_Blue,
+        Street_Red,
+        Street_White,
+        Street_Yellow,
+        Street_Brown,
         Start,
-        Empty
+        Empty,
+        Tax
+
     }
 
 }
