@@ -1,10 +1,15 @@
 package View;
 
+import Controller.TurnController;
 import Model.*;
 import gui_fields.*;
 import gui_main.GUI;
 
 import java.awt.*;
+import java.io.ObjectInputStream;
+
+import static Controller.TurnController.sleep;
+
 
 public class GUIView implements View {
     private GUI gui;
@@ -46,6 +51,7 @@ public class GUIView implements View {
             gui.getFields()[0].setCar(guiPlayers[i], true);
         }
     }
+
 
 
     public void movePlayer(int oldPosition, int newPosition, Player player) {
@@ -136,20 +142,21 @@ public class GUIView implements View {
         String priceTxt = String.format(" %s ", field.value);
 
         switch (field.fieldType) {
-            case Street_Brown: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 1", new Color(134, 69, 18), Color.BLACK);
             case Street_Cyan: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 1", Color.CYAN, Color.BLACK);
-            case Street_Purple: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.MAGENTA, Color.BLACK);
-            case Street_Orange: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.ORANGE, Color.BLACK);
+            case Street_Pink: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 1", Color.PINK, Color.BLACK);
+            case Street_Green: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.GREEN, Color.BLACK);
+            case Street_Blue: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.BLUE, Color.BLACK);
             case Street_Red: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", Color.RED, Color.BLACK);
-            case Street_Yellow: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", Color.YELLOW, Color.BLACK);
-            case Street_Green: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 4", Color.GREEN, Color.BLACK);
-            case Street_Blue: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 5", Color.BLUE, Color.BLACK);
+            case Street_White: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", Color.WHITE, Color.BLACK);
+            case Street_Yellow: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 4", Color.YELLOW, Color.BLACK);
+            case Street_Brown: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 5", new Color(144, 48, 15), Color.BLACK);
             case Brewery: return new GUI_Brewery("default", field.name, "", field.fieldText, "", Color.BLACK, Color.WHITE);
             case Jail: return new GUI_Jail("default", field.name, "", field.fieldText, new Color(68, 68, 68), Color.BLACK);
             case Chance: return new GUI_Chance(field.name, "", field.fieldText, new Color(204, 182, 0), Color.BLACK);
             case Refuge: return new GUI_Refuge("default", field.name, "", field.fieldText, Color.WHITE, Color.BLACK);
             case Start: return new GUI_Tax(field.name, "+2 til dig", field.fieldText, Color.GRAY, Color.BLACK);
             case Empty: return new GUI_Empty();
+            case Tax: return new GUI_Tax(field.name,priceTxt,field.fieldText,Color.lightGray,Color.BLACK);
         }
 
         throw new IllegalArgumentException();
