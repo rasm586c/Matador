@@ -1,15 +1,10 @@
 package View;
 
-import Controller.TurnController;
 import Model.*;
 import gui_fields.*;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.io.ObjectInputStream;
-
-import static Controller.TurnController.sleep;
-
 
 public class GUIView implements View {
     private GUI gui;
@@ -49,6 +44,7 @@ public class GUIView implements View {
 
         for (int i = 0; i < players.length; i++) {
             gui.addPlayer(guiPlayers[i]);
+            gui.getFields()[0].setCar(guiPlayers[i], true);
         }
     }
 
