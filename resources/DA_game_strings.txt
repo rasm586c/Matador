@@ -25,129 +25,6 @@ Vælg et figurkort
 illegal_card_type
 Ugyldig korttype, prøv igen
 
-field_start
-Du landede på start
-
-field_burger_baren
-Du landede på burgerbaren
-
-field_pizzariaet
-Du landede på pizzariaet
-
-field_slik_butikken
-Du landede på slikbutikken
-
-field_is_kiosken
-Du landede på iskiosken
-
-field_fængsel
-Du er i fængsel
-
-field_museet
-Du landede på museet
-
-field_biblioteket
-Du landede på biblioteket
-
-field_skate_parken
-Du landede på skateparken
-
-field_swimming_poolen
-Du landede på swimmingpoolen
-
-field_parkering
-Du landede på gratis parkering
-
-field_spille_hallen
-Du landede på spillehallen
-
-field_kinoen
-Du landede på kinoen.
-
-field_legetøjs_butikken
-Du landede på legetøjsbutikken
-
-field_dyre_butikken
-Du landede på dyre butikken
-
-field_gå_fængsel
-Du skal i fængsel
-
-field_bowling_hallen
-Du landede på bowling hallen
-
-field_zoo
-Du landede på zoo
-
-field_vandlandet
-Du landede på vandlandet
-
-field_strand_promenaden
-Du landede på strand promenaden
-
-field_prøv_lykken
-Prøv lykken!
-
-field_start_titel
-Start
-
-field_burgerbar_titel
-Burgerbaren
-
-field_pizzaria_titel
-Pizzariaet
-
-field_candy_store_titel
-Slikbuttikken
-
-field_ice_cream_titel
-Isbutikken
-
-field_museum_titel
-Museet
-
-field_library_titel
-Biblioteket
-
-field_skate_park_titel
-Skaterparken
-
-field_pool_titel
-Swimmingpool
-
-field_game_hall_titel
-Spillehallen
-
-field_cinema_titel
-Biografen
-
-field_toy_store_titel
-Legetøjsbutikken
-
-field_pet_store_titel
-Dyrehandlen
-
-field_bowling_hall_titel
-Bowlinghallen
-
-field_zoo_titel
-Zoo
-
-field_water_park_titel
-Vandlandet
-
-field_beach_promenade
-Strand promenade
-
-field_prison_titel
-fængsel
-
-field_parking_titel
-Parkering
-
-field_go_to_prison_titel
-Gå til fængsel
-
 buy_property
 Denne bolig er til salg! Vil %s købe denne bolig?
 
@@ -168,3 +45,198 @@ Du får %d point!
 
 winner
 %s vinder spillet!!
+
+field_start_title
+start felt title
+
+field_start
+start felt tekst
+
+field_chance
+tag chancen
+
+field_jail_title
+jail felt title
+
+field_jail
+jail felt tekst
+
+field_ship_1_title
+ship felt 1 title
+
+field_ship_1
+ship felt 1
+
+field_ship_2_title
+ship felt 2 title
+
+field_ship_2
+ship felt 2
+
+field_brewery_1_title
+brewery felt 1 title
+
+field_brewery_1
+brewery felt 1
+
+field_indkomstskat_title
+indkomstskat felt title
+
+field_indkomstskat
+indkomstskat felt
+
+field_cyan_1_title
+cyan felt 1 title
+
+field_cyan_1
+cyan felt 1 tekst
+
+field_cyan_2_title
+cyan felt 2 title
+
+field_cyan_2
+cyan felt 2 tekst
+
+field_pink_1_title
+pink felt 1 title
+
+field_pink_1
+pink felt 1 tekst
+
+field_pink_2_title
+pink felt 2 title
+
+field_pink_2
+pink felt 2 tekst
+
+field_pink_3_title
+pink felt 3 title
+
+field_pink_3
+pink felt 3 tekst
+
+field_green_1_title
+green felt 1 title
+
+field_green_1
+green felt 1 tekst
+
+field_green_2_title
+green felt 2 title
+
+field_green_2
+green felt 2 tekst
+
+field_green_3_title
+green felt 3 title
+
+field_green_3
+green felt 3 tekst
+
+field_blue_1_title
+blue felt 1 title
+
+field_blue_1
+blue felt 1 tekst
+
+field_blue_2_title
+blue felt 2 title
+
+field_blue_2
+blue felt 2 tekst
+
+field_blue_3_title
+blue felt 3 title
+
+field_blue_3
+blue felt 3 tekst
+
+field_refuge_title
+Parkering
+
+field_refuge
+Vent tålmodigt, tak!
+
+field_red_1_title
+Trianglen
+
+field_red_1
+Dette er Trianglen
+
+field_red_2_title
+Østerbrogade
+
+field_red_2
+Du er landet på Østerbrogade!
+
+field_red_3_title
+Grønningen
+
+field_red_3
+Grønningen er et fedt sted
+
+field_ship_3_title
+Rederi
+
+field_ship_3
+Der skal sejles snart.
+
+field_white_1_title
+Bredgade
+
+field_white_1
+Den bredeste gade i Kbh
+
+field_white_2_title
+Kgs. Nytorv
+
+field_white_2
+D'Angleterre ligger her
+
+field_white_3_title
+Østergade
+
+field_white_3
+Gaden i øst
+
+field_brewery_2_title
+Køb bajere
+
+field_brewery_2
+Massere af bajere
+
+field_yellow_1_title
+Amagertorv
+
+field_yellow_1
+Storkespringvandet
+
+field_yellow_2_title
+Vimmelskaftet
+
+field_yellow_2
+Gammelt sted i Kbh
+
+field_yellow_3_title
+Nygade
+
+field_yellow_3
+Den nyeste gade i Kbh
+
+field_ship_4_title
+Rederi4
+
+field_shit_4
+Sejltid
+
+field_brown_1_title
+Frederiksberggade
+
+field_brown_1
+Hvor ligger denne gade???
+
+field_brown_2_title
+Rådhuspladsen
+
+field_brown_2
+Rådhuspladen...
