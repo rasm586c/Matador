@@ -11,6 +11,8 @@ public interface View {
     void updatePlayers(Player[] players);
     void movePlayer(int oldPosition, int newPosition, Player player);
 
+    void setPlayerBalance(Player player, int balance);
+
     void printDiceRoll(int value1, int value2);
 
     void updateBoard(GameBoard board);

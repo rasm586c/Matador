@@ -48,11 +48,9 @@ public class GUIView implements View {
         guiPlayers = createGuiPlayer(players);
 
         for (int i = 0; i < players.length; i++) {
-            gui.getFields()[0].setCar(guiPlayers[i], true);
+            gui.addPlayer(guiPlayers[i]);
         }
     }
-
-
 
     public void movePlayer(int oldPosition, int newPosition, Player player) {
         if (animateCar)
@@ -72,7 +70,6 @@ public class GUIView implements View {
             moveCar(oldPosition, newPosition, player);
         }
     }
-
     private void moveCar(int oldPos, int newPos, Player player) {
         int playerIndex = findPlayerIndex(player);
 
@@ -83,6 +80,11 @@ public class GUIView implements View {
     public void updateBoard(GameBoard board) {
         if (gui != null) gui.close();
         gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#801515"));
+    }
+
+    public void setPlayerBalance(Player player, int balance) {
+        int playerIndex = findPlayerIndex(player);
+        guiPlayers[playerIndex].setBalance(balance);
     }
 
     /**
@@ -98,7 +100,6 @@ public class GUIView implements View {
         } while(t1 - t0 < (long)n);
 
     }
-
 
     /**
      * This function recursively calls itself until it ensures the input value is between 0 and BOARD_SIZE (I.e. clamps a position to the board)
