@@ -27,7 +27,12 @@ public class TurnController extends Controller {
         return players[playerTurn];
     }
 
-    public void takeTurn() {
+    /*
+    * Returns true if player crossed start
+    * */
+    public Boolean takeTurn() {
+        Boolean crossedStart = false;
+
         Player player = getCurrentPlayer();
         int[] rolledValues = diceCup.shake();
         view.print(languagePack.getString("die_roll", player.getName()));
@@ -37,24 +42,26 @@ public class TurnController extends Controller {
         player.setPosition(player.getPosition() + diceCup.getDiceSum());
         view.movePlayer(oldPosition, player.getPosition(), player);
 
-        // TODO: Add more game logic here.
-        sleep(100);
+        if (clampPosition(oldPosition) > clampPosition(player.getPosition())) {
+            crossedStart = true;
+        }
+
+
+        return crossedStart;
     }
 
 
     /**
-     * Creates a timeout of n miliseconds. Calling this will make the program stop and wait for n miliseconds and then allow further execution.
-     * This method has no lock so prevent calling it from multiple threads.
-     * */
-    public static void sleep(int n) {
-        long t0 = System.currentTimeMillis();
-
-        long t1;
-        do {
-            t1 = System.currentTimeMillis();
-        } while(t1 - t0 < (long)n);
-
+     * This function recursively calls itself until it ensures the input value is between 0 and BOARD_SIZE (I.e. clamps a position to the board)
+     * @param position
+     * @return
+     */
+    private int clampPosition(int position) {
+        if (position < 0) { return clampPosition(position + BOARD_SIZE); }
+        if (position < BOARD_SIZE) return position;
+        return clampPosition(position - BOARD_SIZE);
     }
+
 
     private int getNextTurn(int playerTurn) {
         return playerTurn + 1 >= players.length ? 0 : playerTurn + 1;
