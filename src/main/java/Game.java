@@ -9,15 +9,27 @@ public class Game {
         LanguagePackFactory languagePackFactory = new LanguagePackFactory(LanguagePackFactory.LanguageType.Danish);
         LanguagePack languagePack = languagePackFactory.getLanguagePack();
 
-        // ...
+        // Create UI
         View view = new GUIView(languagePack);
+
+        // Retrieve players
         Player[] players = getPlayers(view, languagePack);
-        TurnController turnController = new TurnController(view, players, languagePack);
+
+        // Update players on UI
         view.updatePlayers(players);
+
+        // Create controllers
+        TurnController turnController = new TurnController(view, players, languagePack);
+        BankController bankController = new BankController(view, players);
 
         // Game Loop
         while (true) {
-            turnController.takeTurn();
+            Player currentPlayer = turnController.getCurrentPlayer();
+
+            if (turnController.takeTurn()) {
+                bankController.addMoney(currentPlayer, 4000);
+            }
+
             turnController.getNextPlayer();
         }
     }
