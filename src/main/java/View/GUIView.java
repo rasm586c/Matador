@@ -101,7 +101,7 @@ public class GUIView implements View {
             case Street_Green: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.GREEN, Color.BLACK);
             case Street_Blue: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.BLUE, Color.BLACK);
             case Street_Red: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", Color.RED, Color.BLACK);
-            case Street_White: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", Color.WHITE, Color.BLACK);
+            case Street_White: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", new Color(146, 140, 48), Color.BLACK);
             case Street_Yellow: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 4", Color.YELLOW, Color.BLACK);
             case Street_Brown: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 5", new Color(144, 48, 15), Color.BLACK);
             case Brewery: return new GUI_Brewery("default", field.name, "", field.fieldText, "", Color.BLACK, Color.WHITE);
@@ -111,8 +111,8 @@ public class GUIView implements View {
             case Start: return new GUI_Tax(field.name, "+2 til dig", field.fieldText, Color.GRAY, Color.BLACK);
             case Empty: return new GUI_Empty();
             case Tax: return new GUI_Tax(field.name,priceTxt,field.fieldText,Color.lightGray,Color.BLACK);
+            case Shipping: return new GUI_Shipping("default",field.name,priceTxt,field.fieldText,"Leje: 2", Color.WHITE,Color.BLACK);
         }
-
         throw new IllegalArgumentException();
     }
 }
