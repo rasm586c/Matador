@@ -2,9 +2,9 @@ package Model.Fields;
 
 import Model.GameState;
 
-public class CorporationField extends Field {
+public class ShippingField extends Field {
 
-    public CorporationField (String name, int value, String fieldtxt, GUI_Type type) {
+    public ShippingField (String name, int value, String fieldtxt, GUI_Type type) {
         super(name, value, fieldtxt, type);
     }
 
