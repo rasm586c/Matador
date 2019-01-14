@@ -9,5 +9,8 @@
         <module name="Matador" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Matador" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
