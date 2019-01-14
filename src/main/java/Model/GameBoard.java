@@ -13,13 +13,13 @@ public class GameBoard {
      */
     public Field[] getFields() {
         return new Field[]{
-                new Field(stringContainer.getString("field_start_title"), 1, "Start", Field.GUI_Type.Start),
-                new Field(stringContainer.getString("field_cyan_1_title"), 1, stringContainer.getString("field_cyan_1"), Field.GUI_Type.Street_Cyan),
-                new Field("C", 0, stringContainer.getString("field_chance"), Field.GUI_Type.Chance),
-                new Field(stringContainer.getString("field_cyan_2_title"), 1, stringContainer.getString("field_cyan_2"), Field.GUI_Type.Street_Cyan),
-                new Field(stringContainer.getString("field_indkomstskat_title"), 0, stringContainer.getString("field_indkomstskat"), Field.GUI_Type.Tax),
-                new Field(stringContainer.getString("field_ship_1_title"), 0, stringContainer.getString("field_ship_1"), Field.GUI_Type.Shipping),
-                new Field(stringContainer.getString("field_pink_1_title"), 0, stringContainer.getString("field_pink_1"), Field.GUI_Type.Street_Pink),
+                new StartField(stringContainer.getString("field_start_title")),
+                new PropertyField(stringContainer.getString("field_cyan_1_title"), 1, stringContainer.getString("field_cyan_1"), Field.GUI_Type.Street_Cyan),
+                new PropertyField("C", 0, stringContainer.getString("field_chance"), Field.GUI_Type.Chance),
+                new PropertyField(stringContainer.getString("field_cyan_2_title"), 1, stringContainer.getString("field_cyan_2"), Field.GUI_Type.Street_Cyan),
+                new PropertyField(stringContainer.getString("field_indkomstskat_title"), 0, stringContainer.getString("field_indkomstskat"), Field.GUI_Type.Tax),
+                new PropertyField(stringContainer.getString("field_ship_1_title"), 0, stringContainer.getString("field_ship_1"), Field.GUI_Type.Shipping),
+                new PropertyField(stringContainer.getString("field_pink_1_title"), 0, stringContainer.getString("field_pink_1"), Field.GUI_Type.Street_Pink),
                 new Field("C", 0, stringContainer.getString("field_chance"), Field.GUI_Type.Chance),
                 new Field(stringContainer.getString("field_pink_2_title"), 1, stringContainer.getString("field_pink_2"), Field.GUI_Type.Street_Pink),
                 new Field(stringContainer.getString("field_pink_3_title"), 1, stringContainer.getString("field_pink_3"), Field.GUI_Type.Street_Pink),

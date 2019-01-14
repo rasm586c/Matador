@@ -13,7 +13,6 @@ public class GUIView implements View {
     private Player[] players;
     private GUI_Player[] guiPlayers;
 
-    static final int BOARD_SIZE = 40;
     private boolean animateCar = true;
 
     public GUIView(LanguagePack languagePack)
@@ -69,8 +68,8 @@ public class GUIView implements View {
     private void moveCar(int oldPos, int newPos, Player player) {
         int playerIndex = findPlayerIndex(player);
 
-        gui.getFields()[clampPosition(oldPos)].setCar(guiPlayers[playerIndex], false);
-        gui.getFields()[clampPosition(newPos)].setCar(guiPlayers[playerIndex], true);
+        gui.getFields()[Player.clampPosition(oldPos)].setCar(guiPlayers[playerIndex], false);
+        gui.getFields()[Player.clampPosition(newPos)].setCar(guiPlayers[playerIndex], true);
     }
 
     public void updateBoard(GameBoard board) {
@@ -96,18 +95,6 @@ public class GUIView implements View {
         } while(t1 - t0 < (long)n);
 
     }
-
-    /**
-     * This function recursively calls itself until it ensures the input value is between 0 and BOARD_SIZE (I.e. clamps a position to the board)
-     * @param position
-     * @return
-     */
-    private int clampPosition(int position) {
-        if (position < 0) { return clampPosition(position + BOARD_SIZE); }
-        if (position < BOARD_SIZE) return position;
-        return clampPosition(position - BOARD_SIZE);
-    }
-
 
     private GUI_Player toGuiPlayer(Player player) {
         PlayerType playerType =  player.getPlayerType();

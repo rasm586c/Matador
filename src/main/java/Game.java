@@ -12,6 +12,9 @@ public class Game {
         // Create UI
         View view = new GUIView(languagePack);
 
+        // Create GameBoard
+        GameBoard board = new GameBoard(languagePack);
+
         // Retrieve players
         Player[] players = getPlayers(view, languagePack);
 
@@ -21,14 +24,19 @@ public class Game {
         // Create controllers
         TurnController turnController = new TurnController(view, players, languagePack);
         BankController bankController = new BankController(view, players);
+        FieldController fieldController = new FieldController(view, board);
 
         // Game Loop
         while (true) {
-            Player currentPlayer = turnController.getCurrentPlayer();
+            GameState currentState = new GameState();
+            currentState.setCurrentPlayer(turnController.getCurrentPlayer());
+            currentState.setTurn(turnController.takeTurn());
 
-            if (turnController.takeTurn()) {
-                bankController.addMoney(currentPlayer, 4000);
+            if (currentState.getTurn().crossedStart) {
+                bankController.addMoney(currentState.getCurrentPlayer(), 4000);
             }
+
+            fieldController.update(currentState);
 
             turnController.getNextPlayer();
         }

@@ -1,7 +1,5 @@
 package Model;
 
-import com.sun.org.glassfish.external.arc.Taxonomy;
-
 /**
  * This class is controlling each field.
  *
@@ -9,7 +7,7 @@ import com.sun.org.glassfish.external.arc.Taxonomy;
  * Each field has a name, a value and a description. While one field can give the player another turn.
  * </p>
  */
-public class Field {
+public abstract class Field {
     /**
      * Defines the name of the field.
      */
@@ -49,6 +47,10 @@ public class Field {
 
         if (fieldText == null) this.fieldText = "";
         else this.fieldText = fieldText;
+    }
+
+    public void onFieldLand(GameState state) {
+
     }
 
     public enum GUI_Type {
