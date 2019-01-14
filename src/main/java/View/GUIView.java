@@ -11,6 +11,8 @@ public class GUIView implements View {
     private GUI gui;
     private LanguagePack languagePack;
 
+    private GameBoard board;
+
     private Player[] players;
     private GUI_Player[] guiPlayers;
 
@@ -36,6 +38,10 @@ public class GUIView implements View {
 
     public void print(String message) {
         gui.showMessage(message);
+    }
+
+    public void updateOwner(Player player, int position) {
+        gui.getFields()[position].setTitle(fieldToGUI(board.getFields()[position]).getTitle() + "(" + player.getName() + ")");
     }
 
     public void updatePlayers(Player[] players) {
@@ -75,7 +81,8 @@ public class GUIView implements View {
 
     public void updateBoard(GameBoard board) {
         if (gui != null) gui.close();
-        gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#801515"));
+        gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#FFFFFF"));
+        this.board = board;
     }
 
     public void setPlayerBalance(Player player, int balance) {
