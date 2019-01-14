@@ -53,23 +53,35 @@ public class BankController extends Controller {
 
     public void processTransaction(Transaction transaction, GameState state) {
         Account account = findAccountByPlayer(transaction.getPlayer());
-
         Field landedOn = state.getBoard().getFields()[transaction.getPlayer().getPositionClamped()];
-        if(account.getBalance() >= landedOn.value) {
-            transaction.setApproved(true);
-        }
-        else {
-            transaction.setApproved(false);
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.PurchaseProperty) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                transaction.setApproved(true);
+            } else {
+                transaction.setApproved(false);
+            }
+
+            if (transaction.isApproved()) {
+                landedOn.setOwner(state.getCurrentPlayer());
+                view.updateOwner(state.getCurrentPlayer(), state.getCurrentPlayer().getPositionClamped());
+
+                withdrawMoney(state.getCurrentPlayer(), transaction.getAmount());
+                updateBalances();
+            } else {
+                //TODO: Mere logik
+            }
         }
 
-        if (transaction.isApproved()) {
-            landedOn.setOwner(state.getCurrentPlayer());
-            view.updateOwner(state.getCurrentPlayer(), state.getCurrentPlayer().getPositionClamped());
-
-            withdrawMoney(state.getCurrentPlayer(),landedOn.value);
-            updateBalances();
-        } else {
-            //TODO: Mere logik
+        if (transaction.getTransactionType() == Transaction.TransactionType.ToPlayer) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                // Transfer amount from player to target
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                addMoney(transaction.getTarget(), transaction.getAmount());
+                view.print("Du " + transaction.getPlayer().getName() + " har givet " + transaction.getAmount() + " til " + transaction.getTarget().getName());
+            } else {
+                // TODO: Har ikke nok penge, men du er landet på grund!
+            }
         }
     }
 }

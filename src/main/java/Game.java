@@ -10,7 +10,7 @@ public class Game {
         LanguagePack languagePack = languagePackFactory.getLanguagePack();
 
         // Create UI
-        View view = new GUIView(languagePack);
+        View view = new GUIView(languagePack); // new ConsoleView();
 
         // Create GameBoard
         GameBoard board = new GameBoard(languagePack);

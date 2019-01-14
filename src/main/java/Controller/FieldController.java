@@ -23,13 +23,23 @@ public class FieldController extends Controller {
 
        // Property Field
        if (landedOn instanceof OwnableField) {
-            if (landedOn.getOwner() == null) {
+           OwnableField field = (OwnableField)landedOn;
+
+           if (landedOn.getOwner() == null) {
                 // TODO: Fix gamestrings
-                String result = view.getUserSelect(((OwnableField)landedOn).getPurchaseText(),"yes","no") ;
+                String result = view.getUserSelect(field.getPurchaseText(),"yes","no") ;
 
                 if (result.equals("yes")) {
-                    transaction = new Transaction(state.getCurrentPlayer(), landedOn);
+                    transaction = new Transaction(state.getCurrentPlayer(), landedOn, landedOn.value, Transaction.TransactionType.PurchaseProperty);
                 }
+            } else {
+                // Withdraw rent!
+                int rent = field.calculateRent(state);
+
+                transaction = new Transaction(state.getCurrentPlayer(), landedOn, rent, Transaction.TransactionType.ToPlayer);
+                transaction.setTarget(landedOn.getOwner());
+
+
             }
        }
 

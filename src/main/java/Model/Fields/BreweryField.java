@@ -17,4 +17,8 @@ public class BreweryField extends Field implements OwnableField {
     public void onFieldLand(GameState state) {
         super.onFieldLand(state);
     }
+
+    public int calculateRent(GameState state) {
+        return value;
+    }
 }
