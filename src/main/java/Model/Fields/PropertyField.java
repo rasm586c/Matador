@@ -1,4 +1,6 @@
-package Model;
+package Model.Fields;
+
+import Model.GameState;
 
 public class PropertyField extends Field {
     public PropertyField(String name, int value, String fieldText, GUI_Type type) {

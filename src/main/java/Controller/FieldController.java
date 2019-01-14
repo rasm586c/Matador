@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.Fields.Field;
 import View.View;
 
 public class FieldController extends Controller {

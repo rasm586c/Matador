@@ -1,6 +1,7 @@
 package View;
 
 import Model.*;
+import Model.Fields.Field;
 import gui_fields.*;
 import gui_main.GUI;
 
@@ -115,14 +116,14 @@ public class GUIView implements View {
         return -1;
     }
 
-    private GUI_Field[] fieldsToGUI(Model.Field[] fields) {
+    private GUI_Field[] fieldsToGUI(Field[] fields) {
         GUI_Field[] guiFields = new GUI_Field[fields.length];
         for (int i = 0; i < fields.length; i++){
             guiFields[i] = fieldToGUI(fields[i]);
         }
         return guiFields;
     }
-    private GUI_Field fieldToGUI(Model.Field field) {
+    private GUI_Field fieldToGUI(Field field) {
         String priceTxt = String.format(" %s ", field.value);
 
         switch (field.fieldType) {

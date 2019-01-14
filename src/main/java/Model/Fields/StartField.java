@@ -1,4 +1,6 @@
-package Model;
+package Model.Fields;
+
+import Model.GameState;
 
 public class StartField extends Field {
     public StartField(String name) {

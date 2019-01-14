@@ -1,4 +1,6 @@
-package Model;
+package Model.Fields;
+
+import Model.GameState;
 
 /**
  * This class is controlling each field.

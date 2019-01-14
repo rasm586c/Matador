@@ -1,5 +1,9 @@
 package Model;
 
+import Model.Fields.Field;
+import Model.Fields.PropertyField;
+import Model.Fields.StartField;
+
 public class GameBoard {
     private LanguagePack stringContainer;
 
@@ -8,7 +12,7 @@ public class GameBoard {
     }
 
     /**
-     * An array of the Gameboard fields. Model.Field variables include name, value, field text and field type.
+     * An array of the Gameboard fields. Model.Fields.Field variables include name, value, field text and field type.
      * Name and field text is found through our string container.
      */
     public Field[] getFields() {
