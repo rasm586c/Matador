@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 import Model.Fields.Field;
+import Model.Fields.PropertyField;
 import View.View;
 
 public class FieldController extends Controller {
@@ -17,7 +18,12 @@ public class FieldController extends Controller {
        Field landedOn = board.getFields()[state.getCurrentPlayer().getPositionClamped()];
        landedOn.onFieldLand(state);
 
+       // Property Field
+       if (landedOn instanceof PropertyField) {
 
+       }
     }
+
+
 
 }

@@ -1,6 +1,7 @@
 package Model.Fields;
 
 import Model.GameState;
+import Model.Player;
 
 /**
  * This class is controlling each field.
@@ -25,6 +26,11 @@ public abstract class Field {
      * Defines the fields description.
      */
     public final String fieldText;
+
+    /**
+     *
+     * */
+    public Player owner = null;
 
     /*
     *

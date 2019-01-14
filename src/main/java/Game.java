@@ -31,12 +31,13 @@ public class Game {
             GameState currentState = new GameState();
             currentState.setCurrentPlayer(turnController.getCurrentPlayer());
             currentState.setTurn(turnController.takeTurn());
+            currentState.setBoard(board);
+
+            fieldController.update(currentState);
 
             if (currentState.getTurn().crossedStart) {
                 bankController.addMoney(currentState.getCurrentPlayer(), 4000);
             }
-
-            fieldController.update(currentState);
 
             turnController.getNextPlayer();
         }

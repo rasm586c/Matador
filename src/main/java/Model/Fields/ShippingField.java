@@ -4,8 +4,8 @@ import Model.GameState;
 
 public class ShippingField extends Field {
 
-    public ShippingField (String name, int value, String fieldtxt, GUI_Type type) {
-        super(name, value, fieldtxt, type);
+    public ShippingField (String name, int value, String fieldtxt) {
+        super(name, value, fieldtxt, GUI_Type.Shipping);
     }
 
     @Override
