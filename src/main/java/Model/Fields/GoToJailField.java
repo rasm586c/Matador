@@ -5,8 +5,8 @@ import Model.PlayerTurn;
 
 public class GoToJailField extends Field {
 
-    public GoToJailField(String name, String fieldtxt) {
-        super(name,0,fieldtxt,GUI_Type.Jail);
+    public GoToJailField(String name, String fieldText) {
+        super(name,0,fieldText,GUI_Type.Jail);
     }
 
     @Override

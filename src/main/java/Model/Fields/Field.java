@@ -30,7 +30,13 @@ public abstract class Field {
     /**
      *
      * */
-    public Player owner = null;
+    private Player owner = null;
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public Player getOwner() { return owner; }
 
     /*
     *
@@ -47,6 +53,7 @@ public abstract class Field {
     public Field(String name, int value, String fieldText) {
         this(name, value, fieldText, GUI_Type.Street);
     }
+
 
     public Field(String name, int value, String fieldText, GUI_Type fieldType) {
         this.name = name;

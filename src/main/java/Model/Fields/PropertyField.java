@@ -1,10 +1,8 @@
 package Model.Fields;
 
 import Model.GameState;
-import com.sun.prism.RenderTarget;
-import gui_fields.GUI_Field;
 
-public class PropertyField extends Field {
+public class PropertyField extends Field implements OwnableField {
     public PropertyField(String name, int value, String fieldText, GUI_Type type) {
         super(name, value, fieldText, type);
     }
@@ -14,19 +12,19 @@ public class PropertyField extends Field {
         super.onFieldLand(state);
     }
 
-    public void x() {
-
+    public String getPurchaseText() {
+        return "Bolig til salg! Vil du købe? Den koster " + value;
     }
 
-    private int calculateRent(GameState state) {
-        if (owner != null && owner != state.getCurrentPlayer()) {
+    public int calculateRent(GameState state) {
+        if (getOwner() != null && getOwner() != state.getCurrentPlayer()) {
             // loop over alle fields
             boolean doubleRent = true;
             for (int i = 0; i < state.getBoard().getFields().length; i++) {
                 // Hvis field == fieldType så ..
                 if (fieldType.equals(state.getBoard().getFields()[i])) {
                     // Hvis owneren IKKE ejer dette felt og det er af samme type så er der IKKE dobbelt leje!
-                    if (!owner.equals(state.getBoard().getFields()[i].owner)) {
+                    if (!getOwner().equals(state.getBoard().getFields()[i].getOwner())) {
                         doubleRent = false;
                         break;
                     }
