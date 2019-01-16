@@ -22,6 +22,7 @@ public class DiceCup {
      * @return Is returning the list which is holding the dices value.
      */
     public int[] shake() {
+
         int[] cast = new int[dices.length];
 
         // We are here rolling the dices.
@@ -29,7 +30,6 @@ public class DiceCup {
             Die dice = dices[i];
             cast[i] = dice.roll();
         }
-
         return cast;
     }
 

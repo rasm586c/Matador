@@ -37,15 +37,8 @@ public class FieldController extends Controller {
 
                 transaction = new Transaction(state.getCurrentPlayer(), landedOn, landedOn.rent, Transaction.TransactionType.ToPlayer);
                 transaction.setTarget(landedOn.getOwner());
-
-
             }
        }
-
-
         return transaction;
     }
-
-
-
 }
