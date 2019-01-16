@@ -22,10 +22,14 @@ public abstract class Field {
      */
     public final int value;
 
+
+
+    public final int rent;
     /**
      * Defines the fields description.
      */
     public final String fieldText;
+
 
     /**
      *
@@ -50,15 +54,16 @@ public abstract class Field {
      * @param value     The value of the field.
      * @param fieldText The description of the field.
      */
-    public Field(String name, int value, String fieldText) {
-        this(name, value, fieldText, GUI_Type.Street);
+    public Field(String name, int value,int rent, String fieldText) {
+        this(name, value,rent, fieldText, GUI_Type.Street);
     }
 
 
-    public Field(String name, int value, String fieldText, GUI_Type fieldType) {
+    public Field(String name, int value, int rent,  String fieldText, GUI_Type fieldType) {
         this.name = name;
         this.value = value;
         this.fieldType = fieldType;
+        this.rent = rent;
 
         if (fieldText == null) this.fieldText = "";
         else this.fieldText = fieldText;

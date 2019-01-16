@@ -34,9 +34,8 @@ public class FieldController extends Controller {
                 }
             } else {
                 // Withdraw rent!
-                int rent = field.calculateRent(state);
 
-                transaction = new Transaction(state.getCurrentPlayer(), landedOn, rent, Transaction.TransactionType.ToPlayer);
+                transaction = new Transaction(state.getCurrentPlayer(), landedOn, landedOn.rent, Transaction.TransactionType.ToPlayer);
                 transaction.setTarget(landedOn.getOwner());
 
 

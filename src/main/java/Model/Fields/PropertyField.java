@@ -3,8 +3,8 @@ package Model.Fields;
 import Model.GameState;
 
 public class PropertyField extends Field implements OwnableField {
-    public PropertyField(String name, int value, String fieldText, GUI_Type type) {
-        super(name, value, fieldText, type);
+    public PropertyField(String name, int value, int rent, String fieldText, GUI_Type type) {
+        super(name, value,rent, fieldText, type);
     }
 
     @Override

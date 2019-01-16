@@ -4,9 +4,9 @@ import Model.GameState;
 
 public class TaxField extends Field {
 
-    public TaxField(String name, int value, String fieldText)
+    public TaxField(String name, int value,int rent, String fieldText)
     {
-        super(name,value,fieldText,GUI_Type.Tax);
+        super(name,value,rent,fieldText,GUI_Type.Tax);
     }
 
     @Override
