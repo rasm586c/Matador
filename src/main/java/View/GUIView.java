@@ -5,6 +5,7 @@ import Model.Fields.Field;
 import gui_fields.*;
 import gui_main.GUI;
 
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class GUIView implements View {
@@ -41,7 +42,11 @@ public class GUIView implements View {
     }
 
     public void updateOwner(Player player, int position) {
-        gui.getFields()[position].setTitle(fieldToGUI(board.getFields()[position]).getTitle() + "(" + player.getName() + ")");
+        //gui.getFields()[position].setTitle(fieldToGUI(board.getFields()[position]).getTitle() + "(" + player.getName() + ")");
+        if (gui.getFields()[position] instanceof GUI_Ownable) {
+            GUI_Ownable ownable = (GUI_Ownable)gui.getFields()[position];
+            ownable.setBorder(player.color);
+        }
     }
 
     public void updatePlayers(Player[] players) {
@@ -108,7 +113,7 @@ public class GUIView implements View {
         PlayerType playerType =  player.getPlayerType();
         GUI_Car.Type guiPlayerType = Enum.valueOf(GUI_Car.Type.class, playerType.toString().toUpperCase());
 
-        GUI_Player guiPlayer = new GUI_Player(player.getName(), 0, new GUI_Car(Color.BLACK, Color.WHITE, guiPlayerType, GUI_Car.Pattern.FILL));
+        GUI_Player guiPlayer = new GUI_Player(player.getName(), 0, new GUI_Car(player.color, Color.WHITE, guiPlayerType, GUI_Car.Pattern.FILL));
         return guiPlayer;
     }
     private GUI_Player[] createGuiPlayer(Player[] players) {

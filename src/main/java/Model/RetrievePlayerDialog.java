@@ -2,6 +2,8 @@ package Model;
 
 import View.View;
 
+import java.awt.*;
+
 /**
  * Create a new dialog asking for player input, then converts that into an player array and returns it
  * */
@@ -20,6 +22,15 @@ public class RetrievePlayerDialog {
     }
 
     private Player[] getPlayers() {
+        Color[] colors = new Color[] {
+            Color.GREEN,
+            Color.BLUE,
+            Color.BLACK,
+            Color.YELLOW,
+            Color.CYAN,
+            Color.RED
+        };
+
         int n;
 
         while ((n = Integer.parseInt(view.getUserSelect(stringContainer.getString("amount_players"), "3", "4", "5", "6"))) <= 0) {
@@ -28,10 +39,10 @@ public class RetrievePlayerDialog {
 
         Player[] players = new Player[n];
         for (int i = 0; i < n; i++) {
-
             String name = view.getUserInput(stringContainer.getString("give_player_name", (i + 1)));
 
             if (containsPlayerWithName(name, players)) {
+                // TODO: Mangler i string container!
                 view.print("Sie mussen nicht habe die samme Nahme!");
                 i--;
                 continue;
@@ -39,7 +50,7 @@ public class RetrievePlayerDialog {
 
             String type = view.getUserSelect(stringContainer.getString("select_card_type"), "Car", "Racecar", "Tractor", "UFO");
 
-            Player player = new Player(name, Enum.valueOf(PlayerType.class, type));
+            Player player = new Player(name, Enum.valueOf(PlayerType.class, type), colors[i]);
             players[i] = player;
         }
 

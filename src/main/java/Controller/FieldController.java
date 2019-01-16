@@ -26,8 +26,7 @@ public class FieldController extends Controller {
            OwnableField field = (OwnableField)landedOn;
 
            if (landedOn.getOwner() == null) {
-                // TODO: Fix gamestrings
-                String result = view.getUserSelect(field.getPurchaseText(),"yes","no") ;
+                String result = view.getUserSelect(field.getPurchaseText(),"yes", "no");
 
                 if (result.equals("yes")) {
                     transaction = new Transaction(state.getCurrentPlayer(), landedOn, landedOn.value, Transaction.TransactionType.PurchaseProperty);
@@ -37,11 +36,8 @@ public class FieldController extends Controller {
 
                 transaction = new Transaction(state.getCurrentPlayer(), landedOn, landedOn.rent, Transaction.TransactionType.ToPlayer);
                 transaction.setTarget(landedOn.getOwner());
-
-
             }
        }
-
 
         return transaction;
     }
