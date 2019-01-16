@@ -14,7 +14,7 @@ public class FieldController extends Controller {
         this.view = view;
     }
 
-    public Transaction update(GameState state) {
+    public Transaction fieldPurchase(GameState state) {
         Transaction transaction = null;
 
         // What field did we land on?

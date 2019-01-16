@@ -33,7 +33,7 @@ public class Game {
             currentState.setTurn(turnController.takeTurn());
             currentState.setBoard(board);
 
-            Transaction transaction = fieldController.update(currentState);
+            Transaction transaction = fieldController.fieldPurchase(currentState);
 
             if (currentState.getTurn().crossedStart) {
                 bankController.addMoney(currentState.getCurrentPlayer(), 4000);
