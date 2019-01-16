@@ -2,6 +2,8 @@ package View;
 
 import Model.*;
 import Model.Fields.Field;
+import Model.Fields.OwnableField;
+import Model.Fields.PropertyField;
 import gui_fields.*;
 import gui_main.GUI;
 
@@ -133,23 +135,30 @@ public class GUIView implements View {
     private GUI_Field fieldToGUI(Field field) {
         String priceTxt = String.format(" %s ", field.value);
 
+        String fieldTxt = field.fieldText;
+
+        if (field instanceof PropertyField)
+            fieldTxt = String.format(fieldTxt, 1000, 2000, 3000, 4000, 5000, 60000, 1000, 2000);
+
+
+
         switch (field.fieldType) {
-            case Street_Cyan: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 1", Color.CYAN, Color.BLACK);
-            case Street_Pink: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 1", Color.PINK, Color.BLACK);
-            case Street_Green: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.GREEN, Color.BLACK);
-            case Street_Blue: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 2", Color.BLUE, Color.BLACK);
-            case Street_Red: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", Color.RED, Color.BLACK);
-            case Street_White: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 3", new Color(146, 140, 48), Color.BLACK);
-            case Street_Yellow: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 4", Color.YELLOW, Color.BLACK);
-            case Street_Brown: return new GUI_Street(field.name, priceTxt, field.fieldText, "Leje: 5", new Color(144, 48, 15), Color.BLACK);
-            case Brewery: return new GUI_Brewery("default", field.name, "", field.fieldText, "", Color.BLACK, Color.WHITE);
-            case Jail: return new GUI_Jail("default", field.name, "", field.fieldText, new Color(68, 68, 68), Color.BLACK);
-            case Chance: return new GUI_Chance(field.name, "", field.fieldText, new Color(204, 182, 0), Color.BLACK);
-            case Refuge: return new GUI_Refuge("default", field.name, "", field.fieldText, Color.WHITE, Color.BLACK);
-            case Start: return new GUI_Tax(field.name, "+2 til dig", field.fieldText, Color.GRAY, Color.BLACK);
+            case Street_Cyan: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 1", Color.CYAN, Color.BLACK);
+            case Street_Pink: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 1", Color.PINK, Color.BLACK);
+            case Street_Green: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 2", Color.GREEN, Color.BLACK);
+            case Street_Blue: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 2", Color.BLUE, Color.BLACK);
+            case Street_Red: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 3", Color.RED, Color.BLACK);
+            case Street_White: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 3", new Color(146, 140, 48), Color.BLACK);
+            case Street_Yellow: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 4", Color.YELLOW, Color.BLACK);
+            case Street_Brown: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 5", new Color(144, 48, 15), Color.BLACK);
+            case Brewery: return new GUI_Brewery("default", field.name, "", fieldTxt, "", Color.BLACK, Color.WHITE);
+            case Jail: return new GUI_Jail("default", field.name, "", fieldTxt, new Color(68, 68, 68), Color.BLACK);
+            case Chance: return new GUI_Chance(field.name, "", fieldTxt, new Color(204, 182, 0), Color.BLACK);
+            case Refuge: return new GUI_Refuge("default", field.name, "", fieldTxt, Color.WHITE, Color.BLACK);
+            case Start: return new GUI_Tax(field.name, "+2 til dig", fieldTxt, Color.GRAY, Color.BLACK);
             case Empty: return new GUI_Empty();
-            case Tax: return new GUI_Tax(field.name,priceTxt,field.fieldText,Color.lightGray,Color.BLACK);
-            case Shipping: return new GUI_Shipping("default",field.name,priceTxt,field.fieldText,"Leje: 2", Color.WHITE,Color.BLACK);
+            case Tax: return new GUI_Tax(field.name,priceTxt,fieldTxt,Color.lightGray,Color.BLACK);
+            case Shipping: return new GUI_Shipping("default",field.name,priceTxt,fieldTxt,"Leje: 2", Color.WHITE,Color.BLACK);
         }
         throw new IllegalArgumentException();
     }

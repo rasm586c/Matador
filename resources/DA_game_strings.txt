@@ -85,11 +85,14 @@ indkomstskat felt title
 field_indkomstskat
 indkomstskat felt
 
+field_property_rent
+Grundleje ....................... %d 1 hus ............................... %d 2 huse ............................. %d 3 huse ............................. %d 4 huse ............................. %d Hotel ............................... %d ---------------------------------------- Køb af hus ...................... %d Køb af hotel .................... %d
+
 field_cyan_1_title
 cyan felt 1 title
 
 field_cyan_1
-cyan felt 1 tekst
+Grundleje ......................... %d 1 hus ................................. %d 2 huse ............................... %d 3 huse ............................... %d 4 huse ............................... %d Hotel ................................. %d
 
 field_cyan_2_title
 cyan felt 2 title
