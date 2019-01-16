@@ -62,16 +62,28 @@ field_jail
 jail felt tekst
 
 field_ship_1_title
-ship felt 1 title
+7Cocinas
 
-field_ship_1
-ship felt 1
+field_ship_rent
+Grundleje: %s 2 Rederier: %s 3 Rederier: %s 4 Rederier: %s
 
 field_ship_2_title
-ship felt 2 title
+Zaza
 
 field_ship_2
 ship felt 2
+
+field_ship_3_title
+DTK
+
+field_ship_3
+Der skal sejles snart.
+
+field_ship_4_title
+Yatai
+
+field_shit_4
+Sejltid
 
 field_brewery_1_title
 brewery felt 1 title
@@ -86,7 +98,7 @@ field_indkomstskat
 indkomstskat felt
 
 field_property_rent
-Grundleje ....................... %d 1 hus ............................... %d 2 huse ............................. %d 3 huse ............................. %d 4 huse ............................. %d Hotel ............................... %d ---------------------------------------- Køb af hus ...................... %d Køb af hotel .................... %d
+Grundleje: %s 1 Hus: %s 2 Huse: %s 3 Huse: %s 4 Huse: %s Hotel: %s Køb af hus: %s Køb af hotel: %s
 
 field_cyan_1_title
 cyan felt 1 title
@@ -178,12 +190,6 @@ Grønningen
 field_red_3
 Grønningen er et fedt sted
 
-field_ship_3_title
-Rederi
-
-field_ship_3
-Der skal sejles snart.
-
 field_white_1_title
 Bredgade
 
@@ -225,12 +231,6 @@ Nygade
 
 field_yellow_3
 Den nyeste gade i Kbh
-
-field_ship_4_title
-Rederi4
-
-field_shit_4
-Sejltid
 
 field_brown_1_title
 Frederiksberggade

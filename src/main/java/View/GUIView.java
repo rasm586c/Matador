@@ -4,6 +4,8 @@ import Model.*;
 import Model.Fields.Field;
 import Model.Fields.OwnableField;
 import Model.Fields.PropertyField;
+import Model.Fields.ShippingField;
+import gui_codebehind.GUI_Center;
 import gui_fields.*;
 import gui_main.GUI;
 
@@ -138,9 +140,26 @@ public class GUIView implements View {
         String fieldTxt = field.fieldText;
 
         if (field instanceof PropertyField)
-            fieldTxt = String.format(fieldTxt, 1000, 2000, 3000, 4000, 5000, 60000, 1000, 2000);
+            fieldTxt = String.format(fieldTxt,
+                    String.format("%d\n", 300),
+                    String.format("%d\n", 400),
+                    String.format("%d\n", 300),
+                    String.format("%d\n", 400),
+                    String.format("%d\n", 300),
+                    String.format("%d\n", 400),
+                    String.format("%d\n", 300),
+                    String.format("%d\n", 400)
+            );
 
 
+
+        if (field instanceof ShippingField)
+            fieldTxt = String.format(fieldTxt,
+                    String.format("%d\n", 100),
+                    String.format("%d\n", 200),
+                    String.format("%d\n", 300),
+                    String.format("%d\n", 400)
+            );
 
         switch (field.fieldType) {
             case Street_Cyan: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 1", Color.CYAN, Color.BLACK);
@@ -161,5 +180,9 @@ public class GUIView implements View {
             case Shipping: return new GUI_Shipping("default",field.name,priceTxt,fieldTxt,"Leje: 2", Color.WHITE,Color.BLACK);
         }
         throw new IllegalArgumentException();
+    }
+
+    static String padLeft(String s, int n) {
+        return String.format("%1$" + n + "s", s).replace(" ", ".");
     }
 }
