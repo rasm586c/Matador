@@ -50,16 +50,16 @@ field_start_title
 start felt title
 
 field_start
-start felt tekst
+Rustur
 
 field_chance
-tag chancen
+Studiemail
 
 field_jail_title
-jail felt title
+Studievejledning
 
 field_jail
-jail felt tekst
+Du sidder fast i studievejledning. Mega nedern.
 
 field_ship_1_title
 7Cocinas
@@ -86,160 +86,88 @@ field_shit_4
 Sejltid
 
 field_brewery_1_title
-brewery felt 1 title
-
-field_brewery_1
-brewery felt 1
+Hegnet
 
 field_indkomstskat_title
-indkomstskat felt title
+Studiegæld
 
 field_indkomstskat
-indkomstskat felt
+Du skylder studiegæld min ven, den er sgu ikke så god.
 
 field_property_rent
 Grundleje: %s 1 Hus: %s 2 Huse: %s 3 Huse: %s 4 Huse: %s Hotel: %s Køb af hus: %s Køb af hotel: %s
 
 field_cyan_1_title
-cyan felt 1 title
-
-field_cyan_1
-Grundleje ......................... %d 1 hus ................................. %d 2 huse ............................... %d 3 huse ............................... %d 4 huse ............................... %d Hotel ................................. %d
+Energivej
 
 field_cyan_2_title
-cyan felt 2 title
-
-field_cyan_2
-cyan felt 2 tekst
+Vagn AA. vej
 
 field_pink_1_title
-pink felt 1 title
-
-field_pink_1
-pink felt 1 tekst
+Den der netto
 
 field_pink_2_title
-pink felt 2 title
-
-field_pink_2
-pink felt 2 tekst
+Produktions- \n torvet
 
 field_pink_3_title
-pink felt 3 title
-
-field_pink_3
-pink felt 3 tekst
+Kollegie \n bakken
 
 field_green_1_title
-green felt 1 title
-
-field_green_1
-green felt 1 tekst
+Akademivej
 
 field_green_2_title
-green felt 2 title
-
-field_green_2
-green felt 2 tekst
+Centrifuge- \n vej
 
 field_green_3_title
-green felt 3 title
-
-field_green_3
-green felt 3 tekst
+Ørsteds \n Plads
 
 field_blue_1_title
-blue felt 1 title
-
-field_blue_1
-blue felt 1 tekst
+Elektrovej
 
 field_blue_2_title
-blue felt 2 title
-
-field_blue_2
-blue felt 2 tekst
+Richard P. \n Plads
 
 field_blue_3_title
-blue felt 3 title
-
-field_blue_3
-blue felt 3 tekst
+Matematik- \n torvet
 
 field_refuge_title
-Parkering
+Bibliotek
 
 field_refuge
-Vent tålmodigt, tak!
+Bare sådan chill og læs nogen bøger.
 
 field_red_1_title
-Trianglen
-
-field_red_1
-Dette er Trianglen
+Kemikalievej
 
 field_red_2_title
-Østerbrogade
-
-field_red_2
-Du er landet på Østerbrogade!
+Henrik Dams \n Allé
 
 field_red_3_title
-Grønningen
-
-field_red_3
-Grønningen er et fedt sted
+Søltoftsplads
 
 field_white_1_title
-Bredgade
-
-field_white_1
-Den bredeste gade i Kbh
+Kolonnevej
 
 field_white_2_title
-Kgs. Nytorv
-
-field_white_2
-D'Angleterre ligger her
+Det der \n busstop
 
 field_white_3_title
-Østergade
-
-field_white_3
-Gaden i øst
+Kemitorvet
 
 field_brewery_2_title
-Køb bajere
-
-field_brewery_2
-Massere af bajere
+Kælderbaren
 
 field_yellow_1_title
-Amagertorv
-
-field_yellow_1
-Storkespringvandet
+Brovej
 
 field_yellow_2_title
-Vimmelskaftet
-
-field_yellow_2
-Gammelt sted i Kbh
+Anker Eng. \n vej
 
 field_yellow_3_title
-Nygade
-
-field_yellow_3
-Den nyeste gade i Kbh
+Bygnings- \n torvet
 
 field_brown_1_title
-Frederiksberggade
-
-field_brown_1
-Hvor ligger denne gade???
+Oticon \n Hallen
 
 field_brown_2_title
-Rådhuspladsen
-
-field_brown_2
-Rådhuspladen...
+Bygning \n 101
