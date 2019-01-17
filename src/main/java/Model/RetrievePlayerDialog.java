@@ -22,10 +22,9 @@ public class RetrievePlayerDialog {
     private Player[] getPlayers() {
         int n;
 
-        while ((n = Integer.parseInt(view.getUserSelect(stringContainer.getString("amount_players"), "3", "4", "5", "6"))) <= 0) {
+        while ((n = Integer.parseInt(view.getUserSelect(stringContainer.getString("amount_players"),"3", "4", "5", "6"))) <= 0) {
             view.print(stringContainer.getString("invalid_amount_players"));
         }
-
         Player[] players = new Player[n];
         for (int i = 0; i < n; i++) {
 

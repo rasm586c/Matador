@@ -12,6 +12,7 @@ public class PropertyField extends Field implements OwnableField {
         super.onFieldLand(state);
     }
 
+    // TODO: Gamestring skal fikses
     public String getPurchaseText() {
         return "Bolig til salg! Vil du købe? Den koster " + value;
     }
