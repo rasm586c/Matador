@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.*;
-import Model.Fields.Field;
 import View.View;
 
 public class BankController extends Controller {
@@ -72,6 +71,19 @@ public class BankController extends Controller {
 
                 withdrawMoney(state.getCurrentPlayer(), transaction.getAmount());
                 updateBalances();
+            }
+        }
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.OutOfJail) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                transaction.getPlayer().setJailedTurns(0);
+                transaction.setApproved(true);
+            } else {
+                transaction.setApproved(false);
+
+                // TODO: Fix game strings
+                view.print("Øv! Du har ikke råd.");
             }
         }
 

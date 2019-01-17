@@ -14,5 +14,6 @@ public class GoToJailField extends Field {
         super.onFieldLand(state);
 
         state.setTurn(new PlayerTurn(false, state.getTurn().diceRoll));
+        state.getCurrentPlayer().setJailedTurns(3);
     }
 }
