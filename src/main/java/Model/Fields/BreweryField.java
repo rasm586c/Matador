@@ -21,4 +21,8 @@ public class BreweryField extends Field implements OwnableField {
     public int calculateRent(GameState state) {
         return value;
     }
+
+    private int[] rentPrices;
+    public void setRentPrices(int[] rentPrices) { this.rentPrices = rentPrices; }
+    public int[] getRentPrices() { return rentPrices; }
 }

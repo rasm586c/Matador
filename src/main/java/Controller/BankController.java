@@ -53,7 +53,6 @@ public class BankController extends Controller {
 
     public void processTransaction(Transaction transaction, GameState state) {
         Account account = findAccountByPlayer(transaction.getPlayer());
-        Field landedOn = state.getBoard().getFields()[transaction.getPlayer().getPositionClamped()];
 
         if (transaction.getTransactionType() == Transaction.TransactionType.PurchaseProperty) {
             if (account.getBalance() >= transaction.getAmount()) {
@@ -63,13 +62,11 @@ public class BankController extends Controller {
             }
 
             if (transaction.isApproved()) {
-                landedOn.setOwner(state.getCurrentPlayer());
+                transaction.getField().setOwner(state.getCurrentPlayer());
                 view.updateOwner(state.getCurrentPlayer(), state.getCurrentPlayer().getPositionClamped());
 
                 withdrawMoney(state.getCurrentPlayer(), transaction.getAmount());
                 updateBalances();
-            } else {
-                //TODO: Mere logik
             }
         }
 
@@ -78,9 +75,30 @@ public class BankController extends Controller {
                 // Transfer amount from player to target
                 withdrawMoney(transaction.getPlayer(), transaction.getAmount());
                 addMoney(transaction.getTarget(), transaction.getAmount());
-                view.print("Du " + transaction.getPlayer().getName() + " har givet " + transaction.getAmount() + " til " + transaction.getTarget().getName());
+                transaction.setApproved(true);
             } else {
-                // TODO: Har ikke nok penge, men du er landet på grund!
+                transaction.setApproved(false);
+            }
+        }
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.PurchaseHouse) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                transaction.setApproved(true);
+
+                view.print("Du har købt et hus på " + transaction.getField().name);
+                transaction.getField().setHouseCounter(transaction.getField().getHouseCounter() + 1);
+                int fieldPosition = -1;
+                for (int i = 0; i < state.getBoard().getFields().length; i++) {
+                    if (state.getBoard().getFields()[i] == transaction.getField()) {
+                        fieldPosition = i;
+                    }
+                }
+
+                view.updateHouse(fieldPosition, transaction.getField().getHouseCounter());
+            }
+            else {
+                transaction.setApproved(false);
             }
         }
     }

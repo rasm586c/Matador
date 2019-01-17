@@ -19,6 +19,7 @@ public class PropertyField extends Field implements OwnableField {
 
     public int calculateRent(GameState state) {
         if (getOwner() != null && getOwner() != state.getCurrentPlayer()) {
+            // Find ud af om renten SKAL fordobles
             // loop over alle fields
             boolean doubleRent = true;
             for (int i = 0; i < state.getBoard().getFields().length; i++) {
@@ -32,9 +33,15 @@ public class PropertyField extends Field implements OwnableField {
                 }
             }
 
+            // Find ud af hus prisen
+            int rentPrice = getRentPrices()[getHouseCounter()];
+
+            // Double rent ?
             if (doubleRent) {
-                return value * 2;
+                rentPrice *= 2;
             }
+
+            return rentPrice;
         }
 
         return value;

@@ -17,5 +17,7 @@ public interface View {
 
     void printDiceRoll(int value1, int value2);
 
+    void updateHouse(int fieldPosition, int houseCounter);
+
     void updateBoard(GameBoard board);
 }

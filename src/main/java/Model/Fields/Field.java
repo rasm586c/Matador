@@ -25,9 +25,6 @@ public abstract class Field {
 
 
     public final int rent;
-
-    public final int mortgage;
-
     /**
      * Defines the fields description.
      */
@@ -39,12 +36,16 @@ public abstract class Field {
      * */
     private Player owner = null;
 
+    /**
+     *
+     * */
+    private int houseCounter = 0;
+
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
     public Player getOwner() { return owner; }
-
 
     /*
     *
@@ -58,17 +59,16 @@ public abstract class Field {
      * @param value     The value of the field.
      * @param fieldText The description of the field.
      */
-    public Field(String name, int value,int rent, int mortgage, String fieldText) {
-        this(name, value,rent, mortgage, fieldText, GUI_Type.Street);
+    public Field(String name, int value,int rent, String fieldText) {
+        this(name, value,rent, fieldText, GUI_Type.Street);
     }
 
 
-    public Field(String name, int value, int rent, int mortgage, String fieldText, GUI_Type fieldType) {
+    public Field(String name, int value, int rent, String fieldText, GUI_Type fieldType) {
         this.name = name;
         this.value = value;
         this.fieldType = fieldType;
         this.rent = rent;
-        this.mortgage = mortgage;
 
         if (fieldText == null) this.fieldText = "";
         else this.fieldText = fieldText;
@@ -77,6 +77,9 @@ public abstract class Field {
     public void onFieldLand(GameState state) {
 
     }
+
+    public int getHouseCounter() { return houseCounter; }
+    public void setHouseCounter(int houseCounter) { this.houseCounter = houseCounter; }
 
     public enum GUI_Type {
         Chance,
