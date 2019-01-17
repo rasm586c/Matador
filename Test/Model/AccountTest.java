@@ -33,7 +33,7 @@ class AccountTest {
 
 
         // test setBalan ce, således at hvis man sætter et accounts balance til noget, bliver det også den værdi.
-        Player player = new Player("hest", PlayerType.UFO);
+        Player player = new Player("hest", PlayerType.UFO, Color.black);
 
         Account account = new Account(player, 30000);
 
