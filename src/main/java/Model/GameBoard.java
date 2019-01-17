@@ -43,6 +43,8 @@ public class GameBoard {
         setRent(fields[39], new int[] { 1000, 2000, 6000, 14000, 34000, 20000 }); // Rådhuspladsen
     }
 
+
+
     private void setRent(Field field, int[] prices) {
         if (field instanceof OwnableField) {
             OwnableField ownableField = (OwnableField)field;
