@@ -4,8 +4,8 @@ import Model.GameState;
 
 public class ShippingField extends Field implements OwnableField {
 
-    public ShippingField (String name, int value, int rent, int mortgage, String fieldText) {
-        super(name, value, rent, mortgage, fieldText, GUI_Type.Shipping);
+    public ShippingField (String name, int value, int rent, String fieldText) {
+        super(name, value, rent, fieldText, GUI_Type.Shipping);
     }
 
     // TODO: Fix gamestring tekst
