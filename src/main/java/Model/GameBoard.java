@@ -9,6 +9,45 @@ public class GameBoard {
     public GameBoard(LanguagePack stringContainer) {
         this.stringContainer = stringContainer;
         fields = createFields();
+        setRents();
+    }
+
+    private void setRents() {
+        setRent(fields[1], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[3], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[5], new int[] { 1000, 2000, 3000, 4000 }); // Ship
+        setRent(fields[6], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[8], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[9], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[11], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[12], new int[] { 1000, 2000, 3000, 4000 }); // Brewery
+        setRent(fields[13], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[14], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[15], new int[] { 1000, 2000, 3000, 4000 }); // Ship
+        setRent(fields[16], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[18], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[19], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[21], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[23], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[24], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[25], new int[] { 1000, 2000, 3000, 4000 }); // Ship
+        setRent(fields[26], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[27], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[28], new int[] { 1000, 2000, 3000, 4000 }); // Brewery
+        setRent(fields[29], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[31], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[32], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[34], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[35], new int[] { 1000, 2000, 3000, 4000 }); // Ship
+        setRent(fields[37], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[39], new int[] { 1000, 2000, 3000, 4000 });
+    }
+
+    private void setRent(Field field, int[] prices) {
+        if (field instanceof OwnableField) {
+            OwnableField ownableField = (OwnableField)field;
+            ownableField.setRentPrices(prices);
+        }
     }
 
     /**
