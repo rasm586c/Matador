@@ -15,7 +15,7 @@ public class GameBoard {
     private void setRents() {
         setRent(fields[1], new int[] { 50, 125, 375, 1125, 2000, 3000 }); // Hvidovrevej
         setRent(fields[3], new int[] { 50, 125, 375, 1125, 2000, 3000 }); // Rødovrevej
-        setRent(fields[5], new int[] { 250, 500, 1000, 2000 });   // Ship
+        setRent(fields[5], new int[] { 500, 1000, 2000, 4000 });   // Ship
         setRent(fields[6], new int[] { 100, 300, 900, 2700, 4000, 5500 }); //Roskildevej
         setRent(fields[8], new int[] { 100, 600, 1800, 2700, 4000, 5500 }); //Valby Langgade
         setRent(fields[9], new int[] { 150, 800, 2000, 3000, 4500, 6000 }); //Allé Gade
@@ -30,7 +30,7 @@ public class GameBoard {
         setRent(fields[21], new int[] { 350, 1800, 5000, 7000, 8750, 10500 }); // Trianglen
         setRent(fields[23], new int[] { 350, 1800, 5000, 7000, 8750, 10500 }); // Østerbrogade
         setRent(fields[24], new int[] { 400, 1000, 3000, 7500, 9250, 11000 }); // Grønningen
-        setRent(fields[25], new int[] { 500, 1000, 2000, 4000 }); // Ship
+        setRent(fields[25], new int[] {  500, 1000, 2000, 4000 }); // Ship
         setRent(fields[26], new int[] { 450, 1100, 6500, 15500, 19000, 12500 }); // Bredgade
         setRent(fields[27], new int[] { 450, 1100, 6500, 15500, 19000, 12500 }); // Kgs Nytorv
         setRent(fields[28], new int[] { 1500 }); // Brewery

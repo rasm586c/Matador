@@ -24,13 +24,13 @@ public class ShippingField extends Field implements OwnableField {
 
             for (int i = 0; i < state.getBoard().getFields().length; i++) {
                 if (state.getBoard().getFields()[i].fieldType.equals( fieldType )) {
-                    if (state.getBoard().getFields()[i].getOwner().equals(getOwner())) {
+                    if (state.getBoard().getFields()[i].getOwner() != null && state.getBoard().getFields()[i].getOwner().equals(getOwner())) {
                         amount++;
                     }
                 }
             }
 
-            return getRentPrices()[amount];
+            return getRentPrices()[amount-1];
         }
 
         return value;
