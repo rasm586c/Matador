@@ -46,6 +46,7 @@ public class Transaction {
     public enum TransactionType {
         PurchaseProperty,
         PurchaseHouse,
-        ToPlayer
+        ToPlayer,
+        OutOfJail
     }
 }

@@ -44,6 +44,19 @@ public class Game {
             currentState.setTurn(turnController.takeTurn());
             currentState.setBoard(board);
 
+            turnController.invokeFieldEvent(currentState);
+            turnController.ensureJailPosition(currentState);
+
+            Transaction jailTransaction = currentState.getTurn().jailTransaction;
+            if (jailTransaction != null) {
+                bankController.processTransaction(jailTransaction, currentState);
+
+                if (!jailTransaction.isApproved()) {
+                    // Redo turn!
+                    continue;
+                }
+            }
+
             if (currentState.getTurn().crossedStart) {
                 bankController.addMoney(currentState.getCurrentPlayer(), 4000);
             }
@@ -53,7 +66,6 @@ public class Game {
                 bankController.processTransaction(rentPayment, currentState);
                 if (!rentPayment.isApproved()) {
                     view.print("Hey fattig røv! Du har ikke råd til at betale husleje så du må sælge noget...!");
-
                 }
             }
 

@@ -11,12 +11,14 @@ public class Player {
     public final Color color;
 
     private int position;
+    private int jailedTurns;
 
     Player(String name, PlayerType playerType, Color color) {
         this.name = name;
         this.playerType = playerType;
         this.color = color;
 
+        jailedTurns = 0;
         position = 0;
     }
 
@@ -34,6 +36,9 @@ public class Player {
     public Player clone() {
         return new Player(name, playerType, color);
     }
+
+    public int getJailedTurns() { return jailedTurns; }
+    public void setJailedTurns(int jailedTurns) { this.jailedTurns = jailedTurns; }
 
     /**
      * This function recursively calls itself until it ensures the input value is between 0 and BOARD_SIZE (I.e. clamps a position to the board)
