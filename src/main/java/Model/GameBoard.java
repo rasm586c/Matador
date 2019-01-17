@@ -13,7 +13,7 @@ public class GameBoard {
     }
 
     private void setRents() {
-        setRent(fields[1], new int[] { 1000, 2000, 3000, 4000 });
+        setRent(fields[1], new int[] { 1000, 2000, 3000, 4000 }); //
         setRent(fields[3], new int[] { 1000, 2000, 3000, 4000 });
         setRent(fields[5], new int[] { 1000, 2000, 3000, 4000 }); // Ship
         setRent(fields[6], new int[] { 1000, 2000, 3000, 4000 });
