@@ -1,7 +1,12 @@
 package Model;
 
+import Controller.BankController;
+import Controller.TurnController;
+import View.View;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,9 +17,9 @@ class AccountTest {
 
 
         // tester getBalance når man opretter en spiller og tjekker at den starter på 4000.
-        Player player = new Player("hest", PlayerType.UFO);
+        Player player = new Player("Hjort",PlayerType.UFO, Color.BLACK);
 
-        Account account = new Account(player, 30000;
+        Account account = new Account(player, 30000);
 
         Assert.assertEquals(account.getBalance(), 30000);
 
