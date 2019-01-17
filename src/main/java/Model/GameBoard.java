@@ -15,7 +15,7 @@ public class GameBoard {
     private void setRents() {
         setRent(fields[1], new int[] { 50, 125, 375, 1125, 2000, 3000 }); // Hvidovrevej
         setRent(fields[3], new int[] { 50, 125, 375, 1125, 2000, 3000 }); // Rødovrevej
-        setRent(fields[5], new int[] { 250, 500, 1000, 2000 });   // Ship
+        setRent(fields[5], new int[] { 500, 1000, 2000, 4000 });   // Ship
         setRent(fields[6], new int[] { 100, 300, 900, 2700, 4000, 5500 }); //Roskildevej
         setRent(fields[8], new int[] { 100, 600, 1800, 2700, 4000, 5500 }); //Valby Langgade
         setRent(fields[9], new int[] { 150, 800, 2000, 3000, 4500, 6000 }); //Allé Gade
