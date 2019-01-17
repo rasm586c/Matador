@@ -47,6 +47,8 @@ public class DiceCup {
      * This method is for checking if the dices has the same value.
      * @return Is returning true if the dices value are the same.
      */
+
+    //TODO: IMPLEMENTO Dobbelt slag
     public boolean isEqual() {
         for (int i = 0; i < dices.length; i++) {
             for (int j = 0; j < dices.length; j++) {
