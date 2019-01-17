@@ -53,6 +53,7 @@ public class Game {
                 bankController.processTransaction(rentPayment, currentState);
                 if (!rentPayment.isApproved()) {
                     view.print("Hey fattig røv! Du har ikke råd til at betale husleje så du må sælge noget...!");
+
                 }
             }
 

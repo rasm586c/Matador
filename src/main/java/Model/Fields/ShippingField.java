@@ -31,23 +31,9 @@ public class ShippingField extends Field implements OwnableField {
                     }
                 }
             }
+
             //returnere rent værdien efter hvor mange owneren ejer!
-            if(antal == 1)
-            {
-                return value;
-            }
-            else if(antal == 2)
-            {
-                return value * 2;
-            }
-            else if (antal == 3)
-            {
-                return value * 4;
-            }
-            else
-            {
-                return value * 8;
-            }
+            return getRentPrices()[antal];
         }
 
         return value;
