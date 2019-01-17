@@ -78,9 +78,33 @@ public class BankController extends Controller {
                 // Transfer amount from player to target
                 withdrawMoney(transaction.getPlayer(), transaction.getAmount());
                 addMoney(transaction.getTarget(), transaction.getAmount());
+                transaction.setApproved(true);
                 view.print("Du " + transaction.getPlayer().getName() + " har givet " + transaction.getAmount() + " til " + transaction.getTarget().getName());
             } else {
+                transaction.setApproved(false);
                 // TODO: Har ikke nok penge, men du er landet på grund!
+            }
+        }
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.PurchaseHouse) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                transaction.setApproved(true);
+
+                view.print("Du har købt et hus på " + transaction.getField().name);
+                transaction.getField().setHouseCounter(transaction.getField().getHouseCounter() + 1);
+                int fieldPosition = -1;
+                for (int i = 0; i < state.getBoard().getFields().length; i++) {
+                    if (state.getBoard().getFields()[i] == transaction.getField()) {
+                        fieldPosition = i;
+                    }
+                }
+
+                view.updateHouse(fieldPosition, transaction.getField().getHouseCounter());
+            }
+            else {
+                transaction.setApproved(false);
+                view.print("Øv! Du har ikke råd til dette hus!!");
             }
         }
     }
