@@ -39,4 +39,13 @@ public class PropertyField extends Field implements OwnableField {
 
         return value;
     }
+
+    private int[] rentPrices;
+    public int[] getRentPrices() {
+        return rentPrices;
+    }
+
+    public void setRentPrices(int[] rentPrices) {
+        this.rentPrices = rentPrices;
+    }
 }
