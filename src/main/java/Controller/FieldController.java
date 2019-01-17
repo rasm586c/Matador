@@ -51,11 +51,16 @@ public class FieldController extends Controller {
         // Find grunde som vi ejer
         ArrayList<Field> playerFields = new ArrayList<Field>();
 
+
         for (int i = 0; i < state.getBoard().getFields().length; i++) {
-            if (state.getCurrentPlayer() == state.getBoard().getFields()[i].getOwner() &&
-                state.getBoard().getFields()[i] instanceof PropertyField &&
-                state.getBoard().getFields()[i].getHouseCounter() < 5 &&
-                hasAllFields(state.getBoard().getFields()[i].fieldType, state.getBoard().getFields(), state.getCurrentPlayer())) {
+            Field currentField = state.getBoard().getFields()[i];
+            int lowestHouseValueOfField = lowestHouseValue(currentField.fieldType, state.getBoard().getFields(), state.getCurrentPlayer());
+
+            if (state.getCurrentPlayer() == currentField.getOwner() &&
+                    currentField instanceof PropertyField &&
+                    currentField.getHouseCounter() < 5 &&
+                    hasAllFields(currentField.fieldType, state.getBoard().getFields(), state.getCurrentPlayer()) &&
+                    currentField.getHouseCounter() <= lowestHouseValueOfField) {
 
                 playerFields.add(state.getBoard().getFields()[i]);
             }
@@ -102,4 +107,17 @@ public class FieldController extends Controller {
         }
         return true;
     }
+
+    private int lowestHouseValue(Field.GUI_Type fieldType, Field[] fields, Player player) {
+        int lowestValue = Integer.MAX_VALUE;
+        for (int i = 0; i < fields.length; i++) {
+            if (fields[i].getOwner() == player && fields[i].fieldType == fieldType) {
+                if (fields[i].getHouseCounter() < lowestValue) {
+                    lowestValue = fields[i].getHouseCounter();
+                }
+            }
+        }
+        return (lowestValue == Integer.MAX_VALUE ? 0 : lowestValue);
+    }
+
 }

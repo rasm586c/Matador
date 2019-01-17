@@ -53,7 +53,6 @@ public class BankController extends Controller {
 
     public void processTransaction(Transaction transaction, GameState state) {
         Account account = findAccountByPlayer(transaction.getPlayer());
-        Field landedOn = state.getBoard().getFields()[transaction.getPlayer().getPositionClamped()];
 
         if (transaction.getTransactionType() == Transaction.TransactionType.PurchaseProperty) {
             if (account.getBalance() >= transaction.getAmount()) {
@@ -63,7 +62,7 @@ public class BankController extends Controller {
             }
 
             if (transaction.isApproved()) {
-                landedOn.setOwner(state.getCurrentPlayer());
+                transaction.getField().setOwner(state.getCurrentPlayer());
                 view.updateOwner(state.getCurrentPlayer(), state.getCurrentPlayer().getPositionClamped());
 
                 withdrawMoney(state.getCurrentPlayer(), transaction.getAmount());
