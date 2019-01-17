@@ -16,6 +16,10 @@ public class ConsoleView implements View {
         System.out.println("You rolled " + value1 + " and " + value2);
     }
 
+    public void updateHouse(int fieldPosition, int houseCounter) {
+
+    }
+
     public void movePlayer(int oldPosition, int newPosition, Player player) { }
 
     public void setPlayerBalance(Player player, int balance) {}

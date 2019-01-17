@@ -1,16 +1,21 @@
 package Model;
 
+import java.awt.*;
+
 public class Player {
     static final int BOARD_SIZE = 40;
 
     private final String name;
     private final PlayerType playerType;
 
+    public final Color color;
+
     private int position;
 
-    Player(String name, PlayerType playerType) {
+    Player(String name, PlayerType playerType, Color color) {
         this.name = name;
         this.playerType = playerType;
+        this.color = color;
 
         position = 0;
     }
@@ -27,7 +32,7 @@ public class Player {
     public int getPositionClamped() { return clampPosition(position); }
 
     public Player clone() {
-        return new Player(name, playerType);
+        return new Player(name, playerType, color);
     }
 
     /**
