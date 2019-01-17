@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.Fields.Field;
 import View.View;
 
 
@@ -38,12 +39,30 @@ public class TurnController extends Controller {
         view.print(languagePack.getString("die_roll", player.getName()));
         view.printDiceRoll(rolledValues[0], rolledValues[1]);
 
-        int oldPosition = player.getPosition();
-        player.setPosition(player.getPosition() + diceCup.getDiceSum());
-        view.movePlayer(oldPosition, player.getPosition(), player);
+        if (player.getJailedTurns() > 0) {
+            // TODO: Fix game strings!
+            String result = view.getUserSelect("Du er i fængsel!", "Betal 1000 kr", "Rul to ens", "Løsladelseskort");
+            if (result.equals("Betal 1000 kr")) {
 
-        if (Player.clampPosition(oldPosition) > Player.clampPosition(player.getPosition())) {
-            crossedStart = true;
+            }
+
+            if (result.equals("Rul to ens")) {
+
+            }
+
+            if (result.equals("Løsladelseskort")) {
+
+            }
+        }
+
+        if (player.getJailedTurns() == 0) {
+            int oldPosition = player.getPosition();
+            player.setPosition(player.getPosition() + diceCup.getDiceSum());
+            view.movePlayer(oldPosition, player.getPosition(), player);
+
+            if (Player.clampPosition(oldPosition) > Player.clampPosition(player.getPosition())) {
+                crossedStart = true;
+            }
         }
 
         return new PlayerTurn(crossedStart, diceCup.getDiceSum());
@@ -77,6 +96,21 @@ public class TurnController extends Controller {
             case BuyHouse: return "Køb hus";
         }
         return "Unknown Case";
+    }
+
+    public void invokeFieldEvent(GameState state) {
+        Field landedOn = state.getBoard().getFields()[state.getCurrentPlayer().getPositionClamped()];
+        landedOn.onFieldLand(state);
+    }
+
+    public void ensureJailPosition(GameState state) {
+        Player player = state.getCurrentPlayer();
+        if (player.getJailedTurns() > 0) {
+            int oldPosition = player.getPosition();
+            player.setPosition(10);
+
+            view.movePlayer(oldPosition, 10, player);
+        }
     }
 
     public ControllerChoice[] getControllerChoices(GameState state) {

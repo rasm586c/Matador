@@ -38,7 +38,6 @@ public class GUIView implements View {
     public void printDiceRoll(int value1, int value2) {
         gui.setDice(value1, value2);
     }
-
     public void print(String message) {
         gui.showMessage(message);
     }
@@ -52,7 +51,6 @@ public class GUIView implements View {
             ownable.setBorder(player.color);
         }
     }
-
     public void updatePlayers(Player[] players) {
         this.players = players;
         guiPlayers = createGuiPlayer(players);
@@ -87,7 +85,6 @@ public class GUIView implements View {
         gui.getFields()[Player.clampPosition(oldPos)].setCar(guiPlayers[playerIndex], false);
         gui.getFields()[Player.clampPosition(newPos)].setCar(guiPlayers[playerIndex], true);
     }
-
     public void updateBoard(GameBoard board) {
         if (gui != null) gui.close();
         gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#FFFFFF"));
@@ -98,7 +95,6 @@ public class GUIView implements View {
         int playerIndex = findPlayerIndex(player);
         guiPlayers[playerIndex].setBalance(balance);
     }
-
     public void updateHouse(int fieldPosition, int houseCounter) {
         GUI_Street street = (GUI_Street)gui.getFields()[fieldPosition];
         if (houseCounter >= 5) {
@@ -110,10 +106,6 @@ public class GUIView implements View {
         }
     }
 
-    /**
-     * Creates a timeout of n miliseconds. Calling this will make the program stop and wait for n miliseconds and then allow further execution.
-     * This method has no lock so prevent calling it from multiple threads.
-     * */
     private void sleep(int n) {
         long t0 = System.currentTimeMillis();
 

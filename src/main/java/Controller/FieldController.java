@@ -21,7 +21,6 @@ public class FieldController extends Controller {
 
         // What field did we land on?
         Field landedOn = board.getFields()[state.getCurrentPlayer().getPositionClamped()];
-        landedOn.onFieldLand(state);
 
         if (landedOn instanceof OwnableField) {
             if (landedOn.getOwner() != null && landedOn.getOwner() != state.getCurrentPlayer()) {
