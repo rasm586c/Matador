@@ -8,10 +8,6 @@ public class PlayerTurn {
     public PlayerTurn(Boolean crossedStart, int diceRoll) {
         this.crossedStart = crossedStart;
         this.diceRoll = diceRoll;
-
-
-
-
     }
 
 }

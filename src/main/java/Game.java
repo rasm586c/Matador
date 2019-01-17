@@ -29,12 +29,13 @@ public class Game {
         // Sæt ejetskab af nogle properties..
         //board.getFields()[1]
         //board.getFields()[3]
+/*
         board.getFields()[1].setOwner(players[0]);
         view.updateOwner(players[0], 1);
 
         board.getFields()[3].setOwner(players[0]);
         view.updateOwner(players[0], 3);
-
+*/
 
         // Game Loop
         while (true) {
@@ -52,6 +53,7 @@ public class Game {
                 bankController.processTransaction(rentPayment, currentState);
                 if (!rentPayment.isApproved()) {
                     view.print("Hey fattig røv! Du har ikke råd til at betale husleje så du må sælge noget...!");
+
                 }
             }
 

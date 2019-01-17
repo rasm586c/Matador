@@ -25,7 +25,7 @@ public class FieldController extends Controller {
 
         if (landedOn instanceof OwnableField) {
             if (landedOn.getOwner() != null && landedOn.getOwner() != state.getCurrentPlayer()) {
-                transaction = new Transaction(state.getCurrentPlayer(), landedOn, landedOn.rent, Transaction.TransactionType.ToPlayer);
+                transaction = new Transaction(state.getCurrentPlayer(), landedOn, ((OwnableField) landedOn).calculateRent(state), Transaction.TransactionType.ToPlayer);
                 transaction.setTarget(landedOn.getOwner());
             }
         }
@@ -42,8 +42,6 @@ public class FieldController extends Controller {
 
        // Property Field
        if (landedOn instanceof OwnableField) {
-           OwnableField field = (OwnableField)landedOn;
-
            if (landedOn.getOwner() == null) {
                 // TODO: Fix gamestrings
                 transaction = new Transaction(state.getCurrentPlayer(), landedOn, landedOn.value, Transaction.TransactionType.PurchaseProperty);

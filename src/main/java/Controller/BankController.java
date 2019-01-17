@@ -38,6 +38,11 @@ public class BankController extends Controller {
         updateBalances();
     }
 
+    public int getMoney(Player player) {
+        Account account = findAccountByPlayer(player);
+        return account.getBalance();
+    }
+
     private Account findAccountByPlayer(Player player) {
         for (int i = 0; i < accounts.length; i++) {
             if (accounts[i].owner == player) { return accounts[i]; }

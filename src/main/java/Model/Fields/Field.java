@@ -23,7 +23,6 @@ public abstract class Field {
     public final int value;
 
 
-
     public final int rent;
     /**
      * Defines the fields description.
@@ -59,8 +58,8 @@ public abstract class Field {
      * @param value     The value of the field.
      * @param fieldText The description of the field.
      */
-    public Field(String name, int value,int rent, String fieldText) {
-        this(name, value,rent, fieldText, GUI_Type.Street);
+    public Field(String name, int value, int rent, String fieldText) {
+        this(name, value, rent, fieldText, GUI_Type.Street);
     }
 
 

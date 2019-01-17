@@ -157,12 +157,12 @@ public class GUIView implements View {
 
         if (field instanceof PropertyField)
             fieldTxt = String.format(fieldTxt,
-                    String.format("%d\n", 300),
-                    String.format("%d\n", 400),
-                    String.format("%d\n", 300),
-                    String.format("%d\n", 400),
-                    String.format("%d\n", 300),
-                    String.format("%d\n", 400),
+                    String.format("%d\n", ((PropertyField) field).getRentPrices()[0]),
+                    String.format("%d\n", ((PropertyField) field).getRentPrices()[1]),
+                    String.format("%d\n", ((PropertyField) field).getRentPrices()[2]),
+                    String.format("%d\n", ((PropertyField) field).getRentPrices()[3]),
+                    String.format("%d\n", ((PropertyField) field).getRentPrices()[4]),
+                    String.format("%d\n", ((PropertyField) field).getRentPrices()[5]),
                     String.format("%d\n", 300),
                     String.format("%d\n", 400)
             );

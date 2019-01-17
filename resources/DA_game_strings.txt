@@ -47,7 +47,7 @@ winner
 %s vinder spillet!!
 
 field_start_title
-start felt title
+Start
 
 field_start
 Rustur
