@@ -67,8 +67,6 @@ public class BankController extends Controller {
 
                 withdrawMoney(state.getCurrentPlayer(), transaction.getAmount());
                 updateBalances();
-            } else {
-                //TODO: Mere logik
             }
         }
 
@@ -78,10 +76,8 @@ public class BankController extends Controller {
                 withdrawMoney(transaction.getPlayer(), transaction.getAmount());
                 addMoney(transaction.getTarget(), transaction.getAmount());
                 transaction.setApproved(true);
-                view.print("Du " + transaction.getPlayer().getName() + " har givet " + transaction.getAmount() + " til " + transaction.getTarget().getName());
             } else {
                 transaction.setApproved(false);
-                // TODO: Har ikke nok penge, men du er landet på grund!
             }
         }
 
@@ -103,7 +99,6 @@ public class BankController extends Controller {
             }
             else {
                 transaction.setApproved(false);
-                view.print("Øv! Du har ikke råd til dette hus!!");
             }
         }
     }
