@@ -26,6 +26,8 @@ public class Game {
         BankController bankController = new BankController(view, players);
         FieldController fieldController = new FieldController(view, board);
 
+
+
         // Game Loop
         while (true) {
             GameState currentState = new GameState();
@@ -51,4 +53,6 @@ public class Game {
         RetrievePlayerDialog dialog = new RetrievePlayerDialog(view, languagePack);
         return dialog.showPlayerDialog();
     }
+
+
 }
