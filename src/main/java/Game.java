@@ -43,6 +43,17 @@ public class Game {
                 bankController.processTransaction(transaction, currentState);
             }
 
+            Transaction houseTransaction = null;
+            while ((houseTransaction = fieldController.purchaseHouse(currentState)) != null) {
+                bankController.processTransaction(houseTransaction, currentState);
+                if (!houseTransaction.isApproved()) {
+                    // Sælg hus?
+
+                    // Du har ikke råd! Pantsæt ?
+
+                }
+            }
+
             turnController.getNextPlayer();
         }
     }

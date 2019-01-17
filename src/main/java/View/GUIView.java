@@ -2,10 +2,9 @@ package View;
 
 import Model.*;
 import Model.Fields.Field;
-import Model.Fields.OwnableField;
 import Model.Fields.PropertyField;
 import Model.Fields.ShippingField;
-import gui_codebehind.GUI_Center;
+
 import gui_fields.*;
 import gui_main.GUI;
 
@@ -45,7 +44,13 @@ public class GUIView implements View {
     }
 
     public void updateOwner(Player player, int position) {
-        gui.getFields()[position].setTitle(fieldToGUI(board.getFields()[position]).getTitle() + "(" + player.getName() + ")");
+        //gui.getFields()[position].setTitle(fieldToGUI(board.getFields()[position]).getTitle() + "(" + player.getName() + ")");
+        if (gui.getFields()[position] instanceof GUI_Ownable) {
+            GUI_Ownable ownable = (GUI_Ownable) gui.getFields()[position];
+
+            ownable.setOwnerName(player.getName());
+            ownable.setBorder(player.color);
+        }
     }
 
     public void updatePlayers(Player[] players) {
@@ -94,6 +99,17 @@ public class GUIView implements View {
         guiPlayers[playerIndex].setBalance(balance);
     }
 
+    public void updateHouse(int fieldPosition, int houseCounter) {
+        GUI_Street street = (GUI_Street)gui.getFields()[fieldPosition];
+        if (houseCounter >= 5) {
+            street.setHouses(0);
+            street.setHotel(true);
+        } else {
+            street.setHotel(false);
+            street.setHouses(houseCounter);
+        }
+    }
+
     /**
      * Creates a timeout of n miliseconds. Calling this will make the program stop and wait for n miliseconds and then allow further execution.
      * This method has no lock so prevent calling it from multiple threads.
@@ -112,7 +128,7 @@ public class GUIView implements View {
         PlayerType playerType =  player.getPlayerType();
         GUI_Car.Type guiPlayerType = Enum.valueOf(GUI_Car.Type.class, playerType.toString().toUpperCase());
 
-        GUI_Player guiPlayer = new GUI_Player(player.getName(), 0, new GUI_Car(Color.BLACK, Color.WHITE, guiPlayerType, GUI_Car.Pattern.FILL));
+        GUI_Player guiPlayer = new GUI_Player(player.getName(), 0, new GUI_Car(player.color, Color.WHITE, guiPlayerType, GUI_Car.Pattern.FILL));
         return guiPlayer;
     }
     private GUI_Player[] createGuiPlayer(Player[] players) {
@@ -180,9 +196,5 @@ public class GUIView implements View {
             case Shipping: return new GUI_Shipping("default",field.name,priceTxt,fieldTxt,"Leje: 2", Color.WHITE,Color.BLACK);
         }
         throw new IllegalArgumentException();
-    }
-
-    static String padLeft(String s, int n) {
-        return String.format("%1$" + n + "s", s).replace(" ", ".");
     }
 }

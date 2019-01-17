@@ -2,6 +2,8 @@ package Model;
 
 import View.View;
 
+import java.awt.*;
+
 /**
  * Create a new dialog asking for player input, then converts that into an player array and returns it
  * */
@@ -20,6 +22,15 @@ public class RetrievePlayerDialog {
     }
 
     private Player[] getPlayers() {
+        Color[] playerColors = new Color[] {
+            Color.GREEN,
+            Color.RED,
+            Color.BLACK,
+            Color.BLUE,
+            Color.WHITE,
+            Color.MAGENTA
+        };
+
         int n;
 
         while ((n = Integer.parseInt(view.getUserSelect(stringContainer.getString("amount_players"), "3", "4", "5", "6"))) <= 0) {
@@ -39,7 +50,7 @@ public class RetrievePlayerDialog {
 
             String type = view.getUserSelect(stringContainer.getString("select_card_type"), "Car", "Racecar", "Tractor", "UFO");
 
-            Player player = new Player(name, Enum.valueOf(PlayerType.class, type));
+            Player player = new Player(name, Enum.valueOf(PlayerType.class, type), playerColors[i]);
             players[i] = player;
         }
 
