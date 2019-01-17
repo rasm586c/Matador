@@ -67,6 +67,9 @@ field_ship_1_title
 field_ship_rent
 Grundleje: %s 2 Rederier: %s 3 Rederier: %s 4 Rederier: %s
 
+field_brewery_rent
+Hvis en bar er ejet, skal der betales 100 * antallet af øjne rullet. Hvis begge er ejet er det 200 * antallet af øjne rullet.
+
 field_ship_2_title
 Zaza
 
@@ -92,7 +95,7 @@ field_indkomstskat_title
 Studiegæld
 
 field_indkomstskat
-Du skylder studiegæld min ven, den er sgu ikke så god.
+Du skylder studiegæld min ven, den er sgu ikke så god. Betal 10% af dine penge eller 4.000, dit valg.
 
 field_property_rent
 Grundleje: %s 1 Hus: %s 2 Huse: %s 3 Huse: %s 4 Huse: %s Hotel: %s Køb af hus: %s Køb af hotel: %s
