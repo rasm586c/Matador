@@ -17,6 +17,8 @@ public class DiceCup {
         dices = new Die[] { new Die(6), new Die(6) }; // There is always only 2 dices (final)
     }
 
+    public DiceCup(Die... dices) { this.dices = dices; }
+
     /**
      * This method is rolling the dices, while storing them in a list.
      * @return Is returning the list which is holding the dices value.
