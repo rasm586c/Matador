@@ -102,6 +102,18 @@ public class BankController extends Controller {
             }
         }
 
+        if (transaction.getTransactionType() == Transaction.TransactionType.PayLoan) {
+            if (account.getBalance() >= 2000) {
+                withdrawMoney(transaction.getPlayer(), 2000);
+                transaction.setApproved(true);
+                view.print("Du skyldte din 2.000 kroners kælderbar øl, betal ud");
+            } else {
+                transaction.setApproved(false);
+                // TODO: Fix game strings og game logic
+                view.print("Du er donezo");
+            }
+        }
+
         if (transaction.getTransactionType() == Transaction.TransactionType.ToPlayer) {
             if (account.getBalance() >= transaction.getAmount()) {
                 // Transfer amount from player to target

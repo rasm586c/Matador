@@ -186,6 +186,7 @@ public class GUIView implements View {
             case Empty: return new GUI_Empty();
             case Tax: return new GUI_Tax(field.name,priceTxt,fieldTxt,Color.lightGray,Color.BLACK);
             case Shipping: return new GUI_Shipping("default",field.name,priceTxt,fieldTxt,"Leje: 2", Color.WHITE,Color.BLACK);
+            case Loan: return new GUI_Tax(field.name,priceTxt,fieldTxt,Color.lightGray,Color.BLACK);
         }
         throw new IllegalArgumentException();
     }

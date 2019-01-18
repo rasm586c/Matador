@@ -174,3 +174,9 @@ Oticon \n Hallen
 
 field_brown_2_title
 Bygning \n 101
+
+field_loan_title
+Lån
+
+field_loan
+Din ven du skyldte penge fandt dig, så det betalings tid.
