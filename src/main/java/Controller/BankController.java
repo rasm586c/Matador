@@ -87,6 +87,16 @@ public class BankController extends Controller {
             }
         }
 
+        if (transaction.getTransactionType() == Transaction.TransactionType.OutOfJailForced) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                transaction.getPlayer().setJailedTurns(0);
+                transaction.setApproved(true);
+            } else {
+                transaction.setApproved(false);
+            }
+        }
+
         if (transaction.getTransactionType() == Transaction.TransactionType.ToPlayer) {
             if (account.getBalance() >= transaction.getAmount()) {
                 // Transfer amount from player to target

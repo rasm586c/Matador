@@ -39,33 +39,42 @@ public class TurnController extends Controller {
         view.print(languagePack.getString("die_roll", player.getName()));
         view.printDiceRoll(rolledValues[0], rolledValues[1]);
 
+        boolean getsAnotherTurn = false;
+
         if (player.getJailedTurns() > 0) {
             // TODO: Fix game strings!
-            String result = view.getUserSelect("Du er i fængsel!", "Betal 1000 kr", "Rul to ens", "Løsladelseskort");
+            String result = view.getUserSelect("Du er i fængsel!", "Betal 1000 kr", "Rul to ens");
             if (result.equals("Betal 1000 kr")) {
-
+                return new PlayerTurn(false, 0, new Transaction(player, null, 1000, Transaction.TransactionType.OutOfJail));
             }
 
             if (result.equals("Rul to ens")) {
+                int[] roll = diceCup.shake();
+                view.printDiceRoll(roll[0], roll[1]);
+                player.setJailedTurns(player.getJailedTurns() - 1);
 
-            }
-
-            if (result.equals("Løsladelseskort")) {
-
+                if (roll[0] == roll[1]) {
+                    // Yay du er fri!
+                    performMovement(player);
+                    player.setJailedTurns(0);
+                    return new PlayerTurn(false, diceCup.getDiceSum(), true);
+                } else if (player.getJailedTurns() == 0) {
+                    // TODO: Fix gamestrings
+                    view.print("Du skal betale 1000 kr!");
+                    return new PlayerTurn(false, 0, new Transaction(player, null, 1000, Transaction.TransactionType.OutOfJailForced));
+                }
             }
         }
 
         if (player.getJailedTurns() == 0) {
-            int oldPosition = player.getPosition();
-            player.setPosition(player.getPosition() + diceCup.getDiceSum());
-            view.movePlayer(oldPosition, player.getPosition(), player);
-
-            if (Player.clampPosition(oldPosition) > Player.clampPosition(player.getPosition())) {
-                crossedStart = true;
+            if (rolledValues[0] == rolledValues[1]) {
+                getsAnotherTurn = true;
             }
+
+            crossedStart = performMovement(player);
         }
 
-        return new PlayerTurn(crossedStart, diceCup.getDiceSum());
+        return new PlayerTurn(crossedStart, diceCup.getDiceSum(), getsAnotherTurn);
     }
 
     public ControllerChoice makeTurnChoice(ControllerChoice[] choices) {
@@ -98,6 +107,17 @@ public class TurnController extends Controller {
         return "Unknown Case";
     }
 
+    private boolean performMovement(Player player) {
+        int oldPosition = player.getPositionClamped();
+        player.setPosition(player.getPosition() + diceCup.getDiceSum());
+        view.movePlayer(oldPosition, player.getPosition(), player);
+
+        if (Player.clampPosition(oldPosition) > Player.clampPosition(player.getPosition())) {
+            return true;
+        }
+        return false;
+    }
+
     public void invokeFieldEvent(GameState state) {
         Field landedOn = state.getBoard().getFields()[state.getCurrentPlayer().getPositionClamped()];
         landedOn.onFieldLand(state);
@@ -106,9 +126,8 @@ public class TurnController extends Controller {
     public void ensureJailPosition(GameState state) {
         Player player = state.getCurrentPlayer();
         if (player.getJailedTurns() > 0) {
-            int oldPosition = player.getPosition();
+            int oldPosition = player.getPositionClamped();
             player.setPosition(10);
-
             view.movePlayer(oldPosition, 10, player);
         }
     }

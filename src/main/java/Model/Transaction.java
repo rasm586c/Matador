@@ -47,6 +47,7 @@ public class Transaction {
         PurchaseProperty,
         PurchaseHouse,
         ToPlayer,
-        OutOfJail
+        OutOfJail,
+        OutOfJailForced
     }
 }
