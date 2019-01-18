@@ -16,12 +16,14 @@ public class Transaction {
         this.field = field;
         this.transactionType = transactionType;
         this.amount = amount;
+        this.target = null;
     }
 
     public Transaction(Player player, Field field, TransactionType transactionType) {
         this.player = player;
         this.field = field;
         this.transactionType = transactionType;
+        this.target = null;
     }
 
     public void setAmount(int amount) { this.amount = amount; }

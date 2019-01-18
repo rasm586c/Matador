@@ -40,6 +40,12 @@ public class Player {
     public int getJailedTurns() { return jailedTurns; }
     public void setJailedTurns(int jailedTurns) { this.jailedTurns = jailedTurns; }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Player) { return ((Player)obj).getName().equals(getName()); }
+        return false;
+    }
+
     /**
      * This function recursively calls itself until it ensures the input value is between 0 and BOARD_SIZE (I.e. clamps a position to the board)
      * @param position

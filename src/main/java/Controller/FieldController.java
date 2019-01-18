@@ -6,6 +6,8 @@ import Model.Fields.*;
 import View.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class FieldController extends Controller {
     GameBoard board;
@@ -36,7 +38,6 @@ public class FieldController extends Controller {
             int oldPosition = state.getCurrentPlayer().getPosition();
             state.getCurrentPlayer().setPosition(state.getCurrentPlayer().getPosition() + card.getMoveAmount());
             view.movePlayer(oldPosition, state.getCurrentPlayer().getPosition(), state.getCurrentPlayer());
-
         }
 
         return playerTransaction;
@@ -134,11 +135,71 @@ public class FieldController extends Controller {
         return transaction;
     }
 
+    public Transaction tradeField(GameState state) {
+        Transaction transaction = null;
+        GameBoard board = state.getBoard();
+
+        // 1. Select trade property
+        Field[] ownedFields = Arrays.stream(board.getFields())
+                .filter(field -> field.getOwner() == state.getCurrentPlayer())
+                .toArray(Field[]::new);
+
+        String[] ownedFieldSelection = Arrays.stream(ownedFields)
+                .map(field -> field.name)
+                .toArray(String[]::new);
+
+        String tradeFieldName = view.getUserSelect("Vælg felt du vil forhandle med.", ownedFieldSelection);
+
+        Field tradeField = Arrays.stream(ownedFields)
+                .filter(field -> field.name.equals(tradeFieldName))
+                .findFirst()
+                .get();
+
+        // 2. Select person to trade with
+        Player[] otherPlayers = Arrays.stream(state.getPlayers())
+                .filter(player -> player != state.getCurrentPlayer())
+                .toArray(Player[]::new);
+
+        String[] otherPlayerSelections = Arrays.stream(otherPlayers)
+                .map(player -> player.getName())
+                .toArray(String[]::new);
+
+        String tradePlayerName = view.getUserSelect("Vælg player at handle med", otherPlayerSelections);
+
+        Player tradePlayer = Arrays.stream(state.getPlayers())
+                .filter(player -> player.getName().equals(tradePlayerName))
+                .findFirst()
+                .get();
+
+        // 3. Select amount you want for the property.
+        int fieldPrice = 0;
+        while (true) {
+            try {
+                fieldPrice = Integer.parseInt(view.getUserInput("Skriv hvor meget du vil have for feltet."));
+                break;
+            } catch (NumberFormatException nfe) {
+                view.print("Ugyldigt input.");
+            }
+        }
+
+        // 4. Person to trade with agrees
+        String result = view.getUserSelect(String.format("Ønsker %s at købe feltet %s for %d ?", tradePlayerName, tradeField.name, fieldPrice), "yes", "no");
+
+        // 5. Create transaction
+        if (result.equals("yes")) {
+            transaction = new Transaction(tradePlayer, tradeField, fieldPrice, Transaction.TransactionType.PurchaseProperty);
+            transaction.setTarget(state.getCurrentPlayer());
+        }
+
+        return transaction;
+    }
+
     public ControllerChoice[] getControllerChoices(GameState state) {
         ArrayList<ControllerChoice> choices = new ArrayList<ControllerChoice>();
 
         if (canPurchaseField(state)) { choices.add(ControllerChoice.BuyField); }
         if (canPurchaseHouse(state)) { choices.add(ControllerChoice.BuyHouse); }
+        if (canTradeProperty(state)) { choices.add(ControllerChoice.TradeProperty); }
 
         ControllerChoice[] choicesArray = new ControllerChoice[choices.size()];
         for (int i = 0; i < choices.size(); i++) {
@@ -169,6 +230,18 @@ public class FieldController extends Controller {
                     hasAllFields(currentField.fieldType, state.getBoard().getFields(), state.getCurrentPlayer()) &&
                     currentField.getHouseCounter() <= lowestHouseValueOfField) {
 
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean canTradeProperty(GameState state) {
+        Field[] fields = state.getBoard().getFields();
+        for (int i = 0; i < fields.length; i++) {
+            Player currentPlayer = state.getCurrentPlayer();
+
+            // TODO: Add "is active" ? (Pantsætning).. u cant trade a property sold to the bank
+            if (fields[i].getOwner() == currentPlayer) {
                 return true;
             }
         }

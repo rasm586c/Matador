@@ -79,6 +79,11 @@ public abstract class Field {
     public int getHouseCounter() { return houseCounter; }
     public void setHouseCounter(int houseCounter) { this.houseCounter = houseCounter; }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public enum GUI_Type {
         Chance,
         Brewery,

@@ -1,7 +1,10 @@
 package Controller;
 
 import Model.*;
+import Model.Fields.Field;
 import View.View;
+
+import java.util.Arrays;
 
 public class BankController extends Controller {
     Account[] accounts;
@@ -44,7 +47,7 @@ public class BankController extends Controller {
 
     private Account findAccountByPlayer(Player player) {
         for (int i = 0; i < accounts.length; i++) {
-            if (accounts[i].owner == player) { return accounts[i]; }
+            if (accounts[i].owner.equals(player)) { return accounts[i]; }
         }
         return null;
     }
@@ -66,10 +69,14 @@ public class BankController extends Controller {
             }
 
             if (transaction.isApproved()) {
-                transaction.getField().setOwner(state.getCurrentPlayer());
-                view.updateOwner(state.getCurrentPlayer(), state.getCurrentPlayer().getPositionClamped());
+                transaction.getField().setOwner(transaction.getPlayer());
+                view.updateOwner(transaction.getPlayer(), getFieldPosition(state.getBoard(), transaction.getField()));
 
-                withdrawMoney(state.getCurrentPlayer(), transaction.getAmount());
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                if (transaction.getTarget() != null) {
+                    addMoney(transaction.getTarget(), transaction.getAmount());
+                }
+
                 updateBalances();
             }
         }
@@ -152,5 +159,14 @@ public class BankController extends Controller {
 
             }
         }
+    }
+
+    private int getFieldPosition(GameBoard board, Field field) {
+        for (int i = 0; i < board.getFields().length; i++) {
+            if (field.name.equals(board.getFields()[i].name)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

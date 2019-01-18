@@ -41,6 +41,7 @@ public class Game {
         while (true) {
             GameState currentState = new GameState();
             currentState.setCurrentPlayer(turnController.getCurrentPlayer());
+            currentState.setPlayers(players);
             currentState.setTurn(turnController.takeTurn());
             currentState.setBoard(board);
 
@@ -96,13 +97,23 @@ public class Game {
                     }
                     break;
 
+                    case TradeProperty:
+                    Transaction tradeTransaction = fieldController.tradeField(currentState);
+                    if (tradeTransaction != null) {
+                        bankController.processTransaction(tradeTransaction, currentState);
+
+                        if (!tradeTransaction.isApproved()) {
+                            view.print("Handlen kunne ikke gennemføres! " + tradeTransaction.getPlayer() + " ikke nok penge.");
+                        }
+                    }
+                    break;
+
                     case BuyHouse:
                     Transaction houseTransaction = fieldController.purchaseHouse(currentState);
                     bankController.processTransaction(houseTransaction, currentState);
                     if (!houseTransaction.isApproved()) {
                         view.print("Du har ikke råd til dette hus!");
                     }
-
                     break;
                 }
 

@@ -92,6 +92,7 @@ public class TurnController extends Controller {
         if (result.equals(choiceToString(ControllerChoice.BuyField))) choice = ControllerChoice.BuyField;
         if (result.equals(choiceToString(ControllerChoice.BuyHouse))) choice = ControllerChoice.BuyHouse;
         if (result.equals(choiceToString(ControllerChoice.SellHouse))) choice = ControllerChoice.SellHouse;
+        if (result.equals(choiceToString(ControllerChoice.TradeProperty))) choice = ControllerChoice.TradeProperty;
         if (result.equals(choiceToString(ControllerChoice.StopTurn))) choice = ControllerChoice.StopTurn;
 
         return choice;
@@ -99,10 +100,12 @@ public class TurnController extends Controller {
 
     private String choiceToString(ControllerChoice choice) {
         switch (choice) {
+            // TODO: GameStrings
             case StopTurn: return "Stop tur";
             case BuyField: return "Køb felt";
             case SellHouse: return "Sælg hus";
             case BuyHouse: return "Køb hus";
+            case TradeProperty: return "Byt felt";
         }
         return "Unknown Case";
     }
