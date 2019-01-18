@@ -8,8 +8,10 @@ public class ParkingField extends Field {
     }
 
 
+
     @Override
     public void onFieldLand(GameState state) {
         super.onFieldLand(state);
+
     }
 }

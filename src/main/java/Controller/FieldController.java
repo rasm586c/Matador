@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.ChanceCard.ChanceCard;
 import Model.Fields.*;
 import View.*;
 
@@ -16,6 +17,18 @@ public class FieldController extends Controller {
         this.view = view;
     }
 
+    public void onFieldLand(GameState state) {
+        Field field = state.getBoard().getFields()[state.getCurrentPlayer().getPositionClamped()];
+        field.onFieldLand(state);
+
+        if (field instanceof ChanceField) {
+            ChanceField chanceField = (ChanceField)field;
+            ChanceCard card = chanceField.drawCard();
+
+
+        }
+    }
+
     public Transaction payRent(GameState state) {
         Transaction transaction = null;
 
@@ -27,6 +40,14 @@ public class FieldController extends Controller {
                 transaction = new Transaction(state.getCurrentPlayer(), landedOn, ((OwnableField) landedOn).calculateRent(state), Transaction.TransactionType.ToPlayer);
                 transaction.setTarget(landedOn.getOwner());
             }
+        }
+
+        if (landedOn instanceof TaxField) {
+            transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayTax);
+        }
+
+        if (landedOn instanceof LoanField) {
+            transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayLoan);
         }
 
         return transaction;

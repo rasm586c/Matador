@@ -5,11 +5,11 @@ import Model.PlayerTurn;
 
 public class BreweryField extends Field implements OwnableField {
 
-    public BreweryField(String name, int value, int rent, String fieldText) {
-        super(name, value, rent, fieldText, GUI_Type.Brewery);
+    public BreweryField(String name, int value, int mortgage, String fieldText) {
+        super(name, value, mortgage, fieldText, GUI_Type.Brewery);
     }
 
-    // TODO: Fix gamestring tekst
+    // TODO: Fix gamestring tekst: bar_sale
     public String getPurchaseText() {
         return "Bryggeri til salg! Vil du købe? Den koster " + value;
     }

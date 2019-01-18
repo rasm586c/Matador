@@ -25,6 +25,7 @@ public class GUIView implements View {
     {
         this.languagePack = languagePack;
         updateBoard(new GameBoard(this.languagePack));
+
     }
 
     public String getUserInput(String message) {
@@ -62,19 +63,30 @@ public class GUIView implements View {
     }
 
     public void movePlayer(int oldPosition, int newPosition, Player player) {
-        if (animateCar)
+        oldPosition = Player.clampPosition(oldPosition);
+        newPosition = Player.clampPosition(newPosition);
+
+        // CalculateDelta
+        int delta = 0;
+        int currentPosition = oldPosition;
+        while (true) {
+            currentPosition++;
+            delta++;
+            if (Player.clampPosition(currentPosition) == newPosition) break;
+        }
+
+        int movedDelta = 0;
+
+        if (animateCar && delta <= 13)
         {
-            if (oldPosition < newPosition) {
-                for (int i = oldPosition; i < newPosition; i++) {
-                    moveCar(i, i + 1, player);
-                    sleep(100);
-                }
-            } else {
-                for (int i = newPosition; i > oldPosition; i--) {
-                    moveCar(i, i - 1, player);
-                    sleep(100);
-                }
+            while (movedDelta < delta) {
+                moveCar(oldPosition + movedDelta, oldPosition + movedDelta + 1, player);
+                sleep(100);
+
+                movedDelta++;
             }
+
+
         } else {
             moveCar(oldPosition, newPosition, player);
         }
@@ -87,7 +99,7 @@ public class GUIView implements View {
     }
     public void updateBoard(GameBoard board) {
         if (gui != null) gui.close();
-        gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#FFFFFF"));
+        gui = new GUI(fieldsToGUI(board.getFields()), Color.decode("#C0C0C0"));
         this.board = board;
     }
 
@@ -170,22 +182,23 @@ public class GUIView implements View {
             );
 
         switch (field.fieldType) {
-            case Street_Cyan: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 1", Color.CYAN, Color.BLACK);
-            case Street_Pink: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 1", Color.PINK, Color.BLACK);
-            case Street_Green: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 2", Color.GREEN, Color.BLACK);
-            case Street_Blue: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 2", Color.BLUE, Color.BLACK);
-            case Street_Red: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 3", Color.RED, Color.BLACK);
-            case Street_White: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 3", new Color(146, 140, 48), Color.BLACK);
-            case Street_Yellow: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 4", Color.YELLOW, Color.BLACK);
-            case Street_Brown: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 5", new Color(144, 48, 15), Color.BLACK);
+            case Street_Cyan: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 1", new Color(30, 151, 156), Color.BLACK);
+            case Street_Pink: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 1", new Color(159, 105, 154), Color.BLACK);
+            case Street_Green: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 2", new Color(76, 146, 77), Color.BLACK);
+            case Street_Blue: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 2", new Color(77, 102, 162), Color.BLACK);
+            case Street_Red: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 3", new Color(147, 63, 25), Color.BLACK);
+            case Street_White: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 3", new Color(166, 171, 131), Color.BLACK);
+            case Street_Yellow: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 4", new Color(187, 181, 13), Color.BLACK);
+            case Street_Brown: return new GUI_Street(field.name, priceTxt, fieldTxt, "Leje: 5", new Color(122, 53, 153), Color.BLACK);
             case Brewery: return new GUI_Brewery("default", field.name, "", fieldTxt, "", Color.BLACK, Color.WHITE);
             case Jail: return new GUI_Jail("default", field.name, "", fieldTxt, new Color(68, 68, 68), Color.BLACK);
-            case Chance: return new GUI_Chance(field.name, "", fieldTxt, new Color(204, 182, 0), Color.BLACK);
+            case Chance: return new GUI_Chance(field.name, "", fieldTxt, new Color(51, 204, 0), Color.BLACK);
             case Refuge: return new GUI_Refuge("default", field.name, "", fieldTxt, Color.WHITE, Color.BLACK);
-            case Start: return new GUI_Tax(field.name, "+2 til dig", fieldTxt, Color.GRAY, Color.BLACK);
+            case Start: return new GUI_Tax(field.name, "4000 kr.", fieldTxt, new Color(204, 105, 19), Color.BLACK);
             case Empty: return new GUI_Empty();
-            case Tax: return new GUI_Tax(field.name,priceTxt,fieldTxt,Color.lightGray,Color.BLACK);
+            case Tax: return new GUI_Tax(field.name,priceTxt,fieldTxt,new Color(75, 139, 118),Color.BLACK);
             case Shipping: return new GUI_Shipping("default",field.name,priceTxt,fieldTxt,"Leje: 2", Color.WHITE,Color.BLACK);
+            case Loan: return new GUI_Tax(field.name,priceTxt,fieldTxt,new Color(99, 124, 168),Color.BLACK);
         }
         throw new IllegalArgumentException();
     }

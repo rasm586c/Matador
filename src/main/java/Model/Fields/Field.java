@@ -62,7 +62,6 @@ public abstract class Field {
         this(name, value, rent, fieldText, GUI_Type.Street);
     }
 
-
     public Field(String name, int value, int rent, String fieldText, GUI_Type fieldType) {
         this.name = name;
         this.value = value;
@@ -97,7 +96,8 @@ public abstract class Field {
         Street_Brown,
         Start,
         Empty,
-        Tax
+        Tax,
+        Loan
 
     }
 

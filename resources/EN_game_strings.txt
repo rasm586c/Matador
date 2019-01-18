@@ -165,3 +165,12 @@ You get %d points!
 
 winner
 %s is the winner!!
+
+house_not_approved
+You can't afford this house!
+
+what_to_do
+What do you wanna do this turn?
+
+bar_sale
+This bar is for sale. Do you wanna buy it?
