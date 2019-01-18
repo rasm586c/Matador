@@ -1,3 +1,5 @@
+package Model;
+
 import Model.Die;
 import org.junit.Assert;
 import org.junit.Before;

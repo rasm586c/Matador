@@ -13,7 +13,7 @@ public class Player {
     private int position;
     private int jailedTurns;
 
-    Player(String name, PlayerType playerType, Color color) {
+    public Player(String name, PlayerType playerType, Color color) {
         this.name = name;
         this.playerType = playerType;
         this.color = color;

@@ -5,4 +5,9 @@ public class MoveChanceCard extends ChanceCard {
         setMoneyAmount(0);
         setMoveAmount(amount);
     }
+
+    @java.lang.Override
+    public java.lang.String getDescription() {
+        return "Du trak chance kortet, som gør at du skal flytte dig " + getMoveAmount() + " felter frem!";
+    }
 }

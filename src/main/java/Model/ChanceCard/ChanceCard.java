@@ -8,6 +8,8 @@ public abstract class ChanceCard {
 
     public void calculateCardFromState(GameState state) {}
 
+    public String getDescription() { return "Du er landet på et chance felt!"; }
+
     public int getMoveAmount() { return moveAmount; }
     public int getMoneyAmount() { return moneyAmount; }
 
