@@ -42,6 +42,14 @@ public class FieldController extends Controller {
             }
         }
 
+        if (landedOn instanceof TaxField) {
+            transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayTax);
+        }
+
+        if (landedOn instanceof LoanField) {
+            transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayLoan);
+        }
+
         return transaction;
     }
 

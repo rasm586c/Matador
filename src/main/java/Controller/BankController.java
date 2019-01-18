@@ -87,13 +87,30 @@ public class BankController extends Controller {
             }
         }
 
-        if (transaction.getTransactionType() == Transaction.TransactionType.OutOfJailForced) {
-            if (account.getBalance() >= transaction.getAmount()) {
-                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
-                transaction.getPlayer().setJailedTurns(0);
+        if (transaction.getTransactionType() == Transaction.TransactionType.PayTax) {
+            if (account.getBalance() >= 40000) {
+                withdrawMoney(transaction.getPlayer(), 4000);
                 transaction.setApproved(true);
+                view.print("Du har rigtig mange penge, så du betaler 4.000");
+            } else {
+                transaction.setApproved(true);
+                int withdrawAmount = getMoney(transaction.getPlayer())*10/100;
+                withdrawMoney(transaction.getPlayer(), withdrawAmount);
+
+                // TODO: Fix game strings
+                view.print("Du har ikke helt så mange penge, du betaler bare 10% af dine penge.");
+            }
+        }
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.PayLoan) {
+            if (account.getBalance() >= 2000) {
+                withdrawMoney(transaction.getPlayer(), 2000);
+                transaction.setApproved(true);
+                view.print("Du skyldte din 2.000 kroners kælderbar øl, betal ud");
             } else {
                 transaction.setApproved(false);
+                // TODO: Fix game strings og game logic
+                view.print("Du er donezo");
             }
         }
 
@@ -126,6 +143,16 @@ public class BankController extends Controller {
             }
             else {
                 transaction.setApproved(false);
+            }
+        }
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.PayTax) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                transaction.setApproved(true);
+
+                view.print("Du skal betale din studiegæld!");
+
             }
         }
     }

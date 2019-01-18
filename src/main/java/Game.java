@@ -94,6 +94,8 @@ public class Game {
 
                     break;
                 }
+
+                System.out.println(currentState.getCurrentPlayer().getName() + ", " + bankController.getMoney(currentState.getCurrentPlayer()));
             }
 
             if (!currentState.getTurn().getsAnotherTurn) {

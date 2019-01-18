@@ -18,6 +18,12 @@ public class Transaction {
         this.amount = amount;
     }
 
+    public Transaction(Player player, Field field, TransactionType transactionType) {
+        this.player = player;
+        this.field = field;
+        this.transactionType = transactionType;
+    }
+
     public void setAmount(int amount) { this.amount = amount; }
     public int getAmount() { return amount; }
 
@@ -48,6 +54,7 @@ public class Transaction {
         PurchaseHouse,
         ToPlayer,
         OutOfJail,
-        OutOfJailForced
+        PayTax,
+        PayLoan
     }
 }
