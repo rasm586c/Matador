@@ -118,11 +118,6 @@ public class TurnController extends Controller {
         return false;
     }
 
-    public void invokeFieldEvent(GameState state) {
-        Field landedOn = state.getBoard().getFields()[state.getCurrentPlayer().getPositionClamped()];
-        landedOn.onFieldLand(state);
-    }
-
     public void ensureJailPosition(GameState state) {
         Player player = state.getCurrentPlayer();
         if (player.getJailedTurns() > 0) {

@@ -44,7 +44,7 @@ public class Game {
             currentState.setTurn(turnController.takeTurn());
             currentState.setBoard(board);
 
-            turnController.invokeFieldEvent(currentState);
+            fieldController.onFieldLand(currentState);
             turnController.ensureJailPosition(currentState);
 
             Transaction jailTransaction = currentState.getTurn().jailTransaction;
