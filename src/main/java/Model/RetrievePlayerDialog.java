@@ -25,9 +25,9 @@ public class RetrievePlayerDialog {
         Color[] playerColors = new Color[] {
             Color.GREEN,
             Color.RED,
-            Color.BLACK,
+            Color.YELLOW,
             Color.BLUE,
-            Color.WHITE,
+            Color.CYAN,
             Color.MAGENTA
         };
 
