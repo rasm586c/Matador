@@ -51,6 +51,9 @@ public abstract class Field {
     * */
     public final GUI_Type fieldType;
 
+    // Er boligen aktiv? Falsk hvis pantsat.
+    private boolean active;
+
     /**
      * This method is for creating fields, where the player can't get another turn.
      *
@@ -70,6 +73,8 @@ public abstract class Field {
 
         if (fieldText == null) this.fieldText = "";
         else this.fieldText = fieldText;
+
+        this.active = true;
     }
 
     public void onFieldLand(GameState state) {
@@ -78,6 +83,9 @@ public abstract class Field {
 
     public int getHouseCounter() { return houseCounter; }
     public void setHouseCounter(int houseCounter) { this.houseCounter = houseCounter; }
+
+    public void setActive(boolean active) { this.active = active; }
+    public boolean getActive() { return active; }
 
     @Override
     public String toString() {

@@ -1,10 +1,7 @@
 package Controller;
 
 import Model.*;
-import Model.Fields.Field;
 import View.View;
-
-
 
 public class TurnController extends Controller {
     int playerTurn = 0;
@@ -89,11 +86,12 @@ public class TurnController extends Controller {
         // TODO: Fix gamestrings
         String result = view.getUserSelect("Hvad vil du i denne tur?", playerChoices);
 
-        if (result.equals(choiceToString(ControllerChoice.BuyField))) choice = ControllerChoice.BuyField;
-        if (result.equals(choiceToString(ControllerChoice.BuyHouse))) choice = ControllerChoice.BuyHouse;
-        if (result.equals(choiceToString(ControllerChoice.SellHouse))) choice = ControllerChoice.SellHouse;
-        if (result.equals(choiceToString(ControllerChoice.TradeProperty))) choice = ControllerChoice.TradeProperty;
-        if (result.equals(choiceToString(ControllerChoice.StopTurn))) choice = ControllerChoice.StopTurn;
+        for (int i = 0; i < choices.length; i++) {
+            if (result.equals(choiceToString(choices[i]))) {
+                choice = choices[i];
+                break;
+            }
+        }
 
         return choice;
     }
@@ -103,7 +101,8 @@ public class TurnController extends Controller {
             // TODO: GameStrings
             case StopTurn: return "Stop tur";
             case BuyField: return "Køb felt";
-            case SellHouse: return "Sælg hus";
+            case SellProperty: return "Pantsæt felt";
+            case BuyBackProperty: return "Køb felt tilbage";
             case BuyHouse: return "Køb hus";
             case TradeProperty: return "Byt felt";
         }

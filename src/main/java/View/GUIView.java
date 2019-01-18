@@ -43,13 +43,17 @@ public class GUIView implements View {
         gui.showMessage(message);
     }
 
-    public void updateOwner(Player player, int position) {
+    public void updateOwner(Player player, int position, boolean active) {
         //gui.getFields()[position].setTitle(fieldToGUI(board.getFields()[position]).getTitle() + "(" + player.getName() + ")");
         if (gui.getFields()[position] instanceof GUI_Ownable) {
             GUI_Ownable ownable = (GUI_Ownable) gui.getFields()[position];
 
             ownable.setOwnerName(player.getName());
-            ownable.setBorder(player.color);
+
+            if (active)
+                ownable.setBorder(player.color);
+            else
+                ownable.setBorder(player.color, Color.BLACK);
         }
     }
     public void updatePlayers(Player[] players) {

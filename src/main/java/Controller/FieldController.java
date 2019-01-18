@@ -50,7 +50,7 @@ public class FieldController extends Controller {
         Field landedOn = board.getFields()[state.getCurrentPlayer().getPositionClamped()];
 
         if (landedOn instanceof OwnableField) {
-            if (landedOn.getOwner() != null && landedOn.getOwner() != state.getCurrentPlayer()) {
+            if (landedOn.getOwner() != null && landedOn.getOwner() != state.getCurrentPlayer() && landedOn.getActive()) {
                 transaction = new Transaction(state.getCurrentPlayer(), landedOn, ((OwnableField) landedOn).calculateRent(state), Transaction.TransactionType.ToPlayer);
                 transaction.setTarget(landedOn.getOwner());
             }
@@ -193,20 +193,98 @@ public class FieldController extends Controller {
 
         return transaction;
     }
+    public Transaction sellField(GameState state) {
+        Transaction transaction = null;
+
+        GameBoard board = state.getBoard();
+
+        // 1. Select trade property
+        Field[] ownedFields = Arrays.stream(board.getFields())
+                .filter(field -> field.getOwner() == state.getCurrentPlayer())
+                .toArray(Field[]::new);
+
+        String[] ownedFieldSelection = Arrays.stream(ownedFields)
+                .map(field -> field.name)
+                .toArray(String[]::new);
+
+        String tradeFieldName = view.getUserSelect("Vælg felt du vil forhandle med.", ownedFieldSelection);
+
+        Field tradeField = Arrays.stream(ownedFields)
+                .filter(field -> field.name.equals(tradeFieldName))
+                .findFirst()
+                .get();
+
+        // 2. Calculate field price
+        int fieldPrice = tradeField.value / 2;
+
+        // 3. Person to trade with agrees
+        String result = view.getUserSelect(String.format("Ønsker du at pantsætte %s for %d", tradeField.name, fieldPrice), "yes", "no");
+
+        // 4. Create transaction
+        if (result.equals("yes")) {
+            transaction = new Transaction(state.getCurrentPlayer(), tradeField, fieldPrice, Transaction.TransactionType.SellProperty);
+            transaction.setTarget(state.getCurrentPlayer());
+        }
+
+        return transaction;
+    }
+
+    public Transaction buybackProperty(GameState state) {
+        Transaction transaction = null;
+
+        // 1. Find fields you can buy back
+        Field[] buybackFields = Arrays.stream(state.getBoard().getFields())
+                .filter(field -> field.getOwner() != null
+                        && field.getOwner().equals(state.getCurrentPlayer())
+                        && !field.getActive())
+                .toArray(Field[]::new);
+
+
+        // 2. Let user select buyback field
+        String[] buybackFieldStrings = Arrays.stream(buybackFields)
+                .map(field -> field.name)
+                .toArray(String[]::new);
+
+        String buybackFieldResult = view.getUserSelect("Vælg felt som du vil pantsætte?", buybackFieldStrings);
+
+        Field buybackField = Arrays.stream(buybackFields)
+                                .filter(field -> field.name.equals(buybackFieldResult))
+                                .findFirst()
+                                .get();
+
+        // 3. Calculate price of field
+        int fieldPrice = buybackField.value / 2 + (buybackField.value / 100) * 10;
+
+        // 4. Ask user for agreement
+        String result = view.getUserSelect("", "yes", "no");
+
+        // 5. Create transaction
+        if (result.equals("yes")) {
+            transaction = new Transaction(state.getCurrentPlayer(), buybackField, fieldPrice, Transaction.TransactionType.PurchaseProperty);
+        }
+
+        return transaction;
+    }
 
     public ControllerChoice[] getControllerChoices(GameState state) {
         ArrayList<ControllerChoice> choices = new ArrayList<ControllerChoice>();
 
         if (canPurchaseField(state)) { choices.add(ControllerChoice.BuyField); }
         if (canPurchaseHouse(state)) { choices.add(ControllerChoice.BuyHouse); }
-        if (canTradeProperty(state)) { choices.add(ControllerChoice.TradeProperty); }
+        if (canTradeProperty(state)) {
+            choices.add(ControllerChoice.TradeProperty);
+            choices.add(ControllerChoice.SellProperty);
+        }
+        if (canBuybackProperty(state)) {
+            choices.add(ControllerChoice.BuyBackProperty);
+        }
 
         ControllerChoice[] choicesArray = new ControllerChoice[choices.size()];
         for (int i = 0; i < choices.size(); i++) {
             choicesArray[i] = choices.get(i);
         }
 
-          return choicesArray;
+        return choicesArray;
     }
 
     private boolean canPurchaseField(GameState state) {
@@ -236,16 +314,12 @@ public class FieldController extends Controller {
         return false;
     }
     private boolean canTradeProperty(GameState state) {
-        Field[] fields = state.getBoard().getFields();
-        for (int i = 0; i < fields.length; i++) {
-            Player currentPlayer = state.getCurrentPlayer();
-
-            // TODO: Add "is active" ? (Pantsætning).. u cant trade a property sold to the bank
-            if (fields[i].getOwner() == currentPlayer) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(state.getBoard().getFields())
+            .anyMatch(field -> field.getOwner() != null && field.getOwner().equals(state.getCurrentPlayer()) && field.getActive());
+    }
+    private boolean canBuybackProperty(GameState state) {
+        return Arrays.stream(state.getBoard().getFields())
+                .anyMatch(field -> field.getOwner() != null && field.getOwner().equals(state.getCurrentPlayer()) && !field.getActive());
     }
 
     private boolean hasAllFields(Field.GUI_Type fieldType, Field[] fields, Player player) {

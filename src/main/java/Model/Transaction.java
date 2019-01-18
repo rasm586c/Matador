@@ -58,6 +58,7 @@ public class Transaction {
         OutOfJail,
         OutOfJailForced,
         PayTax,
-        PayToBank
+        PayToBank,
+        SellProperty
     }
 }

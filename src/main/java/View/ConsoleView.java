@@ -24,7 +24,7 @@ public class ConsoleView implements View {
 
     public void setPlayerBalance(Player player, int balance) {}
 
-    public void updateOwner(Player player, int Position) {
+    public void updateOwner(Player player, int position, boolean active) {
 
 
     }

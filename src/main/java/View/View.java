@@ -11,7 +11,7 @@ public interface View {
     void updatePlayers(Player[] players);
     void movePlayer(int oldPosition, int newPosition, Player player);
 
-    void updateOwner(Player player, int Position);
+    void updateOwner(Player player, int position, boolean active);
 
     void setPlayerBalance(Player player, int balance);
 

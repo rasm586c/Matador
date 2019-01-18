@@ -97,6 +97,20 @@ public class Game {
                     }
                     break;
 
+                    case SellProperty:
+                    Transaction sellPropertyTransaction = fieldController.sellField(currentState);
+                    if (sellPropertyTransaction != null) {
+                        bankController.processTransaction(sellPropertyTransaction, currentState);
+                    }
+                    break;
+
+                    case BuyBackProperty:
+                    Transaction buybackTransaction = fieldController.buybackProperty(currentState);
+                    if (buybackTransaction != null) {
+                        bankController.processTransaction(buybackTransaction, currentState);
+                    }
+                    break;
+
                     case TradeProperty:
                     Transaction tradeTransaction = fieldController.tradeField(currentState);
                     if (tradeTransaction != null) {

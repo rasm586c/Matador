@@ -70,7 +70,8 @@ public class BankController extends Controller {
 
             if (transaction.isApproved()) {
                 transaction.getField().setOwner(transaction.getPlayer());
-                view.updateOwner(transaction.getPlayer(), getFieldPosition(state.getBoard(), transaction.getField()));
+                transaction.getField().setActive(true);
+                view.updateOwner(transaction.getPlayer(), getFieldPosition(state.getBoard(), transaction.getField()), true);
 
                 withdrawMoney(transaction.getPlayer(), transaction.getAmount());
                 if (transaction.getTarget() != null) {
@@ -80,6 +81,16 @@ public class BankController extends Controller {
                 updateBalances();
             }
         }
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.SellProperty) {
+            transaction.setApproved(true);
+
+            transaction.getField().setActive(false);
+            view.updateOwner(transaction.getPlayer(), getFieldPosition(state.getBoard(), transaction.getField()), false);
+            addMoney(transaction.getPlayer(), transaction.getAmount());
+        }
+
+
 
         if (transaction.getTransactionType() == Transaction.TransactionType.OutOfJail) {
             if (account.getBalance() >= transaction.getAmount()) {
