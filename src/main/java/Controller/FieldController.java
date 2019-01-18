@@ -29,6 +29,10 @@ public class FieldController extends Controller {
             }
         }
 
+        if (landedOn instanceof TaxField) {
+            transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayTax);
+        }
+
         return transaction;
     }
 
