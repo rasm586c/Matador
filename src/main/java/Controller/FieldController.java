@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Model.ChanceCard.ChanceCard;
 import Model.Fields.*;
 import View.*;
 
@@ -14,6 +15,18 @@ public class FieldController extends Controller {
         super(view);
         this.board = board;
         this.view = view;
+    }
+
+    public void onFieldLand(GameState state) {
+        Field field = state.getBoard().getFields()[state.getCurrentPlayer().getPositionClamped()];
+        field.onFieldLand(state);
+
+        if (field instanceof ChanceField) {
+            ChanceField chanceField = (ChanceField)field;
+            ChanceCard card = chanceField.drawCard();
+
+
+        }
     }
 
     public Transaction payRent(GameState state) {

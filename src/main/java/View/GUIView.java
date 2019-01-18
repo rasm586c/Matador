@@ -63,19 +63,30 @@ public class GUIView implements View {
     }
 
     public void movePlayer(int oldPosition, int newPosition, Player player) {
-        if (animateCar)
+        oldPosition = Player.clampPosition(oldPosition);
+        newPosition = Player.clampPosition(newPosition);
+
+        // CalculateDelta
+        int delta = 0;
+        int currentPosition = oldPosition;
+        while (true) {
+            currentPosition++;
+            delta++;
+            if (Player.clampPosition(currentPosition) == newPosition) break;
+        }
+
+        int movedDelta = 0;
+
+        if (animateCar && delta <= 13)
         {
-            if (oldPosition < newPosition) {
-                for (int i = oldPosition; i < newPosition; i++) {
-                    moveCar(i, i + 1, player);
-                    sleep(100);
-                }
-            } else {
-                for (int i = newPosition; i > oldPosition; i--) {
-                    moveCar(i, i - 1, player);
-                    sleep(100);
-                }
+            while (movedDelta < delta) {
+                moveCar(oldPosition + movedDelta, oldPosition + movedDelta + 1, player);
+                sleep(100);
+
+                movedDelta++;
             }
+
+
         } else {
             moveCar(oldPosition, newPosition, player);
         }

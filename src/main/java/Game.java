@@ -44,17 +44,19 @@ public class Game {
             currentState.setTurn(turnController.takeTurn());
             currentState.setBoard(board);
 
-            turnController.invokeFieldEvent(currentState);
+            fieldController.onFieldLand(currentState);
             turnController.ensureJailPosition(currentState);
 
             Transaction jailTransaction = currentState.getTurn().jailTransaction;
             if (jailTransaction != null) {
                 bankController.processTransaction(jailTransaction, currentState);
 
-                if (!jailTransaction.isApproved()) {
-                    // Redo turn!
-                    continue;
+                if (!jailTransaction.isApproved() && jailTransaction.getTransactionType() == Transaction.TransactionType.OutOfJailForced) {
+                    // TODO: Fix game strings
+                    view.print("Du har ikke råd til at betale dig ud af fængsel");
                 }
+
+                continue; // redo turn
             }
 
             if (currentState.getTurn().crossedStart) {
@@ -96,8 +98,9 @@ public class Game {
                 System.out.println(currentState.getCurrentPlayer().getName() + ", " + bankController.getMoney(currentState.getCurrentPlayer()));
             }
 
-
-            turnController.getNextPlayer();
+            if (!currentState.getTurn().getsAnotherTurn) {
+                turnController.getNextPlayer();
+            }
         }
     }
 
