@@ -145,5 +145,15 @@ public class BankController extends Controller {
                 transaction.setApproved(false);
             }
         }
+
+        if (transaction.getTransactionType() == Transaction.TransactionType.PayTax) {
+            if (account.getBalance() >= transaction.getAmount()) {
+                withdrawMoney(transaction.getPlayer(), transaction.getAmount());
+                transaction.setApproved(true);
+
+                view.print("Du skal betale din studiegæld!");
+
+            }
+        }
     }
 }
