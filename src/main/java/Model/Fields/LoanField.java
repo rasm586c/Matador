@@ -5,7 +5,7 @@ import Model.GameState;
 public class LoanField extends Field {
 
     public LoanField(String name, String fieldText) {
-        super(name,0,0,fieldText,GUI_Type.Loan);
+        super(name,-2000,0,fieldText,GUI_Type.Loan);
     }
 
     @Override

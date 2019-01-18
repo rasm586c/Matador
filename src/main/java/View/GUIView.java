@@ -185,9 +185,9 @@ public class GUIView implements View {
             case Refuge: return new GUI_Refuge("default", field.name, "", fieldTxt, Color.WHITE, Color.BLACK);
             case Start: return new GUI_Tax(field.name, "4000 kr.", fieldTxt, new Color(204, 105, 19), Color.BLACK);
             case Empty: return new GUI_Empty();
-            case Tax: return new GUI_Tax(field.name,priceTxt,fieldTxt,new Color(75, 139, 118),Color.BLACK);
+            case Tax: return new GUI_Tax(field.name,priceTxt,fieldTxt,new Color(17, 3, 1),Color.WHITE);
             case Shipping: return new GUI_Shipping("default",field.name,priceTxt,fieldTxt,"Leje: 2", Color.WHITE,Color.BLACK);
-            case Loan: return new GUI_Tax(field.name,priceTxt,fieldTxt,new Color(99, 124, 168),Color.BLACK);
+            case Loan: return new GUI_Tax(field.name,priceTxt,fieldTxt,new Color(5, 2, 15),Color.WHITE);
         }
         throw new IllegalArgumentException();
     }
