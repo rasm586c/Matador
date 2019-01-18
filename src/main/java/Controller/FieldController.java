@@ -245,7 +245,7 @@ public class FieldController extends Controller {
                 .map(field -> field.name)
                 .toArray(String[]::new);
 
-        String buybackFieldResult = view.getUserSelect("Vælg felt som du vil pantsætte?", buybackFieldStrings);
+        String buybackFieldResult = view.getUserSelect("Vælg det felt du ønsker at købe tilbage?", buybackFieldStrings);
 
         Field buybackField = Arrays.stream(buybackFields)
                                 .filter(field -> field.name.equals(buybackFieldResult))
@@ -256,7 +256,7 @@ public class FieldController extends Controller {
         int fieldPrice = buybackField.value / 2 + (buybackField.value / 100) * 10;
 
         // 4. Ask user for agreement
-        String result = view.getUserSelect("", "yes", "no");
+        String result = view.getUserSelect(String.format("Ønsker du at købe feltet %s tilbage for %d", buybackFieldResult, fieldPrice), "yes", "no");
 
         // 5. Create transaction
         if (result.equals("yes")) {
