@@ -62,7 +62,7 @@ public class GameBoard {
                 new PropertyField(stringContainer.getString("field_cyan_1_title"), 1200,1000, stringContainer.getString("field_property_rent"), Field.GUI_Type.Street_Cyan),
                 new ChanceField(stringContainer.getString("field_chance")),
                 new PropertyField(stringContainer.getString("field_cyan_2_title"), 1200,1000, stringContainer.getString("field_property_rent"), Field.GUI_Type.Street_Cyan),
-                new TaxField(stringContainer.getString("field_indkomstskat_title"), 0,100, stringContainer.getString("field_indkomstskat")),
+                new TaxField(stringContainer.getString("field_indkomstskat_title"), stringContainer.getString("field_indkomstskat")),
                 new ShippingField(stringContainer.getString("field_ship_1_title"), 4000,500, stringContainer.getString("field_ship_rent")),
                 new PropertyField(stringContainer.getString("field_pink_1_title"), 2000,100, stringContainer.getString("field_property_rent"), Field.GUI_Type.Street_Pink),
                 new ChanceField(stringContainer.getString("field_chance")),
@@ -96,7 +96,7 @@ public class GameBoard {
                 new ShippingField(stringContainer.getString("field_ship_4_title"), 4000,500, stringContainer.getString("field_ship_rent")),
                 new ChanceField(stringContainer.getString("field_chance")),
                 new PropertyField(stringContainer.getString("field_brown_1_title"), 7000,100, stringContainer.getString("field_property_rent"), Field.GUI_Type.Street_Brown),
-                new TaxField(stringContainer.getString("field_indkomstskat_title"), 0,100, stringContainer.getString("field_indkomstskat")),
+                new LoanField(stringContainer.getString("field_loan_title"), stringContainer.getString("field_loan")),
                 new PropertyField(stringContainer.getString("field_brown_2_title"), 8000,100, stringContainer.getString("field_property_rent"), Field.GUI_Type.Street_Brown),
 
         };

@@ -33,6 +33,10 @@ public class FieldController extends Controller {
             transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayTax);
         }
 
+        if (landedOn instanceof LoanField) {
+            transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayLoan);
+        }
+
         return transaction;
     }
 
