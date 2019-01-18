@@ -54,7 +54,8 @@ public class Transaction {
         PurchaseHouse,
         ToPlayer,
         OutOfJail,
+        OutOfJailForced,
         PayTax,
-        PayLoan
+        PayToBank
     }
 }

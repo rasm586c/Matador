@@ -44,7 +44,18 @@ public class Game {
             currentState.setTurn(turnController.takeTurn());
             currentState.setBoard(board);
 
-            fieldController.onFieldLand(currentState);
+            while (true) {
+                int position = currentState.getCurrentPlayer().getPosition();
+
+                Transaction fieldTransaction = fieldController.onFieldLand(currentState);
+                if (fieldTransaction != null) {
+                    bankController.processTransaction(fieldTransaction, currentState);
+                }
+
+                if (currentState.getCurrentPlayer().getPosition() == position)
+                    break;
+            }
+
             turnController.ensureJailPosition(currentState);
 
             Transaction jailTransaction = currentState.getTurn().jailTransaction;

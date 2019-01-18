@@ -17,16 +17,29 @@ public class FieldController extends Controller {
         this.view = view;
     }
 
-    public void onFieldLand(GameState state) {
+    public Transaction onFieldLand(GameState state) {
         Field field = state.getBoard().getFields()[state.getCurrentPlayer().getPositionClamped()];
         field.onFieldLand(state);
+
+        Transaction playerTransaction = null;
 
         if (field instanceof ChanceField) {
             ChanceField chanceField = (ChanceField)field;
             ChanceCard card = chanceField.drawCard();
+            card.calculateCardFromState(state);
 
+            view.print(card.getDescription());
+
+            playerTransaction = new Transaction(state.getCurrentPlayer(), null, card.getMoneyAmount(), Transaction.TransactionType.PayToBank);
+            playerTransaction.setAmount(card.getMoneyAmount());
+
+            int oldPosition = state.getCurrentPlayer().getPosition();
+            state.getCurrentPlayer().setPosition(state.getCurrentPlayer().getPosition() + card.getMoveAmount());
+            view.movePlayer(oldPosition, state.getCurrentPlayer().getPosition(), state.getCurrentPlayer());
 
         }
+
+        return playerTransaction;
     }
 
     public Transaction payRent(GameState state) {
@@ -47,7 +60,7 @@ public class FieldController extends Controller {
         }
 
         if (landedOn instanceof LoanField) {
-            transaction = new Transaction(state.getCurrentPlayer(),landedOn,Transaction.TransactionType.PayLoan);
+            transaction = new Transaction(state.getCurrentPlayer(),landedOn,2000, Transaction.TransactionType.PayToBank);
         }
 
         return transaction;

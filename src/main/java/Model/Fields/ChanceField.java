@@ -3,6 +3,7 @@ package Model.Fields;
 import Model.ChanceCard.ChanceCard;
 import Model.ChanceCard.MoneyChanceCard;
 import Model.ChanceCard.MoveChanceCard;
+import Model.ChanceCard.MoveToBreweryChanceCard;
 
 import java.util.Random;
 
@@ -20,6 +21,9 @@ public class ChanceField extends Field {
     }
 
     private ChanceCard[] createChanceCards() {
+        return new ChanceCard[] { new MoveToBreweryChanceCard()};
+
+        /*
         return new ChanceCard[] {
             new MoneyChanceCard(500),
             new MoneyChanceCard(-500),
@@ -27,5 +31,6 @@ public class ChanceField extends Field {
             new MoveChanceCard(-2),
 
         };
+        */
     }
 }
