@@ -87,6 +87,21 @@ public class BankController extends Controller {
             }
         }
 
+        if (transaction.getTransactionType() == Transaction.TransactionType.PayTax) {
+            if (account.getBalance() >= 40000) {
+                withdrawMoney(transaction.getPlayer(), 4000);
+                transaction.setApproved(true);
+                view.print("Du har rigtig mange penge, så du betaler 4.000");
+            } else {
+                transaction.setApproved(true);
+                int withdrawAmount = getMoney(transaction.getPlayer())*10/100;
+                withdrawMoney(transaction.getPlayer(), withdrawAmount);
+
+                // TODO: Fix game strings
+                view.print("Du har ikke helt så mange penge, du betaler bare 10% af dine penge.");
+            }
+        }
+
         if (transaction.getTransactionType() == Transaction.TransactionType.ToPlayer) {
             if (account.getBalance() >= transaction.getAmount()) {
                 // Transfer amount from player to target
