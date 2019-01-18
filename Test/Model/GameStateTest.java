@@ -25,13 +25,6 @@ class GameStateTest {
             Assert.assertEquals(gameState.getTurn(), gameState.getCurrentPlayer());
         }
 
-
-                
-
-    }
-
-    @Test
-    void setPlayers() {
     }
 
     @Test
