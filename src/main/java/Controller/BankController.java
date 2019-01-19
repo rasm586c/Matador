@@ -6,6 +6,7 @@ import View.View;
 
 public class BankController extends Controller {
     Account[] accounts;
+    LanguagePack languagePack;
 
     public BankController(View view, Player[] players) {
         super(view);
@@ -99,7 +100,7 @@ public class BankController extends Controller {
                 transaction.setApproved(false);
 
                 // TODO: Fix game strings
-                view.print("Øv! Du har ikke råd.");
+                view.print(languagePack.getString("no_money"));
             }
         }
 
@@ -107,14 +108,14 @@ public class BankController extends Controller {
             if (account.getBalance() >= 40000) {
                 withdrawMoney(transaction.getPlayer(), 4000);
                 transaction.setApproved(true);
-                view.print("Du har rigtig mange penge, så du betaler 4.000");
+                view.print(languagePack.getString("a_lot_of_money"));
             } else {
                 transaction.setApproved(true);
                 int withdrawAmount = getMoney(transaction.getPlayer())*10/100;
                 withdrawMoney(transaction.getPlayer(), withdrawAmount);
 
                 // TODO: Fix game strings
-                view.print("Du har ikke helt så mange penge, du betaler bare 10% af dine penge.");
+                view.print(languagePack.getString("average_money"));
             }
         }
 
@@ -143,7 +144,7 @@ public class BankController extends Controller {
                 withdrawMoney(transaction.getPlayer(), transaction.getAmount());
                 transaction.setApproved(true);
 
-                view.print("Du har købt et hus på " + transaction.getField().name);
+                view.print(languagePack.getString("bought_house") + transaction.getField().name);
                 transaction.getField().setHouseCounter(transaction.getField().getHouseCounter() + 1);
                 int fieldPosition = -1;
                 for (int i = 0; i < state.getBoard().getFields().length; i++) {
@@ -164,7 +165,7 @@ public class BankController extends Controller {
                 withdrawMoney(transaction.getPlayer(), transaction.getAmount());
                 transaction.setApproved(true);
 
-                view.print("Du skal betale din studiegæld!");
+                view.print(languagePack.getString("studie_loan"));
 
             }
         }

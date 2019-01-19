@@ -1,3 +1,61 @@
+//BankController
+no_money
+Øv! Du har ikke råd.
+
+a_lot_of_money
+Du har rigtig mange penge, så du betaler 4.000
+
+average_money
+Du har ikke helt så mange penge, du betaler bare 10% af dine penge.
+
+bought_house
+Du har købt et hus på
+
+studie_loan
+Du skal betale din studiegæld!
+
+
+//TurnController
+die_roll
+Det er %s's tur til at rulle terningen
+
+prison
+Du er i fængsel!
+
+pay_1000
+Betal 1000 kr
+
+2_alike
+Rul to ens
+
+you_pay_1000
+Du skal betale 1000 kr!
+
+want_in_turn
+Hvad vil du i denne tur?
+
+stop_tour
+Stop tur
+
+buy_field
+Køb felt
+
+mortgage_field
+Pantsæt felt
+
+buy_field_back
+Køb felt tilbage
+
+buy_house
+Køb hus
+
+
+
+
+
+
+
+
 give_player_name
 Indtast navn på spiller %d
 
@@ -30,9 +88,6 @@ Denne bolig er til salg! Vil %s købe denne bolig?
 
 pay_rent
 "%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!"
-
-die_roll
-Det er %s's tur til at rulle terningen
 
 die_roll_two
 Rul
