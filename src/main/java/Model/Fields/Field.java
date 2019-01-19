@@ -99,6 +99,10 @@ public abstract class Field {
         Shipping,
         Refuge,
         Street,
+        /*
+        Farverne herunder matcher ikke overens med felterne på boardet, men det er de farver matador spillet anvendt til reference har.
+        Vi har valgt at beholde navnene selvom de ikke passer helt overens med de endelige farver vi har, da de gjorde arbejdsprocessen nemmere og bedre.
+        */
         Street_Cyan,
         Street_Pink,
         Street_Green,
