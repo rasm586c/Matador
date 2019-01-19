@@ -24,6 +24,10 @@ public class ConsoleView implements View {
 
     public void setPlayerBalance(Player player, int balance) {}
 
+    public void setGameWon(String winner) {
+
+    }
+
     public void updateOwner(Player player, int position, boolean active) {
 
 

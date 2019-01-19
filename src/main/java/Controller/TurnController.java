@@ -133,10 +133,14 @@ public class TurnController extends Controller {
         return new ControllerChoice[] { ControllerChoice.StopTurn };
     }
 
+    public boolean hasWinner() {
+        return getNextTurn(playerTurn) == getNextTurn(playerTurn + 1);
+    }
+
     private int getNextTurn(int playerTurn) {
         int nextTurn = playerTurn;
         while (true) {
-            nextTurn = playerTurn + 1 >= players.length ? 0 : playerTurn + 1;
+            nextTurn = nextTurn + 1 >= players.length ? 0 : nextTurn + 1;
 
             if (!players[nextTurn].getBankrupt()) {
                 break;
