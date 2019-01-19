@@ -134,6 +134,15 @@ public class TurnController extends Controller {
     }
 
     private int getNextTurn(int playerTurn) {
-        return playerTurn + 1 >= players.length ? 0 : playerTurn + 1;
+        int nextTurn = playerTurn;
+        while (true) {
+            nextTurn = playerTurn + 1 >= players.length ? 0 : playerTurn + 1;
+
+            if (!players[nextTurn].getBankrupt()) {
+                break;
+            }
+        }
+
+        return nextTurn;
     }
 }

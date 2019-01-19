@@ -172,6 +172,11 @@ public class BankController extends Controller {
         }
     }
 
+    public void freeAssets(Player player) {
+        player.setBankrupt(true);
+
+    }
+
     private int getFieldPosition(GameBoard board, Field field) {
         for (int i = 0; i < board.getFields().length; i++) {
             if (field.name.equals(board.getFields()[i].name)) {

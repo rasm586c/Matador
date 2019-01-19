@@ -13,6 +13,8 @@ public class Player {
     private int position;
     private int jailedTurns;
 
+    private boolean bankrupt;
+
     public Player(String name, PlayerType playerType, Color color) {
         this.name = name;
         this.playerType = playerType;
@@ -20,6 +22,7 @@ public class Player {
 
         jailedTurns = 0;
         position = 0;
+        bankrupt = false;
     }
 
     public String getName() {
@@ -39,6 +42,9 @@ public class Player {
 
     public int getJailedTurns() { return jailedTurns; }
     public void setJailedTurns(int jailedTurns) { this.jailedTurns = jailedTurns; }
+
+    public boolean getBankrupt() { return bankrupt; }
+    public void setBankrupt(boolean bankrupt) { this.bankrupt = bankrupt; }
 
     @Override
     public boolean equals(Object obj) {

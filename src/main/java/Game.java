@@ -45,6 +45,8 @@ public class Game {
             currentState.setTurn(turnController.takeTurn());
             currentState.setBoard(board);
 
+            Transaction oweTransaction = null;
+
             while (true) {
                 int position = currentState.getCurrentPlayer().getPosition();
 
@@ -65,7 +67,8 @@ public class Game {
 
                 if (!jailTransaction.isApproved() && jailTransaction.getTransactionType() == Transaction.TransactionType.OutOfJailForced) {
                     // TODO: Fix game strings
-                    view.print("Du har ikke råd til at betale dig ud af fængsel");
+                    view.print("Du har ikke råd til at betale dig ud af fængsel. Du skylder derfor 1000 kr.");
+                    oweTransaction = jailTransaction;
                 }
 
                 continue; // redo turn
@@ -79,7 +82,8 @@ public class Game {
             if (rentPayment != null) {
                 bankController.processTransaction(rentPayment, currentState);
                 if (!rentPayment.isApproved()) {
-                    view.print("Hey fattig røv! Du har ikke råd til at betale husleje så du må sælge noget...!");
+                    view.print("Du havde ikke råd til at betale huslejen på %d. Sørg for at have over dette beløb når du slutter din tur, ellers har du tabt spillet.");
+                    oweTransaction = rentPayment;
                 }
             }
 
@@ -129,9 +133,24 @@ public class Game {
                         view.print("Du har ikke råd til dette hus!");
                     }
                     break;
-                }
 
-                System.out.println(currentState.getCurrentPlayer().getName() + ", " + bankController.getMoney(currentState.getCurrentPlayer()));
+                    case StopTurn:
+                    if (oweTransaction != null) {
+                        bankController.processTransaction(oweTransaction, currentState);
+                        if (!oweTransaction.isApproved()) {
+                            view.print(
+                                String.format("Du skylder %d, men har ikke råd til at betale dette. Forsætter du, så vil du gå bankerot og du har tabt spillet.",
+                                    oweTransaction.getAmount())
+                            );
+                        }
+                    }
+                    break;
+                }
+            }
+
+            if (oweTransaction != null && !oweTransaction.isApproved()) {
+                view.print(String.format("%s gik bankerot. Alle spillerens ejendomme er blevet frigivet, og huse solgt til banken."));
+                bankController.freeAssets(currentState.getCurrentPlayer());
             }
 
             if (!currentState.getTurn().getsAnotherTurn) {
