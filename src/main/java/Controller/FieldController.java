@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class FieldController extends Controller {
     GameBoard board;
     View view;
+    LanguagePack languagePack;
 
     public FieldController(View view, GameBoard board) {
         super(view);
@@ -113,7 +114,7 @@ public class FieldController extends Controller {
             }
 
             // TODO: Fix gamestrings
-            String result = view.getUserSelect("Vælg grund at købe hus på", properties);
+            String result = view.getUserSelect(languagePack.getString("field_buy_house"), properties);
 
             // Find ud af hvilken grund som brugeren har valgt
             Field selectedField = null;
@@ -129,7 +130,7 @@ public class FieldController extends Controller {
             transaction = new Transaction( state.getCurrentPlayer(), selectedField, housePrice, Transaction.TransactionType.PurchaseHouse);
         } else {
             // TODO: Fix gamestrings
-            view.print("Du kan ikke købe huse lige nu!");
+            view.print(languagePack.getString("can_not_buy_house"));
         }
 
         return transaction;
@@ -148,7 +149,7 @@ public class FieldController extends Controller {
                 .map(field -> field.name)
                 .toArray(String[]::new);
 
-        String tradeFieldName = view.getUserSelect("Vælg felt du vil forhandle med.", ownedFieldSelection);
+        String tradeFieldName = view.getUserSelect(languagePack.getString("field_negotiate"), ownedFieldSelection);
 
         Field tradeField = Arrays.stream(ownedFields)
                 .filter(field -> field.name.equals(tradeFieldName))
@@ -164,7 +165,7 @@ public class FieldController extends Controller {
                 .map(player -> player.getName())
                 .toArray(String[]::new);
 
-        String tradePlayerName = view.getUserSelect("Vælg player at handle med", otherPlayerSelections);
+        String tradePlayerName = view.getUserSelect(languagePack.getString("trade_player_choice"), otherPlayerSelections);
 
         Player tradePlayer = Arrays.stream(state.getPlayers())
                 .filter(player -> player.getName().equals(tradePlayerName))
@@ -175,18 +176,18 @@ public class FieldController extends Controller {
         int fieldPrice = 0;
         while (true) {
             try {
-                fieldPrice = Integer.parseInt(view.getUserInput("Skriv hvor meget du vil have for feltet."));
+                fieldPrice = Integer.parseInt(view.getUserInput(languagePack.getString("how_much_field")));
                 break;
             } catch (NumberFormatException nfe) {
-                view.print("Ugyldigt input.");
+                view.print(languagePack.getString("invalid_input"));
             }
         }
 
         // 4. Person to trade with agrees
-        String result = view.getUserSelect(String.format("Ønsker %s at købe feltet %s for %d ?", tradePlayerName, tradeField.name, fieldPrice), "yes", "no");
+        String result = view.getUserSelect(String.format(languagePack.getString("wish_buy_field"), tradePlayerName, tradeField.name, fieldPrice), languagePack.getString("yes"), languagePack.getString("no"));
 
         // 5. Create transaction
-        if (result.equals("yes")) {
+        if (result.equals(languagePack.getString("yes"))) {
             transaction = new Transaction(tradePlayer, tradeField, fieldPrice, Transaction.TransactionType.PurchaseProperty);
             transaction.setTarget(state.getCurrentPlayer());
         }
@@ -207,7 +208,7 @@ public class FieldController extends Controller {
                 .map(field -> field.name)
                 .toArray(String[]::new);
 
-        String tradeFieldName = view.getUserSelect("Vælg felt du vil forhandle med.", ownedFieldSelection);
+        String tradeFieldName = view.getUserSelect(languagePack.getString("choose_field_negotiate"), ownedFieldSelection);
 
         Field tradeField = Arrays.stream(ownedFields)
                 .filter(field -> field.name.equals(tradeFieldName))
@@ -218,10 +219,10 @@ public class FieldController extends Controller {
         int fieldPrice = tradeField.value / 2;
 
         // 3. Person to trade with agrees
-        String result = view.getUserSelect(String.format("Ønsker du at pantsætte %s for %d", tradeField.name, fieldPrice), "yes", "no");
+        String result = view.getUserSelect(String.format(languagePack.getString("wish_field_mortgage"), tradeField.name, fieldPrice), languagePack.getString("yes"), languagePack.getString("no"));
 
         // 4. Create transaction
-        if (result.equals("yes")) {
+        if (result.equals(languagePack.getString("yes"))) {
             transaction = new Transaction(state.getCurrentPlayer(), tradeField, fieldPrice, Transaction.TransactionType.SellProperty);
             transaction.setTarget(state.getCurrentPlayer());
         }
@@ -245,7 +246,7 @@ public class FieldController extends Controller {
                 .map(field -> field.name)
                 .toArray(String[]::new);
 
-        String buybackFieldResult = view.getUserSelect("Vælg det felt du ønsker at købe tilbage?", buybackFieldStrings);
+        String buybackFieldResult = view.getUserSelect(languagePack.getString("choose_field_buy_back"), buybackFieldStrings);
 
         Field buybackField = Arrays.stream(buybackFields)
                                 .filter(field -> field.name.equals(buybackFieldResult))
@@ -256,10 +257,10 @@ public class FieldController extends Controller {
         int fieldPrice = buybackField.value / 2 + (buybackField.value / 100) * 10;
 
         // 4. Ask user for agreement
-        String result = view.getUserSelect(String.format("Ønsker du at købe feltet %s tilbage for %d", buybackFieldResult, fieldPrice), "yes", "no");
+        String result = view.getUserSelect(String.format(languagePack.getString("wish_buy_field_back"), buybackFieldResult, fieldPrice), languagePack.getString("yes"), languagePack.getString("no"));
 
         // 5. Create transaction
-        if (result.equals("yes")) {
+        if (result.equals(languagePack.getString("yes"))) {
             transaction = new Transaction(state.getCurrentPlayer(), buybackField, fieldPrice, Transaction.TransactionType.PurchaseProperty);
         }
 

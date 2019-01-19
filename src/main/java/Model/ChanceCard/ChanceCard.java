@@ -1,14 +1,16 @@
 package Model.ChanceCard;
 
 import Model.GameState;
+import Model.LanguagePack;
 
 public abstract class ChanceCard {
     private int moveAmount;
     private int moneyAmount;
+    LanguagePack languagePack;
 
     public void calculateCardFromState(GameState state) {}
 
-    public String getDescription() { return "Du er landet på et chance felt!"; }
+    public String getDescription() { return languagePack.getString("chance_field"); }
 
     public int getMoveAmount() { return moveAmount; }
     public int getMoneyAmount() { return moneyAmount; }

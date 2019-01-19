@@ -1,8 +1,11 @@
 package Model.ChanceCard;
 
 import Model.GameState;
+import Model.LanguagePack;
 
 public class MoneyChanceCard extends ChanceCard {
+    LanguagePack languagePack;
+
     public MoneyChanceCard(int money) {
         setMoneyAmount(money);
         setMoveAmount(0);
@@ -11,8 +14,8 @@ public class MoneyChanceCard extends ChanceCard {
     @java.lang.Override
     public java.lang.String getDescription() {
         if (getMoneyAmount() < 0)
-            return "Du trak penge chance kortet og mistede " + getMoneyAmount() + " penge!";
+            return languagePack.getString("money_chance_card") + getMoneyAmount() + languagePack.getString("money");
         else
-            return "Du trak penge chance kortet og fik " + getMoneyAmount() + " penge!";
+            return languagePack.getString("money_chance_card_2") + getMoneyAmount() + languagePack.getString("money");
     }
 }

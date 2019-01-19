@@ -42,12 +42,12 @@ public class TurnController extends Controller {
 
         if (player.getJailedTurns() > 0) {
             // TODO: Fix game strings!
-            String result = view.getUserSelect("Du er i fængsel!", "Betal 1000 kr", "Rul to ens");
-            if (result.equals("Betal 1000 kr")) {
+            String result = view.getUserSelect(languagePack.getString("prison"), languagePack.getString("pay_1000"), languagePack.getString("2_alike"));
+            if (result.equals(languagePack.getString("pay_1000"))) {
                 return new PlayerTurn(false, 0, new Transaction(player, null, 1000, Transaction.TransactionType.OutOfJail));
             }
 
-            if (result.equals("Rul to ens")) {
+            if (result.equals(languagePack.getString("2_alike"))) {
                 int[] roll = diceCup.shake();
                 view.printDiceRoll(roll[0], roll[1]);
                 player.setJailedTurns(player.getJailedTurns() - 1);
@@ -59,7 +59,7 @@ public class TurnController extends Controller {
                     return new PlayerTurn(false, diceCup.getDiceSum(), true);
                 } else if (player.getJailedTurns() == 0) {
                     // TODO: Fix gamestrings
-                    view.print("Du skal betale 1000 kr!");
+                    view.print(languagePack.getString("you_pay_1000"));
                     return new PlayerTurn(false, 0, new Transaction(player, null, 1000, Transaction.TransactionType.OutOfJailForced));
                 }
             }
@@ -86,7 +86,7 @@ public class TurnController extends Controller {
         }
 
         // TODO: Fix gamestrings
-        String result = view.getUserSelect("Hvad vil du i denne tur?", playerChoices);
+        String result = view.getUserSelect(languagePack.getString("want_in_turn"), playerChoices);
 
         for (int i = 0; i < choices.length; i++) {
             if (result.equals(choiceToString(choices[i]))) {
@@ -101,14 +101,14 @@ public class TurnController extends Controller {
     private String choiceToString(ControllerChoice choice) {
         switch (choice) {
             // TODO: GameStrings
-            case StopTurn: return "Stop tur";
-            case BuyField: return "Køb felt";
-            case SellProperty: return "Pantsæt felt";
-            case BuyBackProperty: return "Køb felt tilbage";
-            case BuyHouse: return "Køb hus";
-            case TradeProperty: return "Byt felt";
+            case StopTurn: return languagePack.getString("stop_tour");
+            case BuyField: return languagePack.getString("buy_field");
+            case SellProperty: return languagePack.getString("mortgage_field");
+            case BuyBackProperty: return languagePack.getString("buy_field_back");
+            case BuyHouse: return languagePack.getString("buy_house");
+            case TradeProperty: return languagePack.getString("trade_field");
         }
-        return "Unknown Case";
+        return languagePack.getString("unknown_case");
     }
 
     private boolean performMovement(Player player) {

@@ -1,4 +1,4 @@
-//BankController
+//----- BankController -----
 no_money
 Øv! Du har ikke råd.
 
@@ -13,9 +13,52 @@ Du har købt et hus på
 
 studie_loan
 Du skal betale din studiegæld!
+//---------------------------
 
 
-//TurnController
+//----- FieldController -----
+field_buy_house
+Vælg grund at købe hus på
+
+can_not_buy_house
+Du kan ikke købe huse lige nu!
+
+field_negotiate
+Vælg felt du vil forhandle med.
+
+trade_player_choice
+Vælg spiller at handle med
+
+how_much_field
+Skriv hvor meget du vil have for feltet.
+
+invalid_input
+Ugyldigt input.
+
+wish_buy_field
+Ønsker %s at købe feltet %s for %d ?
+
+yes
+Ja
+
+no
+Nej
+
+choose_field_negotiate
+Vælg felt du vil forhandle med.
+
+wish_field_mortgage
+Ønsker du at pantsætte %s for %d
+
+choose_field_buy_back
+Vælg det felt du ønsker at købe tilbage?
+
+wish_buy_field_back
+Ønsker du at købe feltet %s tilbage for %d
+//---------------------------
+
+
+//----- TurnController -----
 die_roll
 Det er %s's tur til at rulle terningen
 
@@ -49,10 +92,39 @@ Køb felt tilbage
 buy_house
 Køb hus
 
+trade_field
+Byt felt
+
+unknown_case
+Unknown Case
+//---------------------------
 
 
+//----- hanceCard  -----
+chance_field
+Du er landet på et chance felt!
+//---------------------------
 
 
+//----- MoneyChanceCard -----
+money_chance_card
+Du trak penge chance kortet og mistede
+
+money
+ penge!
+
+money_chance_card_2
+Du trak penge chance kortet og fik
+//---------------------------
+
+
+//----- MoveChanceCard -----
+move_chance_card
+Du trak chance kortet, som gør at du skal flytte dig
+
+field_forward
+ felter frem!
+//---------------------------
 
 
 
@@ -87,7 +159,7 @@ buy_property
 Denne bolig er til salg! Vil %s købe denne bolig?
 
 pay_rent
-"%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!"
+%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!
 
 die_roll_two
 Rul
