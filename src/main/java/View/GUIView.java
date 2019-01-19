@@ -155,15 +155,15 @@ public class GUIView implements View {
                 gui.setDice(rnd.nextInt(6), rnd.nextInt(6));
 
                 if (gui.getFields()[i] instanceof GUI_Street) {
-                    GUI_Street street = (GUI_Street)gui.getFields()[i];
-                    int randomHouseAmount = rnd.nextInt(5);
-                    if (randomHouseAmount <= 4) {
-                        street.setHouses(4);
-                        street.setHotel(false);
-                    } else {
-                        street.setHouses(0);
-                        street.setHotel(true);
-                    }
+                    updateHouse(i, rnd.nextInt(5));
+                }
+
+                if (gui.getFields()[i] instanceof GUI_Ownable) {
+                    GUI_Ownable ownable = (GUI_Ownable) gui.getFields()[i];
+                    ownable.setBorder(
+                            new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)),
+                            new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255))
+                    );
                 }
             }
         }
