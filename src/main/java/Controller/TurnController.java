@@ -3,6 +3,8 @@ package Controller;
 import Model.*;
 import View.View;
 
+import java.util.Arrays;
+
 public class TurnController extends Controller {
     int playerTurn = 0;
     Player[] players;
@@ -134,7 +136,9 @@ public class TurnController extends Controller {
     }
 
     public boolean hasWinner() {
-        return getNextTurn(playerTurn) == getNextTurn(playerTurn + 1);
+        return Arrays.stream(players)
+                .filter(player -> !player.getBankrupt())
+                .count() == 1;
     }
 
     private int getNextTurn(int playerTurn) {

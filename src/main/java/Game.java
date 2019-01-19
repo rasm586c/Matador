@@ -67,6 +67,10 @@ public class Game {
                 Transaction fieldTransaction = fieldController.onFieldLand(currentState);
                 if (fieldTransaction != null) {
                     bankController.processTransaction(fieldTransaction, currentState);
+
+                    if (!fieldTransaction.isApproved()) {
+                        oweTransaction = fieldTransaction;
+                    }
                 }
 
                 if (currentState.getCurrentPlayer().getPosition() == position)
