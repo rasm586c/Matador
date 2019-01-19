@@ -63,10 +63,12 @@ public class ConsoleView implements View {
     }
 
     public void updateOwner(Player player, int position, boolean active) {
-        if (active)
-            System.out.println("Spilleren " + player.getName() + " ejer nu feltet på position " + position);
-        else
-            System.out.println("Spilleren " + player.getName() + " har nu pantsat sin grund på position " + position);
+        if (player != null) {
+            if (active)
+                System.out.println("Spilleren " + player.getName() + " ejer nu feltet på position " + position);
+            else
+                System.out.println("Spilleren " + player.getName() + " har nu pantsat sin grund på position " + position);
+        }
     }
 
     public void print(String print) {

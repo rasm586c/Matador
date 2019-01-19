@@ -12,7 +12,7 @@ public class Game {
         LanguagePack languagePack = languagePackFactory.getLanguagePack();
 
         // Create UI
-        View view = new ConsoleView(); // new ConsoleView();
+        View view = new GUIView(languagePack); // new ConsoleView();
 
         // Create GameBoard
         GameBoard board = new GameBoard(languagePack);
@@ -29,6 +29,7 @@ public class Game {
         FieldController fieldController = new FieldController(view, board);
 
         // Sæt ejetskab af nogle properties..
+        /*
         boolean førsteEjendom = true;
         for (int i = 0; i < 40; i++) {
             if (board.getFields()[i] instanceof OwnableField) {
@@ -47,9 +48,8 @@ public class Game {
                 }
             }
         }
-
         bankController.withdrawMoney(players[1], 29500);
-
+        */
 
         // Game Loop
         while (true) {
