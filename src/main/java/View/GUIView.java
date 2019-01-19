@@ -9,6 +9,7 @@ import gui_fields.*;
 import gui_main.GUI;
 
 import java.awt.*;
+import java.util.Random;
 
 public class GUIView implements View {
     private GUI gui;
@@ -48,12 +49,16 @@ public class GUIView implements View {
         if (gui.getFields()[position] instanceof GUI_Ownable) {
             GUI_Ownable ownable = (GUI_Ownable) gui.getFields()[position];
 
-            ownable.setOwnerName(player.getName());
-
-            if (active)
-                ownable.setBorder(player.color);
-            else
-                ownable.setBorder(player.color, Color.BLACK);
+            if (player == null) {
+                ownable.setOwnerName(null);
+                ownable.setBorder(null);
+            } else {
+                ownable.setOwnerName(player.getName());
+                if (active)
+                    ownable.setBorder(player.color);
+                else
+                    ownable.setBorder(player.color, Color.BLACK);
+            }
         }
     }
     public void updatePlayers(Player[] players) {
@@ -119,6 +124,48 @@ public class GUIView implements View {
         } else {
             street.setHotel(false);
             street.setHouses(houseCounter);
+        }
+    }
+
+    public void setGameWon(String winnerName) {
+        StringBuilder wonText = new StringBuilder(winnerName + " har vundet !");
+        int wonTextPosition = 0;
+        int textPosition = 0;
+
+        // Epilepsy Simulator!!!!!!
+        Random rnd = new Random();
+        while (true) {
+            wonTextPosition++;
+            textPosition = 0;
+
+            for (int i = 0; i < gui.getFields().length; i++) {
+                sleep(5);
+
+                if (textPosition < wonText.length()) {
+                    gui.getFields()[Player.clampPosition(i + wonTextPosition)].setTitle(Character.toString(wonText.charAt(textPosition)));
+
+                } else {
+                    gui.getFields()[Player.clampPosition(i + wonTextPosition)].setTitle(" ");
+                }
+                textPosition++;
+
+                rnd = new Random(rnd.nextInt(Integer.MAX_VALUE));
+                gui.getFields()[i].setBackGroundColor(new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255)));
+
+                gui.setDice(rnd.nextInt(6), rnd.nextInt(6));
+
+                if (gui.getFields()[i] instanceof GUI_Street) {
+                    GUI_Street street = (GUI_Street)gui.getFields()[i];
+                    int randomHouseAmount = rnd.nextInt(5);
+                    if (randomHouseAmount <= 4) {
+                        street.setHouses(4);
+                        street.setHotel(false);
+                    } else {
+                        street.setHouses(0);
+                        street.setHotel(true);
+                    }
+                }
+            }
         }
     }
 

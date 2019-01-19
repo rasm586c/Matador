@@ -1,5 +1,7 @@
 import Controller.*;
 import Model.*;
+import Model.Fields.OwnableField;
+import Model.Fields.PropertyField;
 import View.*;
 
 import java.io.IOException;
@@ -27,15 +29,27 @@ public class Game {
         FieldController fieldController = new FieldController(view, board);
 
         // Sæt ejetskab af nogle properties..
-        //board.getFields()[1]
-        //board.getFields()[3]
-/*
-        board.getFields()[1].setOwner(players[0]);
-        view.updateOwner(players[0], 1);
+        boolean førsteEjendom = true;
+        for (int i = 0; i < 40; i++) {
+            if (board.getFields()[i] instanceof OwnableField) {
+                Player ownerPlayer = players[0];
+                if (førsteEjendom) {
+                    ownerPlayer = players[1];
+                    førsteEjendom = false;
+                }
 
-        board.getFields()[3].setOwner(players[0]);
-        view.updateOwner(players[0], 3);
-*/
+                board.getFields()[i].setOwner(ownerPlayer);
+                view.updateOwner(ownerPlayer, i, true);
+
+                if (board.getFields()[i] instanceof PropertyField) {
+                    board.getFields()[i].setHouseCounter(5);
+                    view.updateHouse(i, 5);
+                }
+            }
+        }
+
+        bankController.withdrawMoney(players[1], 29500);
+
 
         // Game Loop
         while (true) {
@@ -65,13 +79,13 @@ public class Game {
             if (jailTransaction != null) {
                 bankController.processTransaction(jailTransaction, currentState);
 
-                if (!jailTransaction.isApproved() && jailTransaction.getTransactionType() == Transaction.TransactionType.OutOfJailForced) {
-                    // TODO: Fix game strings
-                    view.print("Du har ikke råd til at betale dig ud af fængsel. Du skylder derfor 1000 kr.");
-                    oweTransaction = jailTransaction;
-                }
-
-                continue; // redo turn
+                if (jailTransaction.getTransactionType() == Transaction.TransactionType.OutOfJailForced) {
+                    if (!jailTransaction.isApproved()) {
+                        // TODO: Fix game strings
+                        view.print("Du har ikke råd til at betale dig ud af fængsel. Du skylder derfor 1000 kr.");
+                        oweTransaction = jailTransaction;
+                    }
+                } else continue; // redo turn
             }
 
             if (currentState.getTurn().crossedStart) {
@@ -82,13 +96,16 @@ public class Game {
             if (rentPayment != null) {
                 bankController.processTransaction(rentPayment, currentState);
                 if (!rentPayment.isApproved()) {
-                    view.print("Du havde ikke råd til at betale huslejen på %d. Sørg for at have over dette beløb når du slutter din tur, ellers har du tabt spillet.");
+                    view.print(String.format("Du havde ikke råd til at betale huslejen på %d. Sørg for at have over dette beløb når du slutter din tur, ellers har du tabt spillet.", rentPayment.getAmount()));
                     oweTransaction = rentPayment;
                 }
             }
 
             ControllerChoice choice;
-            while ((choice = turnController.makeTurnChoice(getAllControllerChoices(currentState, fieldController, bankController, turnController))) != ControllerChoice.StopTurn) {
+            boolean takingTurn = true;
+            while (takingTurn) {
+                choice = turnController.makeTurnChoice(getAllControllerChoices(currentState, fieldController, bankController, turnController));
+
                 switch (choice) {
                     case BuyField:
                     Transaction transaction = fieldController.purchaseField(currentState);
@@ -137,20 +154,30 @@ public class Game {
                     case StopTurn:
                     if (oweTransaction != null) {
                         bankController.processTransaction(oweTransaction, currentState);
+
                         if (!oweTransaction.isApproved()) {
-                            view.print(
-                                String.format("Du skylder %d, men har ikke råd til at betale dette. Forsætter du, så vil du gå bankerot og du har tabt spillet.",
-                                    oweTransaction.getAmount())
-                            );
+                            String result = view.getUserSelect(String.format("Du skylder %d, men har ikke råd til at betale dette. Forsætter du, så vil du gå bankerot og du har tabt spillet.", oweTransaction.getAmount()), "Tab spil", "Sælg mere");
+                            if (result.equals("Tab spil")) {
+                                takingTurn = false;
+                            }
+                        } else {
+                            takingTurn = false;
                         }
+                    } else {
+                        takingTurn = false;
                     }
                     break;
                 }
             }
 
             if (oweTransaction != null && !oweTransaction.isApproved()) {
-                view.print(String.format("%s gik bankerot. Alle spillerens ejendomme er blevet frigivet, og huse solgt til banken."));
-                bankController.freeAssets(currentState.getCurrentPlayer());
+                view.print(String.format("%s gik bankerot. Alle spillerens ejendomme er blevet frigivet, og huse solgt til banken.", currentState.getCurrentPlayer().getName()));
+                bankController.freeAssets(currentState.getCurrentPlayer(), currentState);
+            }
+
+            if (turnController.hasWinner()) {
+                view.setGameWon(turnController.getCurrentPlayer().getName());
+                while (true) { /**/ }
             }
 
             if (!currentState.getTurn().getsAnotherTurn) {

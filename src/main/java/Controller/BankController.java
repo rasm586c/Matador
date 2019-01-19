@@ -4,8 +4,6 @@ import Model.*;
 import Model.Fields.Field;
 import View.View;
 
-import java.util.Arrays;
-
 public class BankController extends Controller {
     Account[] accounts;
 
@@ -172,9 +170,19 @@ public class BankController extends Controller {
         }
     }
 
-    public void freeAssets(Player player) {
+    public void freeAssets(Player player, GameState state) {
         player.setBankrupt(true);
 
+        for (int i = 0; i < state.getBoard().getFields().length; i++) {
+            if (state.getBoard().getFields()[i].getOwner() != null && state.getBoard().getFields()[i].getOwner().equals(player)) {
+
+                state.getBoard().getFields()[i].setOwner(null);
+                state.getBoard().getFields()[i].setHouseCounter(0);
+
+                view.updateHouse(i, 0);
+                view.updateOwner(null, i, false);
+            }
+        }
     }
 
     private int getFieldPosition(GameBoard board, Field field) {
