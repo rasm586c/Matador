@@ -41,7 +41,7 @@ public class GUIView implements View {
         gui.setDice(value1, value2);
     }
     public void print(String message) {
-        gui.showMessage(message);
+        gui.showMessage(languagePack.getString(message));
     }
 
     public void updateOwner(Player player, int position, boolean active) {
@@ -69,6 +69,10 @@ public class GUIView implements View {
             gui.addPlayer(guiPlayers[i]);
             gui.getFields()[0].setCar(guiPlayers[i], true);
         }
+    }
+
+    public void removePlayer(Player player) {
+        gui.getFields()[player.getPositionClamped()].setCar(guiPlayers[findPlayerIndex(player)], false);
     }
 
     public void movePlayer(int oldPosition, int newPosition, Player player) {

@@ -172,6 +172,7 @@ public class BankController extends Controller {
 
     public void freeAssets(Player player, GameState state) {
         player.setBankrupt(true);
+        view.removePlayer(player);
 
         for (int i = 0; i < state.getBoard().getFields().length; i++) {
             if (state.getBoard().getFields()[i].getOwner() != null && state.getBoard().getFields()[i].getOwner().equals(player)) {

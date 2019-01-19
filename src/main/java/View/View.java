@@ -15,6 +15,8 @@ public interface View {
 
     void updateOwner(Player player, int position, boolean active);
 
+    void removePlayer(Player player);
+
     void setPlayerBalance(Player player, int balance);
 
     void printDiceRoll(int value1, int value2);

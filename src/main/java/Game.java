@@ -12,7 +12,7 @@ public class Game {
         LanguagePack languagePack = languagePackFactory.getLanguagePack();
 
         // Create UI
-        View view = new GUIView(languagePack); // new ConsoleView();
+        View view = new ConsoleView(); // new ConsoleView();
 
         // Create GameBoard
         GameBoard board = new GameBoard(languagePack);
@@ -70,6 +70,7 @@ public class Game {
 
                     if (!fieldTransaction.isApproved()) {
                         oweTransaction = fieldTransaction;
+                        view.print("Du havde ikke råd til at betale " + oweTransaction.getAmount() + "kr for dette chance kort!");
                     }
                 }
 
