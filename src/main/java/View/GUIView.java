@@ -41,7 +41,7 @@ public class GUIView implements View {
         gui.setDice(value1, value2);
     }
     public void print(String message) {
-        gui.showMessage(languagePack.getString(message));
+        gui.showMessage(message);
     }
 
     public void updateOwner(Player player, int position, boolean active) {
