@@ -1,8 +1,10 @@
 package Model.Fields;
 
 import Model.GameState;
+import Model.LanguagePack;
 
 public class PropertyField extends Field implements OwnableField {
+    LanguagePack languagePack;
     public PropertyField(String name, int value, int mortgage, String fieldText, GUI_Type type) {
         super(name, value, mortgage, fieldText, type);
     }
@@ -14,7 +16,7 @@ public class PropertyField extends Field implements OwnableField {
 
     // TODO: Gamestring skal fikses
     public String getPurchaseText() {
-        return "Bolig til salg! Vil du købe? Den koster " + value;
+        return languagePack.getString("house_for_sale") + value;
     }
 
     public int calculateRent(GameState state) {

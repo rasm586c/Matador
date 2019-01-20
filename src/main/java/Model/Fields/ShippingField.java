@@ -1,8 +1,10 @@
 package Model.Fields;
 
 import Model.GameState;
+import Model.LanguagePack;
 
 public class ShippingField extends Field implements OwnableField {
+    LanguagePack languagePack;
 
     public ShippingField (String name, int value, int rent, String fieldText) {
         super(name, value, rent, fieldText, GUI_Type.Shipping);
@@ -10,7 +12,7 @@ public class ShippingField extends Field implements OwnableField {
 
     // TODO: Fix gamestring tekst
     public String getPurchaseText() {
-        return "Rederi til salg! Vil du købe? Den koster " + value;
+        return languagePack.getString("shipping_for_sale") + value;
     }
 
     @Override

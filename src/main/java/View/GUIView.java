@@ -132,7 +132,7 @@ public class GUIView implements View {
     }
 
     public void setGameWon(String winnerName) {
-        StringBuilder wonText = new StringBuilder(winnerName + " har vundet !");
+        StringBuilder wonText = new StringBuilder(winnerName + languagePack.getString("player_win"));
         int wonTextPosition = 0;
         int textPosition = 0;
 

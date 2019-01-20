@@ -70,7 +70,7 @@ public class Game {
 
                     if (!fieldTransaction.isApproved()) {
                         oweTransaction = fieldTransaction;
-                        view.print("Du havde ikke råd til at betale " + oweTransaction.getAmount() + "kr for dette chance kort!");
+                        view.print(languagePack.getString("no_money_pay") + oweTransaction.getAmount() + languagePack.getString("this_chance_card"));
                     }
                 }
 
@@ -87,7 +87,7 @@ public class Game {
                 if (jailTransaction.getTransactionType() == Transaction.TransactionType.OutOfJailForced) {
                     if (!jailTransaction.isApproved()) {
                         // TODO: Fix game strings
-                        view.print("Du har ikke råd til at betale dig ud af fængsel. Du skylder derfor 1000 kr.");
+                        view.print(languagePack.getString("no_money_for_jail"));
                         oweTransaction = jailTransaction;
                     }
                 } else continue; // redo turn
@@ -101,7 +101,7 @@ public class Game {
             if (rentPayment != null) {
                 bankController.processTransaction(rentPayment, currentState);
                 if (!rentPayment.isApproved()) {
-                    view.print(String.format("Du havde ikke råd til at betale huslejen på %d. Sørg for at have over dette beløb når du slutter din tur, ellers har du tabt spillet.", rentPayment.getAmount()));
+                    view.print(String.format(languagePack.getString("no_money_for_rent"), rentPayment.getAmount()));
                     oweTransaction = rentPayment;
                 }
             }
@@ -118,7 +118,7 @@ public class Game {
                         bankController.processTransaction(transaction, currentState);
 
                         if (!transaction.isApproved()) {
-                            view.print("Du har ikke råd til dette felt!");
+                            view.print(languagePack.getString("no_money_for_field"));
                         }
                     }
                     break;
@@ -143,7 +143,7 @@ public class Game {
                         bankController.processTransaction(tradeTransaction, currentState);
 
                         if (!tradeTransaction.isApproved()) {
-                            view.print("Handlen kunne ikke gennemføres! " + tradeTransaction.getPlayer() + " ikke nok penge.");
+                            view.print(languagePack.getString("not_completed_deal") + tradeTransaction.getPlayer() + languagePack.getString("not_enough_money"));
                         }
                     }
                     break;
@@ -152,7 +152,7 @@ public class Game {
                     Transaction houseTransaction = fieldController.purchaseHouse(currentState);
                     bankController.processTransaction(houseTransaction, currentState);
                     if (!houseTransaction.isApproved()) {
-                        view.print("Du har ikke råd til dette hus!");
+                        view.print(languagePack.getString("not_enough_money_for_house"));
                     }
                     break;
 
@@ -161,8 +161,8 @@ public class Game {
                         bankController.processTransaction(oweTransaction, currentState);
 
                         if (!oweTransaction.isApproved()) {
-                            String result = view.getUserSelect(String.format("Du skylder %d, men har ikke råd til at betale dette. Forsætter du, så vil du gå bankerot og du har tabt spillet.", oweTransaction.getAmount()), "Tab spil", "Sælg mere");
-                            if (result.equals("Tab spil")) {
+                            String result = view.getUserSelect(String.format(languagePack.getString("cant_pay_loan"), oweTransaction.getAmount()), languagePack.getString("lose_game"), languagePack.getString("sell_more"));
+                            if (result.equals(languagePack.getString("lose_game"))) {
                                 takingTurn = false;
                             }
                         } else {
@@ -176,7 +176,7 @@ public class Game {
             }
 
             if (oweTransaction != null && !oweTransaction.isApproved()) {
-                view.print(String.format("%s gik bankerot. Alle spillerens ejendomme er blevet frigivet, og huse solgt til banken.", currentState.getCurrentPlayer().getName()));
+                view.print(String.format(languagePack.getString("player_lost_game"), currentState.getCurrentPlayer().getName()));
                 bankController.freeAssets(currentState.getCurrentPlayer(), currentState);
             }
 

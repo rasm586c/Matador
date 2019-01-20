@@ -1,9 +1,11 @@
 package Model.Fields;
 
 import Model.GameState;
+import Model.LanguagePack;
 import Model.PlayerTurn;
 
 public class BreweryField extends Field implements OwnableField {
+    LanguagePack languagePack;
 
     public BreweryField(String name, int value, int mortgage, String fieldText) {
         super(name, value, mortgage, fieldText, GUI_Type.Brewery);

@@ -127,52 +127,25 @@ field_forward
 //---------------------------
 
 
+//----- BreweryField -----
+brewery_for_sale
+Bryggeri til salg! Vil du købe? Den koster
+//---------------------------
 
-give_player_name
-Indtast navn på spiller %d
 
-player_win
-%s vandt spillet! Tillykke!
+//----- PropertyField -----
+house_for_sale
+Bolig til salg! Vil du købe? Den koster
+//---------------------------
 
-field_land
-Du landede på feltet: %s
 
-balance
-Din balance er nu %d
+//----- ShippingField -----
+shipping_for_sale
+Rederi til salg! Vil du købe? Den koster
+//---------------------------
 
-roll_dice
-%s : Tryk på enter for at kaste terningerne
 
-amount_players
-Indtast antallet af spillere
-
-invalid_amount_players
-Ugyldigt antal spillere! Prøv igen!
-
-select_card_type
-Vælg et figurkort
-
-illegal_card_type
-Ugyldig korttype, prøv igen
-
-buy_property
-Denne bolig er til salg! Vil %s købe denne bolig?
-
-pay_rent
-%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!
-
-die_roll_two
-Rul
-
-chance_move
-Du er flyttet %d felter!
-
-chance_point
-Du får %d point!
-
-winner
-%s vinder spillet!!
-
+//----- GameBoard -----
 field_start_title
 Start
 
@@ -307,3 +280,148 @@ Lån
 
 field_loan
 Din ven du skyldte penge fandt dig, så det betalings tid.
+//---------------------------
+
+
+//----- RetrievePlayerDialog -----
+amount_players
+Indtast antallet af spillere
+
+invalid_amount_players
+Ugyldigt antal spillere! Prøv igen!
+
+give_player_name
+Indtast navn på spiller %d
+
+player_name_used
+Navnet er allerede i brug, vælg venligst et nyt!
+
+select_card_type
+Vælg et figurkort
+//---------------------------
+
+
+//----- ConsoleView -----
+choose_menu
+Skriv et tal for at vælge menupunkt
+
+invalid_menu
+Ugyldigt menupunkt! Prøv igen.
+
+invalid_number
+Ugyldigt tal! Prøv igen.
+
+your_roll
+Du slog
+
+and
+ og
+
+house_placed_on_field
+Et hus er blevet sat på feltet med position
+
+there_are_now
+. Der er nu
+
+house_on_field
+ huse på den grund.
+
+the_player
+Spilleren '
+
+has_now
+' har nu
+
+currency
+ kr
+
+player_win
+ vandt spillet! Tillykke!
+
+player_loss
+ har tabt!
+
+own_field_position
+' ejer nu feltet på position
+
+mortgage_position
+' har nu pantsat sin grund på position
+//---------------------------
+
+
+//----- Game -----
+no_money_pay
+Du havde ikke råd til at betale
+
+this_chance_card
+kr for dette chance kort!
+
+no_money_for_jail
+Du har ikke råd til at betale dig ud af fængsel. Du skylder derfor 1000 kr.
+
+no_money_for_rent
+Du havde ikke råd til at betale huslejen på %d. Sørg for at have over dette beløb når du slutter din tur, ellers har du tabt spillet.
+
+no_money_for_field
+Du har ikke råd til dette felt!
+
+not_completed_deal
+Handlen kunne ikke gennemføres!
+
+not_enough_money
+ ikke nok penge.
+
+not_enough_money_for_house
+Du har ikke råd til dette hus!
+
+cant_pay_loan
+Du skylder %d, men har ikke råd til at betale dette. Forsætter du, så vil du gå bankerot og du har tabt spillet.
+
+lose_game
+Tab spil
+
+sell_more
+Sælg mere
+
+player_lost_game
+%s gik bankerot. Alle spillerens ejendomme er blevet frigivet, og huse solgt til banken.
+//---------------------------
+
+
+
+
+
+field_land
+Du landede på feltet: %s
+
+balance
+Din balance er nu %d
+
+roll_dice
+%s : Tryk på enter for at kaste terningerne
+
+
+
+
+
+
+illegal_card_type
+Ugyldig korttype, prøv igen
+
+buy_property
+Denne bolig er til salg! Vil %s købe denne bolig?
+
+pay_rent
+%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!
+
+die_roll_two
+Rul
+
+chance_move
+Du er flyttet %d felter!
+
+chance_point
+Du får %d point!
+
+winner
+%s vinder spillet!!

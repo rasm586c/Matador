@@ -42,7 +42,7 @@ public class RetrievePlayerDialog {
             String name = view.getUserInput(stringContainer.getString("give_player_name", (i + 1)));
 
             if (containsPlayerWithName(name, players)) {
-                view.print("Sie mussen nicht habe die samme Nahme!");
+                view.print(stringContainer.getString("player_name_used"));
                 i--;
                 continue;
             }

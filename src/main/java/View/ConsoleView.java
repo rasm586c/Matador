@@ -6,6 +6,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleView implements View {
+    LanguagePack languagePack;
+
     public String getUserInput(String message) {
         System.out.println(message);
 
@@ -20,7 +22,7 @@ public class ConsoleView implements View {
         for (int i = 0; i < args.length; i++) {
             System.out.println(i + ". " + args[i]);
         }
-        System.out.println("Skriv et tal for at vælge menupunkt");
+        System.out.println(languagePack.getString("choose_menu"));
         int number = 0;
 
         while (true) {
@@ -31,9 +33,9 @@ public class ConsoleView implements View {
                 if (number < args.length)
                     break;
 
-                System.out.println("Ugyldigt menupunkt! Prøv igen.");
+                System.out.println(languagePack.getString("invalid_menu"));
             } catch (InputMismatchException ime) {
-                System.out.println("Ugyldigt tal! Prøv igen.");
+                System.out.println(languagePack.getString("invalid_number"));
             }
         }
 
@@ -41,33 +43,33 @@ public class ConsoleView implements View {
     }
 
     public void printDiceRoll(int value1, int value2) {
-        System.out.println("Du slog " + value1 + " og " + value2);
+        System.out.println(languagePack.getString("your_roll") + value1 + languagePack.getString("and") + value2);
     }
 
     public void updateHouse(int fieldPosition, int houseCounter) {
-        System.out.println("Et hus er blevet sat på feltet med position " + fieldPosition + ". Der er nu " + houseCounter + " huse på den grund.");
+        System.out.println(languagePack.getString("house_placed_on_field") + fieldPosition + languagePack.getString("there_are_now") + houseCounter + languagePack.getString("house_on_field"));
     }
 
     public void movePlayer(int oldPosition, int newPosition, Player player) { }
 
     public void setPlayerBalance(Player player, int balance) {
-        System.out.println("Spilleren '"+player.getName()+"' har nu " + balance + " kr");
+        System.out.println(languagePack.getString("the_player") + player.getName() + languagePack.getString("has_now") + balance + languagePack.getString("currency"));
     }
 
     public void setGameWon(String winner) {
-        System.out.println(winner + " vandt spillet!");
+        System.out.println(winner + languagePack.getString("player_win"));
     }
 
     public void removePlayer(Player player) {
-        System.out.println(player.getName() + " har tabt!");
+        System.out.println(player.getName() + languagePack.getString("player_loss"));
     }
 
     public void updateOwner(Player player, int position, boolean active) {
         if (player != null) {
             if (active)
-                System.out.println("Spilleren " + player.getName() + " ejer nu feltet på position " + position);
+                System.out.println(languagePack.getString("the_player") + player.getName() + languagePack.getString("own_field_position") + position);
             else
-                System.out.println("Spilleren " + player.getName() + " har nu pantsat sin grund på position " + position);
+                System.out.println(languagePack.getString("the_player") + player.getName() + languagePack.getString("mortgage_position") + position);
         }
     }
 
