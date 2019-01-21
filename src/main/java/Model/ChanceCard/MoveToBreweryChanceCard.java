@@ -3,6 +3,7 @@ package Model.ChanceCard;
 import Model.Fields.BreweryField;
 import Model.GameBoard;
 import Model.GameState;
+import Model.LanguagePack;
 import Model.Player;
 
 public class MoveToBreweryChanceCard extends ChanceCard {
@@ -28,8 +29,9 @@ public class MoveToBreweryChanceCard extends ChanceCard {
 
         setMoveAmount(delta);
     }
+
     @java.lang.Override
-    public java.lang.String getDescription() {
+    public java.lang.String getDescription(LanguagePack languagePack) {
         return "Du fik 12 i din eksamen, ryk til nærmeste bar for at fejre";
     }
 }

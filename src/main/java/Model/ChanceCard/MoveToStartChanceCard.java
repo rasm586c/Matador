@@ -4,6 +4,7 @@ import Model.Fields.BreweryField;
 import Model.Fields.StartField;
 import Model.GameBoard;
 import Model.GameState;
+import Model.LanguagePack;
 import Model.Player;
 
 public class MoveToStartChanceCard extends ChanceCard {
@@ -30,7 +31,7 @@ public class MoveToStartChanceCard extends ChanceCard {
         setMoveAmount(delta);
     }
     @java.lang.Override
-    public java.lang.String getDescription() {
+    public java.lang.String getDescription(LanguagePack languagePack) {
         return "Tid til at starte semesteret, ryk til rustur (start felt)";
     }
 }
