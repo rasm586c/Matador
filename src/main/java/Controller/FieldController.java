@@ -127,7 +127,9 @@ public class FieldController extends Controller {
             }
 
             // Brugeren vil købe et hus! Lav transaction
-            int housePrice = 50;
+            int housePrice = findFieldPosition(state.getBoard().getFields(), selectedField);
+            housePrice = (int)(Math.floor((float)housePrice / 10.0f) * 1000) + 1000;
+
             transaction = new Transaction( state.getCurrentPlayer(), selectedField, housePrice, Transaction.TransactionType.PurchaseHouse);
         } else {
             // TODO: Fix gamestrings
@@ -333,6 +335,14 @@ public class FieldController extends Controller {
         return true;
     }
 
+    private int findFieldPosition(Field[] fields, Field field) {
+        for (int i = 0; i < fields.length; i++) {
+            if (fields[i].equals(field)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     private int lowestHouseValue(Field.GUI_Type fieldType, Field[] fields, Player player) {
         int lowestValue = Integer.MAX_VALUE;
         for (int i = 0; i < fields.length; i++) {
@@ -344,5 +354,4 @@ public class FieldController extends Controller {
         }
         return (lowestValue == Integer.MAX_VALUE ? 0 : lowestValue);
     }
-
 }
