@@ -1,6 +1,7 @@
 package Model;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -14,36 +15,47 @@ class PlayerTest {
 
         Player player = new Player("hest", PlayerType.UFO, Color.BLACK);
 
-
-        //tester getName funktionen.
         Assert.assertEquals("hest", player.getName());
-        //tester getPlayerType funktionen.
+
+    }
+    @Test
+    void testPlayertype() {
+        Player player = new Player("hest", PlayerType.UFO, Color.BLACK);
+
         Assert.assertEquals(PlayerType.UFO, player.getPlayerType());
 
-        // tester get og set Position.
-        player.setPosition(3);
-        Assert.assertEquals(3, player.getPosition());
+    }
+   @Test
+   void testPosition() {
+       Player player = new Player("hest", PlayerType.UFO, Color.BLACK);
 
-        // Jailturns test
-        player.setJailedTurns(2);
-        Assert.assertEquals(2, player.getJailedTurns());
-
-        // Bankrupt test
-        player.setBankrupt(true);
-        Assert.assertTrue(player.getBankrupt());
-
-        // Player clone test.
-        Player hans = player.clone();
-        Assert.assertEquals(hans, player);
-
+       player.setPosition(3);
+       Assert.assertEquals(3, player.getPosition());
 
     }
+   @Test
+   void testJailTurns() {
+       Player player = new Player("hest", PlayerType.UFO, Color.BLACK);
 
-    @Test
-    void equals() {
-    }
+       player.setJailedTurns(2);
+       Assert.assertEquals(2, player.getJailedTurns());
 
-    @Test
-    void clampPosition() {
-    }
+   }
+   @Test
+    void testBankRupt() {
+       Player player = new Player("hest", PlayerType.UFO, Color.BLACK);
+
+       player.setBankrupt(true);
+       Assert.assertTrue(player.getBankrupt());
+
+   }
+   @Test
+    void testClone() {
+       Player player = new Player("hest", PlayerType.UFO, Color.BLACK);
+
+       Player hans = player.clone();
+       Assert.assertEquals(hans, player);
+
+   }
+
 }
