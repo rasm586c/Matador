@@ -17,11 +17,14 @@ public class DiceCup {
         dices = new Die[] { new Die(6), new Die(6) }; // There is always only 2 dices (final)
     }
 
+    public DiceCup(Die... dices) { this.dices = dices; }
+
     /**
      * This method is rolling the dices, while storing them in a list.
      * @return Is returning the list which is holding the dices value.
      */
     public int[] shake() {
+
         int[] cast = new int[dices.length];
 
         // We are here rolling the dices.
@@ -29,8 +32,7 @@ public class DiceCup {
             Die dice = dices[i];
             cast[i] = dice.roll();
         }
-
-        return cast;
+        return new int[]{cast[0],cast[1]};
     }
 
     /**
@@ -47,6 +49,7 @@ public class DiceCup {
      * This method is for checking if the dices has the same value.
      * @return Is returning true if the dices value are the same.
      */
+
     public boolean isEqual() {
         for (int i = 0; i < dices.length; i++) {
             for (int j = 0; j < dices.length; j++) {
