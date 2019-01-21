@@ -205,14 +205,19 @@ public class GUIView implements View {
     private GUI_Field[] fieldsToGUI(Field[] fields) {
         GUI_Field[] guiFields = new GUI_Field[fields.length];
         for (int i = 0; i < fields.length; i++){
-            guiFields[i] = fieldToGUI(fields[i]);
+            guiFields[i] = fieldToGUI(fields[i], i);
         }
         return guiFields;
     }
-    private GUI_Field fieldToGUI(Field field) {
+
+
+    private GUI_Field fieldToGUI(Field field, int newIndex) {
         String priceTxt = String.format(" %s ", field.value);
 
         String fieldTxt = field.fieldText;
+
+        int housePrice = newIndex;
+        housePrice = (int)(Math.floor((float)housePrice / 10.0f) * 1000) + 1000;
 
         if (field instanceof PropertyField)
             fieldTxt = String.format(fieldTxt,
@@ -222,8 +227,8 @@ public class GUIView implements View {
                     String.format("%d\n", ((PropertyField) field).getRentPrices()[3]),
                     String.format("%d\n", ((PropertyField) field).getRentPrices()[4]),
                     String.format("%d\n", ((PropertyField) field).getRentPrices()[5]),
-                    String.format("%d\n", 300),
-                    String.format("%d\n", 400)
+                    String.format("%d\n", housePrice),
+                    String.format("%d\n", housePrice)
             );
 
 
@@ -256,5 +261,14 @@ public class GUIView implements View {
             case Loan: return new GUI_Tax(field.name,priceTxt,fieldTxt,new Color(99, 124, 168),Color.BLACK);
         }
         throw new IllegalArgumentException();
+    }
+
+    private int getFieldIndex(Field field) {
+        for (int i = 0; i < board.getFields().length; i++) {
+            if ( board.getFields()[i].name.equals(field.name)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
