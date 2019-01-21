@@ -69,6 +69,7 @@ public class LanguagePack {
             String line = s.nextLine();
 
             if (line.equals("")) continue;
+            if (line.startsWith("//")) continue;
 
             if (lineCount % 2 == 0) { key = line; }
             else {

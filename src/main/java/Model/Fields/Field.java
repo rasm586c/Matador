@@ -1,6 +1,7 @@
-package Model;
+package Model.Fields;
 
-import com.sun.org.glassfish.external.arc.Taxonomy;
+import Model.GameState;
+import Model.Player;
 
 /**
  * This class is controlling each field.
@@ -9,7 +10,7 @@ import com.sun.org.glassfish.external.arc.Taxonomy;
  * Each field has a name, a value and a description. While one field can give the player another turn.
  * </p>
  */
-public class Field {
+public abstract class Field {
     /**
      * Defines the name of the field.
      */
@@ -21,15 +22,37 @@ public class Field {
      */
     public final int value;
 
+
+    public final int rent;
     /**
      * Defines the fields description.
      */
     public final String fieldText;
 
+
+    /**
+     *
+     * */
+    private Player owner = null;
+
+    /**
+     *
+     * */
+    private int houseCounter = 0;
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public Player getOwner() { return owner; }
+
     /*
     *
     * */
     public final GUI_Type fieldType;
+
+    // Er boligen aktiv? Falsk hvis pantsat.
+    private boolean active;
 
     /**
      * This method is for creating fields, where the player can't get another turn.
@@ -38,17 +61,35 @@ public class Field {
      * @param value     The value of the field.
      * @param fieldText The description of the field.
      */
-    public Field(String name, int value, String fieldText) {
-        this(name, value, fieldText, GUI_Type.Street);
+    public Field(String name, int value, int rent, String fieldText) {
+        this(name, value, rent, fieldText, GUI_Type.Street);
     }
 
-    public Field(String name, int value, String fieldText, GUI_Type fieldType) {
+    public Field(String name, int value, int rent, String fieldText, GUI_Type fieldType) {
         this.name = name;
         this.value = value;
         this.fieldType = fieldType;
+        this.rent = rent;
 
         if (fieldText == null) this.fieldText = "";
         else this.fieldText = fieldText;
+
+        this.active = true;
+    }
+
+    public void onFieldLand(GameState state) {
+
+    }
+
+    public int getHouseCounter() { return houseCounter; }
+    public void setHouseCounter(int houseCounter) { this.houseCounter = houseCounter; }
+
+    public void setActive(boolean active) { this.active = active; }
+    public boolean getActive() { return active; }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public enum GUI_Type {
@@ -68,7 +109,8 @@ public class Field {
         Street_Brown,
         Start,
         Empty,
-        Tax
+        Tax,
+        Loan
 
     }
 

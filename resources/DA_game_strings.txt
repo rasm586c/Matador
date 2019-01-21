@@ -1,8 +1,395 @@
+//----- BankController -----
+no_money
+Øv! Du har ikke råd.
+
+a_lot_of_money
+Du har rigtig mange penge, så du betaler 4.000
+
+average_money
+Du har ikke helt så mange penge, du betaler bare 10% af dine penge.
+
+bought_house
+Du har købt et hus på
+
+studie_loan
+Du skal betale din studiegæld!
+//---------------------------
+
+
+//----- FieldController -----
+field_buy_house
+Vælg grund at købe hus på
+
+can_not_buy_house
+Du kan ikke købe huse lige nu!
+
+field_negotiate
+Vælg felt du vil forhandle med.
+
+trade_player_choice
+Vælg spiller at handle med
+
+how_much_field
+Skriv hvor meget du vil have for feltet.
+
+invalid_input
+Ugyldigt input.
+
+wish_buy_field
+Ønsker %s at købe feltet %s for %d ?
+
+yes
+Ja
+
+no
+Nej
+
+choose_field_negotiate
+Vælg felt du vil forhandle med.
+
+wish_field_mortgage
+Ønsker du at pantsætte %s for %d
+
+choose_field_buy_back
+Vælg det felt du ønsker at købe tilbage?
+
+wish_buy_field_back
+Ønsker du at købe feltet %s tilbage for %d
+//---------------------------
+
+
+//----- TurnController -----
+die_roll
+Det er %s's tur til at rulle terningen
+
+prison
+Du er i fængsel!
+
+pay_1000
+Betal 1000 kr
+
+2_alike
+Rul to ens
+
+you_pay_1000
+Du skal betale 1000 kr!
+
+want_in_turn
+Hvad vil du i denne tur?
+
+stop_tour
+Stop tur
+
+buy_field
+Køb felt
+
+mortgage_field
+Pantsæt felt
+
+buy_field_back
+Køb felt tilbage
+
+buy_house
+Køb hus
+
+trade_field
+Byt felt
+
+unknown_case
+Unknown Case
+//---------------------------
+
+
+//----- hanceCard  -----
+chance_field
+Du er landet på et chance felt!
+//---------------------------
+
+
+//----- MoneyChanceCard -----
+money_chance_card
+Du trak penge chance kortet og mistede
+
+money
+ penge!
+
+money_chance_card_2
+Du trak penge chance kortet og fik
+//---------------------------
+
+
+//----- MoveChanceCard -----
+move_chance_card
+Du trak chance kortet, som gør at du skal flytte dig
+
+field_forward
+ felter frem!
+//---------------------------
+
+
+//----- BreweryField -----
+brewery_for_sale
+Bryggeri til salg! Vil du købe? Den koster
+//---------------------------
+
+
+//----- PropertyField -----
+house_for_sale
+Bolig til salg! Vil du købe? Den koster
+//---------------------------
+
+
+//----- ShippingField -----
+shipping_for_sale
+Rederi til salg! Vil du købe? Den koster
+//---------------------------
+
+
+//----- GameBoard -----
+field_start_title
+Start
+
+field_start
+Rustur
+
+field_chance
+Studiemail
+
+field_jail_title
+Studievejledning
+
+field_jail
+Du sidder fast i studievejledning. Mega nedern.
+
+field_ship_1_title
+7Cocinas
+
+field_ship_rent
+Grundleje: %s 2 Rederier: %s 3 Rederier: %s 4 Rederier: %s
+
+field_brewery_rent
+Hvis en bar er ejet, skal der betales 100 * antallet af øjne rullet. Hvis begge er ejet er det 200 * antallet af øjne rullet.
+
+field_ship_2_title
+Zaza
+
+field_ship_2
+ship felt 2
+
+field_ship_3_title
+DTK
+
+field_ship_3
+Der skal sejles snart.
+
+field_ship_4_title
+Yatai
+
+field_shit_4
+Sejltid
+
+field_brewery_1_title
+Hegnet
+
+field_indkomstskat_title
+Studiegæld
+
+field_indkomstskat
+Du skylder studiegæld min ven, den er sgu ikke så god. Betal 10% af dine penge eller 4.000, dit valg.
+
+field_property_rent
+Grundleje: %s 1 Hus: %s 2 Huse: %s 3 Huse: %s 4 Huse: %s Hotel: %s Køb af hus: %s Køb af hotel: %s
+
+field_cyan_1_title
+Energivej
+
+field_cyan_2_title
+Vagn AA. vej
+
+field_pink_1_title
+Den der netto
+
+field_pink_2_title
+Produktions- \n torvet
+
+field_pink_3_title
+Kollegie \n bakken
+
+field_green_1_title
+Akademivej
+
+field_green_2_title
+Centrifuge- \n vej
+
+field_green_3_title
+Ørsteds \n Plads
+
+field_blue_1_title
+Elektrovej
+
+field_blue_2_title
+Richard P. \n Plads
+
+field_blue_3_title
+Matematik- \n torvet
+
+field_refuge_title
+Bibliotek
+
+field_refuge
+Bare sådan chill og læs nogen bøger.
+
+field_red_1_title
+Kemikalievej
+
+field_red_2_title
+Henrik Dams \n Allé
+
+field_red_3_title
+Søltoftsplads
+
+field_white_1_title
+Kolonnevej
+
+field_white_2_title
+Det der \n busstop
+
+field_white_3_title
+Kemitorvet
+
+field_brewery_2_title
+Kælderbaren
+
+field_yellow_1_title
+Brovej
+
+field_yellow_2_title
+Anker Eng. \n vej
+
+field_yellow_3_title
+Bygnings- \n torvet
+
+field_brown_1_title
+Oticon \n Hallen
+
+field_brown_2_title
+Bygning \n 101
+
+field_loan_title
+Lån
+
+field_loan
+Din ven du skyldte penge fandt dig, så det betalings tid.
+//---------------------------
+
+
+//----- RetrievePlayerDialog -----
+amount_players
+Indtast antallet af spillere
+
+invalid_amount_players
+Ugyldigt antal spillere! Prøv igen!
+
 give_player_name
 Indtast navn på spiller %d
 
+player_name_used
+Navnet er allerede i brug, vælg venligst et nyt!
+
+select_card_type
+Vælg et figurkort
+//---------------------------
+
+
+//----- ConsoleView -----
+choose_menu
+Skriv et tal for at vælge menupunkt
+
+invalid_menu
+Ugyldigt menupunkt! Prøv igen.
+
+invalid_number
+Ugyldigt tal! Prøv igen.
+
+your_roll
+Du slog
+
+and
+ og
+
+house_placed_on_field
+Et hus er blevet sat på feltet med position
+
+there_are_now
+. Der er nu
+
+house_on_field
+ huse på den grund.
+
+the_player
+Spilleren '
+
+has_now
+' har nu
+
+currency
+ kr
+
 player_win
-%s vandt spillet! Tillykke!
+ vandt spillet! Tillykke!
+
+player_loss
+ har tabt!
+
+own_field_position
+' ejer nu feltet på position
+
+mortgage_position
+' har nu pantsat sin grund på position
+//---------------------------
+
+
+//----- Game -----
+no_money_pay
+Du havde ikke råd til at betale
+
+this_chance_card
+kr for dette chance kort!
+
+no_money_for_jail
+Du har ikke råd til at betale dig ud af fængsel. Du skylder derfor 1000 kr.
+
+no_money_for_rent
+Du havde ikke råd til at betale huslejen på %d. Sørg for at have over dette beløb når du slutter din tur, ellers har du tabt spillet.
+
+no_money_for_field
+Du har ikke råd til dette felt!
+
+not_completed_deal
+Handlen kunne ikke gennemføres!
+
+not_enough_money
+ ikke nok penge.
+
+not_enough_money_for_house
+Du har ikke råd til dette hus!
+
+cant_pay_loan
+Du skylder %d, men har ikke råd til at betale dette. Forsætter du, så vil du gå bankerot og du har tabt spillet.
+
+lose_game
+Tab spil
+
+sell_more
+Sælg mere
+
+player_lost_game
+%s gik bankerot. Alle spillerens ejendomme er blevet frigivet, og huse solgt til banken.
+//---------------------------
+
+
+
+
 
 field_land
 Du landede på feltet: %s
@@ -13,15 +400,6 @@ Din balance er nu %d
 roll_dice
 %s : Tryk på enter for at kaste terningerne
 
-amount_players
-Indtast antallet af spillere
-
-invalid_amount_players
-Ugyldigt antal spillere! Prøv igen!
-
-select_card_type
-Vælg et figurkort
-
 illegal_card_type
 Ugyldig korttype, prøv igen
 
@@ -29,10 +407,7 @@ buy_property
 Denne bolig er til salg! Vil %s købe denne bolig?
 
 pay_rent
-"%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!"
-
-die_roll
-Det er %s's tur til at rulle terningen
+%s er landet på et felt som er ejet af %s. Du skulle betale %s til ham!
 
 die_roll_two
 Rul
@@ -45,198 +420,3 @@ Du får %d point!
 
 winner
 %s vinder spillet!!
-
-field_start_title
-start felt title
-
-field_start
-start felt tekst
-
-field_chance
-tag chancen
-
-field_jail_title
-jail felt title
-
-field_jail
-jail felt tekst
-
-field_ship_1_title
-ship felt 1 title
-
-field_ship_1
-ship felt 1
-
-field_ship_2_title
-ship felt 2 title
-
-field_ship_2
-ship felt 2
-
-field_brewery_1_title
-brewery felt 1 title
-
-field_brewery_1
-brewery felt 1
-
-field_indkomstskat_title
-indkomstskat felt title
-
-field_indkomstskat
-indkomstskat felt
-
-field_cyan_1_title
-cyan felt 1 title
-
-field_cyan_1
-cyan felt 1 tekst
-
-field_cyan_2_title
-cyan felt 2 title
-
-field_cyan_2
-cyan felt 2 tekst
-
-field_pink_1_title
-pink felt 1 title
-
-field_pink_1
-pink felt 1 tekst
-
-field_pink_2_title
-pink felt 2 title
-
-field_pink_2
-pink felt 2 tekst
-
-field_pink_3_title
-pink felt 3 title
-
-field_pink_3
-pink felt 3 tekst
-
-field_green_1_title
-green felt 1 title
-
-field_green_1
-green felt 1 tekst
-
-field_green_2_title
-green felt 2 title
-
-field_green_2
-green felt 2 tekst
-
-field_green_3_title
-green felt 3 title
-
-field_green_3
-green felt 3 tekst
-
-field_blue_1_title
-blue felt 1 title
-
-field_blue_1
-blue felt 1 tekst
-
-field_blue_2_title
-blue felt 2 title
-
-field_blue_2
-blue felt 2 tekst
-
-field_blue_3_title
-blue felt 3 title
-
-field_blue_3
-blue felt 3 tekst
-
-field_refuge_title
-Parkering
-
-field_refuge
-Vent tålmodigt, tak!
-
-field_red_1_title
-Trianglen
-
-field_red_1
-Dette er Trianglen
-
-field_red_2_title
-Østerbrogade
-
-field_red_2
-Du er landet på Østerbrogade!
-
-field_red_3_title
-Grønningen
-
-field_red_3
-Grønningen er et fedt sted
-
-field_ship_3_title
-Rederi
-
-field_ship_3
-Der skal sejles snart.
-
-field_white_1_title
-Bredgade
-
-field_white_1
-Den bredeste gade i Kbh
-
-field_white_2_title
-Kgs. Nytorv
-
-field_white_2
-D'Angleterre ligger her
-
-field_white_3_title
-Østergade
-
-field_white_3
-Gaden i øst
-
-field_brewery_2_title
-Køb bajere
-
-field_brewery_2
-Massere af bajere
-
-field_yellow_1_title
-Amagertorv
-
-field_yellow_1
-Storkespringvandet
-
-field_yellow_2_title
-Vimmelskaftet
-
-field_yellow_2
-Gammelt sted i Kbh
-
-field_yellow_3_title
-Nygade
-
-field_yellow_3
-Den nyeste gade i Kbh
-
-field_ship_4_title
-Rederi4
-
-field_shit_4
-Sejltid
-
-field_brown_1_title
-Frederiksberggade
-
-field_brown_1
-Hvor ligger denne gade???
-
-field_brown_2_title
-Rådhuspladsen
-
-field_brown_2
-Rådhuspladen...
