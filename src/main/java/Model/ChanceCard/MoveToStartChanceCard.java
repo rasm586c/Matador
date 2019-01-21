@@ -29,9 +29,8 @@ public class MoveToStartChanceCard extends ChanceCard {
 
         setMoveAmount(delta);
     }
-    @Override
-    // TODO: Fiks kreativitet og gamestring
-    public String getDescription() {
-        return "Ryk til start";
+    @java.lang.Override
+    public java.lang.String getDescription() {
+        return "Tid til at starte semesteret, ryk til rustur (start felt)";
     }
 }

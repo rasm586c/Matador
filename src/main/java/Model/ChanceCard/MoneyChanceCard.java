@@ -1,7 +1,5 @@
 package Model.ChanceCard;
 
-import Model.GameState;
-
 public class MoneyChanceCard extends ChanceCard {
     private String specialDescription = null;
 
