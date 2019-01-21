@@ -42,7 +42,7 @@ public class DiceCup {
     public int getDiceSum() {
         int sum = 0;
         for (int i = 0; i < dices.length; i++) { sum += dices[i].getValue(); }
-        return 2;
+        return sum;
     }
 
     /**
@@ -50,7 +50,6 @@ public class DiceCup {
      * @return Is returning true if the dices value are the same.
      */
 
-    //TODO: IMPLEMENTO Dobbelt slag
     public boolean isEqual() {
         for (int i = 0; i < dices.length; i++) {
             for (int j = 0; j < dices.length; j++) {

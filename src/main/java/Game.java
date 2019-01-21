@@ -4,6 +4,7 @@ import Model.Fields.OwnableField;
 import Model.Fields.PropertyField;
 import View.*;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Game {
@@ -19,6 +20,7 @@ public class Game {
 
         // Retrieve players
         Player[] players = getPlayers(view, languagePack);
+        //players = new Player[] { new Player("Vinderen", PlayerType.UFO, Color.GREEN), new Player("Taberen", PlayerType.Car, Color.YELLOW) };
 
         // Update players on UI
         view.updatePlayers(players);
@@ -28,7 +30,12 @@ public class Game {
         BankController bankController = new BankController(view, players);
         FieldController fieldController = new FieldController(view, board, languagePack);
 
+
+/*
+        EKSEMPEL PÅ VORES WIN FUNKTION!
+
         // Sæt ejetskab af nogle properties..
+
         boolean førsteEjendom = true;
         for (int i = 0; i < 40; i++) {
             if (board.getFields()[i] instanceof OwnableField) {
@@ -48,7 +55,7 @@ public class Game {
             }
         }
         bankController.withdrawMoney(players[1], 29500);
-
+*/
 
         // Game Loop
         while (true) {
