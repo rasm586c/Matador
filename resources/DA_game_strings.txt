@@ -100,7 +100,7 @@ Unknown Case
 //---------------------------
 
 
-//----- hanceCard  -----
+//----- chanceCard  -----
 chance_field
 Du er landet på et chance felt!
 //---------------------------
