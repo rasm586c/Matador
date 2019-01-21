@@ -32,7 +32,7 @@ public class DiceCup {
             Die dice = dices[i];
             cast[i] = dice.roll();
         }
-        return new int[]{cast[0],cast[1]};
+        return cast;
     }
 
     /**
