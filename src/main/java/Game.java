@@ -27,7 +27,7 @@ public class Game {
 
         // Create controllers
         TurnController turnController = new TurnController(view, players, languagePack);
-        BankController bankController = new BankController(view, players);
+        BankController bankController = new BankController(view, players, languagePack);
         FieldController fieldController = new FieldController(view, board, languagePack);
 
 

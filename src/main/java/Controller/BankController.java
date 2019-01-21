@@ -8,10 +8,11 @@ public class BankController extends Controller {
     Account[] accounts;
     LanguagePack languagePack;
 
-    public BankController(View view, Player[] players) {
+    public BankController(View view, Player[] players, LanguagePack languagePack) {
         super(view);
         accounts = createAccounts(players);
         updateBalances();
+        this.languagePack = languagePack;
     }
 
     private Account[] createAccounts(Player[] players) {

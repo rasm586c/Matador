@@ -124,6 +124,53 @@ Du trak chance kortet, som gør at du skal flytte dig
 
 field_forward
  felter frem!
+
+field_backward
+ felter tilbage!
+//---------------------------
+
+//----- MoveToBreweryChanceCard -----
+12_exam
+Du fik 12 i din eksamen, ryk til nærmeste bar for at fejre
+
+//---------------------------
+move_chance_1
+Du sidder fast i studievejledning, ryk 5 felter grundet kedsomhed
+
+move_chance_2
+Du deltog i trappen og kastede op, tag et skridt tilbage.
+
+move_chance_3
+Du deltager i DTUs seriøse motionsløb, ryk 10 felter
+
+move_chance_4
+Du tager en slutspurt på en aflevering, ryk 12 felter
+
+move_chance_5
+Du fik noget studiehjælp til et fag du havde svært ved, du flyver 3 felter frem.
+
+money_chance_1
+Du skylder 1.000 kroner til Ian, det er tid til at process sale
+
+money_chance_2
+Dit idiotprojekt blev accepteret af dtu, modtag et stipendium på 1.000 kr
+
+money_chance_3
+Du fandt 5 kroner på jorden, det næsten nok til kaffe! Fedt!
+
+money_chance_4
+Du købte en kebabboks til 45 kr til frokost, lækkert men dyrt
+
+money_chance_5
+Du fik solgt nogle bøger fra beståede fag til 350 kr
+
+money_chance_6
+Du tager et lille SU lån. Ingen kvaler, det skal først betales om lang tid
+
+//----- MoveToStartChanceCard -----
+new_semester_start
+Tid til at starte semesteret, ryk til rustur (start felt)
+
 //---------------------------
 
 

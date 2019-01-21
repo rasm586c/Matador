@@ -15,7 +15,7 @@ class BankControllerTest {
     @Test
     void addMoney() {
         Player[] players = new Player[] { new Player("Flodhest", PlayerType.UFO, Color.BLACK), new Player("Hest", PlayerType.UFO, Color.BLACK), new Player("Ko", PlayerType.UFO, Color.BLACK), new Player("Giraf", PlayerType.UFO, Color.BLACK), new Player("Høne", PlayerType.UFO, Color.BLACK), new Player("Peter", PlayerType.UFO, Color.BLACK)};
-        BankController bankController = new BankController(new View.ConsoleView(),players);
+        BankController bankController = new BankController(new View.ConsoleView(),players, new LanguagePack());
 
         for(int i = 0; i < players.length; i++){
             bankController.addMoney(players[i], 4000);
@@ -28,7 +28,7 @@ class BankControllerTest {
     void withdrawMoney() {
 
         Player[] players = new Player[] { new Player("Flodhest", PlayerType.UFO, Color.BLACK), new Player("Hest", PlayerType.UFO, Color.BLACK), new Player("Ko", PlayerType.UFO, Color.BLACK), new Player("Giraf", PlayerType.UFO, Color.BLACK), new Player("Høne", PlayerType.UFO, Color.BLACK), new Player("Peter", PlayerType.UFO, Color.BLACK)};
-        BankController bankController = new BankController(new View.ConsoleView(),players);
+        BankController bankController = new BankController(new View.ConsoleView(),players, new LanguagePack());
 
         for(int i = 0; i < players.length; i++) {
             bankController.withdrawMoney(players[i],15000);
@@ -40,7 +40,7 @@ class BankControllerTest {
     @Test
     void processTransaction() {
         Player[] players = new Player[] { new Player("Flodhest", PlayerType.UFO, Color.BLACK), new Player("Hest", PlayerType.UFO, Color.BLACK), new Player("Ko", PlayerType.UFO, Color.BLACK), new Player("Giraf", PlayerType.UFO, Color.BLACK), new Player("Høne", PlayerType.UFO, Color.BLACK), new Player("Peter", PlayerType.UFO, Color.BLACK)};
-        BankController bankController = new BankController(new View.ConsoleView(),players);
+        BankController bankController = new BankController(new View.ConsoleView(),players, new LanguagePack());
 
         GameState gameState = new GameState();
         LanguagePack languagePack = new LanguagePack();

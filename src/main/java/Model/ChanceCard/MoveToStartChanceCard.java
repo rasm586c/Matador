@@ -32,6 +32,6 @@ public class MoveToStartChanceCard extends ChanceCard {
     }
     @java.lang.Override
     public java.lang.String getDescription(LanguagePack languagePack) {
-        return "Tid til at starte semesteret, ryk til rustur (start felt)";
+        return languagePack.getString("new_semester_start");
     }
 }

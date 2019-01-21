@@ -32,6 +32,6 @@ public class MoveToBreweryChanceCard extends ChanceCard {
 
     @java.lang.Override
     public java.lang.String getDescription(LanguagePack languagePack) {
-        return "Du fik 12 i din eksamen, ryk til nærmeste bar for at fejre";
+        return languagePack.getString("12_exam");
     }
 }

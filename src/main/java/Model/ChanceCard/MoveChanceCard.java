@@ -21,7 +21,7 @@ public class MoveChanceCard extends ChanceCard {
             if (getMoveAmount() > 0) {
                 return languagePack.getString("move_chance_card") + getMoveAmount() + languagePack.getString("field_forward");
             } else {
-                return languagePack.getString("move_chance_card") + (getMoveAmount() * -1) + languagePack.getString("field_forward");
+                return languagePack.getString("move_chance_card") + (getMoveAmount() * -1) + languagePack.getString("field_backward");
             }
         } else {
             return specialDescription;
