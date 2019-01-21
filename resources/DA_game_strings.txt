@@ -400,11 +400,6 @@ Din balance er nu %d
 roll_dice
 %s : Tryk på enter for at kaste terningerne
 
-
-
-
-
-
 illegal_card_type
 Ugyldig korttype, prøv igen
 
