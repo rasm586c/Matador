@@ -26,11 +26,6 @@ class GameStateTest {
         }
 
     }
-
-    @Test
-    void setTurn() {
-    }
-
     @Test
     void getBoard() {
     }

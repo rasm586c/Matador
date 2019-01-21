@@ -1,11 +1,12 @@
 package Model.ChanceCard;
 
 import Model.Fields.BreweryField;
+import Model.Fields.StartField;
 import Model.GameBoard;
 import Model.GameState;
 import Model.Player;
 
-public class MoveToBreweryChanceCard extends ChanceCard {
+public class MoveToStartChanceCard extends ChanceCard {
     private String specialDescription = null;
     @Override
     public void calculateCardFromState(GameState state) {
@@ -17,7 +18,7 @@ public class MoveToBreweryChanceCard extends ChanceCard {
 
         int delta = 0;
         while (true) {
-            if (board.getFields()[Player.clampPosition(state.getCurrentPlayer().getPosition() + delta)] instanceof BreweryField) {
+            if (board.getFields()[Player.clampPosition(state.getCurrentPlayer().getPosition() + delta)] instanceof StartField) {
                 break;
             }
             delta++;
@@ -30,6 +31,6 @@ public class MoveToBreweryChanceCard extends ChanceCard {
     }
     @java.lang.Override
     public java.lang.String getDescription() {
-        return "Du fik 12 i din eksamen, ryk til nærmeste bar for at fejre";
+        return "Tid til at starte semesteret, ryk til rustur (start felt)";
     }
 }
