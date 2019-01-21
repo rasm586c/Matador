@@ -14,10 +14,11 @@ public class FieldController extends Controller {
     View view;
     LanguagePack languagePack;
 
-    public FieldController(View view, GameBoard board) {
+    public FieldController(View view, GameBoard board, LanguagePack languagePack) {
         super(view);
         this.board = board;
         this.view = view;
+        this.languagePack = languagePack;
     }
 
     public Transaction onFieldLand(GameState state) {
@@ -31,7 +32,7 @@ public class FieldController extends Controller {
             ChanceCard card = chanceField.drawCard();
             card.calculateCardFromState(state);
 
-            view.print(card.getDescription());
+            view.print(card.getDescription(languagePack));
 
             playerTransaction = new Transaction(state.getCurrentPlayer(), null, card.getMoneyAmount(), Transaction.TransactionType.PayToBank);
             playerTransaction.setAmount(card.getMoneyAmount());

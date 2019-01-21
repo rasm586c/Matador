@@ -26,7 +26,7 @@ public class Game {
         // Create controllers
         TurnController turnController = new TurnController(view, players, languagePack);
         BankController bankController = new BankController(view, players);
-        FieldController fieldController = new FieldController(view, board);
+        FieldController fieldController = new FieldController(view, board, languagePack);
 
         // Sæt ejetskab af nogle properties..
         /*
