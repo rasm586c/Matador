@@ -136,6 +136,8 @@ public class GUIView implements View {
         int wonTextPosition = 0;
         int textPosition = 0;
 
+        gui.showMessage(wonText.toString());
+
         // Epilepsy Simulator!!!!!!
         Random rnd = new Random();
         while (true) {

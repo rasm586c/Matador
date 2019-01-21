@@ -29,7 +29,6 @@ public class Game {
         FieldController fieldController = new FieldController(view, board, languagePack);
 
         // Sæt ejetskab af nogle properties..
-        /*
         boolean førsteEjendom = true;
         for (int i = 0; i < 40; i++) {
             if (board.getFields()[i] instanceof OwnableField) {
@@ -49,7 +48,7 @@ public class Game {
             }
         }
         bankController.withdrawMoney(players[1], 29500);
-        */
+
 
         // Game Loop
         while (true) {
@@ -181,7 +180,7 @@ public class Game {
             }
 
             if (turnController.hasWinner()) {
-                view.setGameWon(turnController.getCurrentPlayer().getName());
+                view.setGameWon(turnController.getWinner().getName());
                 while (true) { /**/ }
             }
 

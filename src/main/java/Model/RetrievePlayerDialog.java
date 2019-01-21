@@ -41,7 +41,7 @@ public class RetrievePlayerDialog {
 
             String name = view.getUserInput(stringContainer.getString("give_player_name", (i + 1)));
 
-            if (containsPlayerWithName(name, players)) {
+            if (containsPlayerWithName(name, players) || name.length() == 0) {
                 view.print(stringContainer.getString("player_name_used"));
                 i--;
                 continue;

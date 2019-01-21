@@ -141,6 +141,13 @@ public class TurnController extends Controller {
                 .count() == 1;
     }
 
+    public Player getWinner() {
+        return Arrays.stream(players)
+                .filter(player -> !player.getBankrupt())
+                .findFirst()
+                .get();
+    }
+
     private int getNextTurn(int playerTurn) {
         int nextTurn = playerTurn;
         while (true) {
